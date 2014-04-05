@@ -1,52 +1,111 @@
 <?php
-require 'includes/constant/config.inc.php';
 
+    function isTableEmpty($con, $table)
+    {
+        echo "Determine if empty";
+        $result = $con->query("select * from " . $table);
+        if($result)
+        { 
+            echo "Num Rows =" . $result->num_rows;
+            if($result->num_rows > 0)
+            {
+                $result->close();
+                return false;
+            }
+            $result->close();
+        }
+        return true;
+    }
+    echo "php started";
+    $con = new mysqli("localhost", "hci573","hci573","petproject"); 
 
-//create the table that stores the account information
-$go = mysql_query("CREATE TABLE IF NOT EXISTS ".USERS." (
-id bigint(20) NOT NULL AUTO_INCREMENT,
-md5_id varchar(200) NOT NULL DEFAULT '',
-full_name longblob,
-user_name varchar(200) NOT NULL DEFAULT '',
-usr_email longblob,
-user_level tinyint(4) NOT NULL DEFAULT '1',
-usr_pwd varchar(220) NOT NULL DEFAULT '',
-date date NOT NULL DEFAULT '0000-00-00',
-users_ip varchar(200) NOT NULL DEFAULT '',
-approved int(1) NOT NULL DEFAULT '0',
-activation_code int(10) NOT NULL DEFAULT '0',
-ckey varchar(220) NOT NULL DEFAULT '',
-ctime varchar(220) NOT NULL DEFAULT '',
-num_logins int(11) NOT NULL DEFAULT '0',
-last_login timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-PRIMARY KEY (id)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;");
+    if( $con->connect_errno)
+    {
+        //If Database doesn't exist try to create it 
+        $con = new mysqli("localhost", "hci573","hci573");
+        if($con->connect_errno)
+        {
+            //Couldn't connect so we can't create nuthin, exit
+            echo "Failed to Connect to mysql: " . mysqli_connect_error($con);
+            return;
+        }
+        else// We could connect so lets try to create
+        {
+            $sql="create database petproject";
+            if($con->query($sql)=== FALSE)
+            {   //Couldn't create databasei, exit
+                echo "Error creating sql database: " . $con->error;
+                return;
+            }
+        }
+    }
+    //If we are here we should be connected to a database
+    echo "database creation successful";
+    //create users table
+    $sql ="create table if not exists Users (
+        Id bigint(20) not null auto_increment,
+        FirstName varchar(100),
+        LastName varchar(100),
+        Email varchar(100),
+        Password varchar(100),
+        UserName varchar(100),
+        Address varchar(100),
+        State varchar(2),
+        ZipCode varchar(7),
+        Bio mediumtext,
+        ProfileImagePath varchar(200),
+        primary key (Id))";
+    if($con->query($sql) === FALSE)
+    {
+        echo "Error creating users table". $con->error;
+        return;
+    }
 
-//create the table that stores some text associate with each user
-$details = mysql_query("CREATE TABLE IF NOT EXISTS ".USER_DETAILS." (
-details_id int(11) unsigned NOT NULL AUTO_INCREMENT,
-detail_user_id int(11) DEFAULT NULL,
-detail_notes text,
-PRIMARY KEY (details_id)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;");
+    $sql= "create table if not exists UserPets(
+        Id bigint(20) not null auto_increment,
+        UserId bigint(20),
+        PetType varchar(100),
+        primary key (Id))";
 
+    if($con->query($sql) === FALSE)
+    {
+        echo "Error creating userpets table" . $con->error;
 
+        return;
+    }
+    
+    $sql= "create table if not exists UserRole(
+        Id bigint(20) not null auto_increment,
+        UserId bigint(20),
+        Rating int,
+        UserType varchar(9),
+        primary key (Id))";
 
+    if($con->query($sql) === FALSE)
+    {
+        echo "Error creating userpets table" . $con->error;
 
-//manually insert some information about a few users so that we can see it show up on the page once those users log in
-$detail_insert = mysql_query("INSERT INTO ".USER_DETAILS." (details_id, detail_user_id, detail_notes)
-VALUES
-(10,1,'something about user 1 '),
-(11,1,'something else about user 1 '),
-(12,4,'something about user 4 ');") or die(mysql_error());
+        return;
+    }   	
+    $sql ="create table if not exists MatchUps(
+	Id bigint(20),
+	ClientId bigint(20),
+	VolunteerId bigint(20),
+	PetType varchar(45),
+	Day varchar(15),
+	StartTime time,
+	EndTime time,
+	Completed boolean,
+	UserReview int,
+	ClientReview int);";
 
+    if($con->query($sql) === FALSE)
+    {
+        echo "Error creating matchups table" . $con->error;
 
-
-if($go && $details && $detail_insert)
-{
-	echo "Installed tables successfully";
-}
-else
-{
-	echo "Unable to install tables";
-}
+        return;
+    } 
+    echo "Database Creation Sucessful";
+    
+    $con->close();
+?>
