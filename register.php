@@ -5,10 +5,17 @@ include_once 'includes/swift/lib/swift_required.php';
 
 $meta_title = "Register an account";
 
-$fullname = NULL;
+$firstname = NULL;
+$lastname = NULL;
 $username = NULL;
 $password = NULL;
 $email = NULL;
+$address1 = NULL;
+$address2 = NULL;
+$city = NULL;
+$state = NULL;
+$zipcode = NULL;
+$bio = NULL;
 
 $msg = NULL;
 $err = array();
@@ -16,16 +23,24 @@ $err = array();
 if(isset($_POST['add']))
 {
 	//filter is defined config.inc.php
-	$fullname = filter($_POST['fullname']);
+	$firstname = filter($_POST['firstname']);
+	$lastname = filter($_POST['lastname']);
 	$username = filter($_POST['username']);
 	$password = filter($_POST['password']);
 	$email = filter($_POST['email']);
-	$date = date('Y-m-d');
-	$user_ip = $_SERVER['REMOTE_ADDR'];
-	$activation_code = rand(1000,9999);
+	$address1 = filter($_POST['address1']);
+	$address2 = filter($_POST['address2']);
+	$city = filter($_POST['city']);
+	$state = filter($_POST['state']);
+	$zipcode = filter($_POST['zipcode']);
+	$bio = filter($_POST['bio']);
+	 $profileImagePath ="blankfornow";
+	//$user_ip = $_SERVER['REMOTE_ADDR'];
+	//$activation_code = rand(1000,9999);
 	
+	echo $firstname . " " . $lastname. " " .  $username. " " .  $password. " " .  $email . " " .  $address1. " " .  $address2. " " .  $city. " " .  $state. " " .  $zipcode. " " .  $bio. " " .  $profileImagePath;
 	//define in config.inc.php
-	$err = add_user($fullname, $username, $password, $email, $date, $user_ip, $activation_code);
+	$err = add_user($firstname, $lastname, $username, $password, $email, $address1, $address2, $city, $state, $zipcode, $bio, $profileImagePath );
 
 	//if there are no errors, set $msg to "Registration Successfull" - later on, it is displayed on the page
 	if ( count($err) == 0){
@@ -79,12 +94,21 @@ return_meta($meta_title);
 			<!-- back in HTML mode -->
 			
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="register_form">
-			<p>Hi there!</p>
-			<p>My name is <input type="text" name="fullname" value="" class="required" />, and I would LOVE to be able to join your little club.  I'd like my username to be <input type="text" name="username" value="" class="required" />.</p>
+			
+			<p>First Name: <input type="text" name="firstname" value="" class="required" /><br/>
+			Last Name:   <input type="text" name="lastname" value="" class="required" /> <br/>
+			User Name:  <input type="text" name="username" value="" class="required" /> <br/>
+			Password:     <input type="password" name="password" value="" class="required" /> <br/>
+			Email:      <input type="text" name="email" value="" class="required email" /><br/>
+			Adress 1:   <input type="text" name="address1" value="" class="required" /> <br/>
+			Adress 2:   <input type="text" name="address2" value="" class="required" /><br/>
+			city:       <input type="text" name="city" value="" class="required" /> <br/>
+			State:      <input type="text" name="state" value="" class="required" /> <br/>
+			Zip:        <input type="text" name="zipcode" value="" class="required" /> <br/>
+			bio:        <input type="text" name="bio" value="" class="required" /> <br/>
 
-			<p>My amazingly secure password is <input type="password" name="password" value="" class="required" /> , and my email address is <input type="text" name="email" value="" class="required email" />.</p>
 
-			<p><input type="submit" name="add" value="Register!" /></p>
+			<input type="submit" name="add" value="Register!" /></p>
 			</form>
 			
 <p>Above is the registration form from HW4 (not completed). Will our users register separately from filling out the volunteer or client form? If so, how will they get to the appropriate forms? If not, how do do they choose volunteer or client, fill out the proper form area, and become registered as a client or a volunteer?</p>

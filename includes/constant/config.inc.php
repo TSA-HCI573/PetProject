@@ -6,18 +6,20 @@ error_reporting(E_ALL | E_STRICT);
 define ("DB_HOST", "localhost"); // set database host
 define ("DB_USER", "hci573"); // set database user
 define ("DB_PASS","hci573"); // set database password
-define ("DB_NAME","hci573"); // set database name
+define ("DB_NAME","petproject"); // set database name
 
 //tables
-define ("USERS", "hw4_user_table_yournetid");
-define ("USER_DETAILS", "hw4_user_details_yournetid");
+define ("USERS", "users");
+define ("USER_ROLE", "UserRole");
+define ("USER_PETS", "UserPets");
+define ("MATCHUPS", "MatchUps");
 
 //site base
-define ("SITE_BASE", "http://".$_SERVER['HTTP_HOST']."/Pet_Project");
-define ("SITE_ROOT", $_SERVER['DOCUMENT_ROOT']."/Pet_Project");
+define ("SITE_BASE", "http://".$_SERVER['HTTP_HOST']."/PetProject");
+define ("SITE_ROOT", $_SERVER['DOCUMENT_ROOT']."/PetProject");
 
 //email to use for verification
-define ("GLOBAL_EMAIL", "notused@gmail.com");
+//define ("GLOBAL_EMAIL", "notused@gmail.com");
 define ("REQUIRE_ACTIVIATION",false); //keep this as false
 
 $link = mysql_connect(DB_HOST, DB_USER, DB_PASS) or die("Couldn't make connection.");
@@ -36,7 +38,7 @@ global $password_store_key;
 
 
 /* Function that adds a new user to our system */
-function add_user($fullname, $username, $password, $email, $date, $user_ip, $activation_code){
+function add_user($firstname, $lastname, $username, $password, $email, $address1, $address2, $city, $state, $zipcode, $bio, $profileImagePath ){
 	
 	//declaring $salt and $link as global allows the function to access the values stored in these variables
 	global $salt;
@@ -46,10 +48,16 @@ function add_user($fullname, $username, $password, $email, $date, $user_ip, $act
 	$err = array();
 	
 	//here we validate that the user submited all fields
-	if(empty($fullname) || strlen($fullname) < 4)
+	if(empty($firstname) || strlen($firstname) < 4)
 	{
-		$err[] = "You must enter your name";
+		$err[] = "You must enter your first name";
 	}
+	
+	if(empty($lastname) || strlen($lastname) < 4)
+	{
+		$err[] = "You must enter your last name";
+	}
+	
 	
 	if(empty($username) || strlen($username) < 4)
 	{
@@ -68,7 +76,7 @@ function add_user($fullname, $username, $password, $email, $date, $user_ip, $act
 	
 	
 
-	$q = mysql_query("SELECT user_name, usr_email FROM ".USERS." WHERE user_name = '$username' OR usr_email = AES_ENCRYPT('$email', '$salt')");
+	$q = mysql_query("SELECT username, email FROM ".USERS." WHERE username = '$username' OR email = AES_ENCRYPT('$email', '$salt')");
 	if(mysql_num_rows($q) > 0)
 	{
 		$err[] = "User already exists";
@@ -78,67 +86,70 @@ function add_user($fullname, $username, $password, $email, $date, $user_ip, $act
 	{
 		//the function hash_pass is defined in config.inc.php
 		$password = hash_pass($password);
+		
+		$q1 = mysql_query("INSERT INTO ".USERS." (FirstName, LastName, Email, Password, UserName, Address1, Address2, City, State, ZipCode, Bio, ProfileImagePath) 
+		VALUES ('$firstname',  '$lastname', AES_ENCRYPT('$email', '$salt'), '$password', '$username', '$address1', '$address2', '$city',  '$state', '$zipcode', '$bio', '$profileImagePath')", $link) or die("Unable to insert data");
 
-		$q1 = mysql_query("INSERT INTO ".USERS." (full_name, user_name, usr_pwd, usr_email, date, users_ip, activation_code) VALUES ('$fullname', '$username', '$password', AES_ENCRYPT('$email', '$salt'), '$date', '$user_ip', '$activation_code')", $link) or die("Unable to insert data");
 
+		
 		//Generate rough hash based on user id from above insertion statement
 		$user_id = mysql_insert_id($link); //get the id of the last inserted item
 		$md5_id = md5($user_id);
 		mysql_query("UPDATE ".USERS." SET md5_id='$md5_id' WHERE id='$user_id'");
 
-		if (REQUIRE_ACTIVIATION){
-		
-			//set the approve flag to 0
-			$rs_activ = mysql_query("UPDATE ".USERS." SET approved='0' WHERE
-				md5_id='". $md5_id. "' AND activation_code = '" . $activation_code ."' ") or die(mysql_error());
-		
-			//send an email with the activation key
-			
-			//first, retrieve my encrypted password
-			$key = $password_store_key;
-			$result = mysql_query("SELECT * , AES_DECRYPT(password, '$key') AS password FROM ". PSTORE_TABLE ." WHERE username=AES_ENCRYPT('".GLOBAL_EMAIL."', '$key')") or die(mysql_error());
-			$row = mysql_fetch_assoc($result);
-			$pw = $row['password'];
-			
-			//generate the message
-			$message = "Hi ".$fullname."!\n
-				Thank you for registering with us. Here are your login details...
-
-				User ID: ".$username."\n
-				Email: ".$email."\n
-				Password: ".$_POST['password']."\n\n
-
-				You must activate your account before you can actually do anything:\n
-				".SITE_BASE."/users/activate.php?user=".$md5_id."&activ_code=".$activation_code."\n\n\n
-
-				Thank You,\n
-
-				Administrator\n
-				".SITE_BASE."";
-			
-			
-			//next, we use swift's email function
-			$email_to = $email; $email_from=GLOBAL_EMAIL;$password = $pw; $subj = "Registration successful!";
-			$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
-			  ->setUsername($email_to)
-			  ->setPassword($password);
-
-			$mailer = Swift_Mailer::newInstance($transport);
-
-			$message = Swift_Message::newInstance($subj)
-			  ->setFrom(array($email_from => 'Jivko Sinapov'))
-			  ->setTo(array($email_to))
-			  ->setBody($message);
-
-			$result = $mailer->send($message);
-	
-		}
-		else {
-			//activate user by default
-			// set the approved field to 1 to activate the account
-			$rs_activ = mysql_query("UPDATE ".USERS." SET approved='1' WHERE
-				md5_id='". $md5_id. "' AND activation_code = '" . $activation_code ."' ") or die(mysql_error());
-		}
+	// 	if (REQUIRE_ACTIVIATION){
+// 		
+// 			//set the approve flag to 0
+// 			$rs_activ = mysql_query("UPDATE ".USERS." SET approved='0' WHERE
+// 				md5_id='". $md5_id. "' AND activation_code = '" . $activation_code ."' ") or die(mysql_error());
+// 		
+// 			//send an email with the activation key
+// 			
+// 			//first, retrieve my encrypted password
+// 			$key = $password_store_key;
+// 			$result = mysql_query("SELECT * , AES_DECRYPT(password, '$key') AS password FROM ". PSTORE_TABLE ." WHERE username=AES_ENCRYPT('".GLOBAL_EMAIL."', '$key')") or die(mysql_error());
+// 			$row = mysql_fetch_assoc($result);
+// 			$pw = $row['password'];
+// 			
+// 			//generate the message
+// 			$message = "Hi ".$fullname."!\n
+// 				Thank you for registering with us. Here are your login details...
+// 
+// 				User ID: ".$username."\n
+// 				Email: ".$email."\n
+// 				Password: ".$_POST['password']."\n\n
+// 
+// 				You must activate your account before you can actually do anything:\n
+// 				".SITE_BASE."/users/activate.php?user=".$md5_id."&activ_code=".$activation_code."\n\n\n
+// 
+// 				Thank You,\n
+// 
+// 				Administrator\n
+// 				".SITE_BASE."";
+// 			
+// 			
+// 			//next, we use swift's email function
+// 			$email_to = $email; $email_from=GLOBAL_EMAIL;$password = $pw; $subj = "Registration successful!";
+// 			$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
+// 			  ->setUsername($email_to)
+// 			  ->setPassword($password);
+// 
+// 			$mailer = Swift_Mailer::newInstance($transport);
+// 
+// 			$message = Swift_Message::newInstance($subj)
+// 			  ->setFrom(array($email_from => 'Jivko Sinapov'))
+// 			  ->setTo(array($email_to))
+// 			  ->setBody($message);
+// 
+// 			$result = $mailer->send($message);
+// 	
+// 		}
+// 		else {
+// 			//activate user by default
+// 			// set the approved field to 1 to activate the account
+// 			$rs_activ = mysql_query("UPDATE ".USERS." SET approved='1' WHERE
+// 				md5_id='". $md5_id. "' AND activation_code = '" . $activation_code ."' ") or die(mysql_error());
+// 		}
 	}
 
 	

@@ -16,7 +16,7 @@
         }
         return true;
     }
-    echo "php started";
+    echo "php started <br/>";
     $con = new mysqli("localhost", "hci573","hci573","petproject"); 
 
     if( $con->connect_errno)
@@ -34,13 +34,13 @@
             $sql="create database petproject";
             if($con->query($sql)=== FALSE)
             {   //Couldn't create databasei, exit
-                echo "Error creating sql database: " . $con->error;
+                echo "<br/>Error creating sql database: " . $con->error;
                 return;
             }
         }
     }
     //If we are here we should be connected to a database
-    echo "database creation successful";
+    echo " database creation successful ";
     //create users table
     $sql ="create table if not exists Users (
         Id bigint(20) not null auto_increment,
@@ -48,8 +48,11 @@
         LastName varchar(100),
         Email varchar(100),
         Password varchar(100),
+        md5_id varchar(200),
         UserName varchar(100),
-        Address varchar(100),
+        Address1 varchar(100),
+        Address2 varchar(100),
+        City varchar(50),
         State varchar(2),
         ZipCode varchar(7),
         Bio mediumtext,
@@ -57,7 +60,7 @@
         primary key (Id))";
     if($con->query($sql) === FALSE)
     {
-        echo "Error creating users table". $con->error;
+        echo "<br/> Error creating users table <br/>". $con->error;
         return;
     }
 
@@ -69,7 +72,7 @@
 
     if($con->query($sql) === FALSE)
     {
-        echo "Error creating userpets table" . $con->error;
+        echo "<br/>Error creating userpets table <br/>" . $con->error;
 
         return;
     }
@@ -83,7 +86,7 @@
 
     if($con->query($sql) === FALSE)
     {
-        echo "Error creating userpets table" . $con->error;
+        echo "<br/> Error creating userpets table <br/>" . $con->error;
 
         return;
     }   	
@@ -101,11 +104,11 @@
 
     if($con->query($sql) === FALSE)
     {
-        echo "Error creating matchups table" . $con->error;
+        echo "<br/> Error creating matchups table <br/>" . $con->error;
 
         return;
     } 
-    echo "Database Creation Sucessful";
+    echo "<br/>Database Creation Sucessful<br/> ";
     
     $con->close();
 ?>
