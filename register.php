@@ -38,7 +38,7 @@ if(isset($_POST['add']))
 	//$user_ip = $_SERVER['REMOTE_ADDR'];
 	//$activation_code = rand(1000,9999);
 	
-	echo $firstname . " " . $lastname. " " .  $username. " " .  $password. " " .  $email . " " .  $address1. " " .  $address2. " " .  $city. " " .  $state. " " .  $zipcode. " " .  $bio. " " .  $profileImagePath;
+//echo $firstname . " " . $lastname. " " .  $username. " " .  $password. " " .  $email . " " .  $address1. " " .  $address2. " " .  $city. " " .  $state. " " .  $zipcode. " " .  $bio. " " .  $profileImagePath;
 	//define in config.inc.php
 	$err = add_user($firstname, $lastname, $username, $password, $email, $address1, $address2, $city, $state, $zipcode, $bio, $profileImagePath );
 
