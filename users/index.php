@@ -11,7 +11,7 @@ return_meta("Welcome to the secured user area " .$_SESSION['fullname'] . "!");
 <body>
 <div id="container">
 
-	<?php include '../includes/constant/nav.inc.php';
+	<?php include '/user_nav.inc.php';
 	?>
 
 	<h1>Your name is <?php echo $_SESSION['fullname']; ?>!</h1>
@@ -45,7 +45,7 @@ return_meta("Welcome to the secured user area " .$_SESSION['fullname'] . "!");
 	
 	<li><strong>Volunteer status:</strong> The volunteer will have a message like "You have not yet initiated a match.", "You have sent an email to 'Jane Doe' about a possible match for your services.", or "You are currently matched with 'Jane Doe''John Smith' [link to current match page for more information]."</li>
 	
-	<li><strong>User information:</strong> The client or volunteer will see their current user and pet/service information and will be able to update it on the [users/profile.php?] page."</li>
+	<li><strong>Links  User information:</strong> To "Update your information" and "Run current match possibilities"/li>
 </ul>
 	
 	

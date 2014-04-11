@@ -8,9 +8,56 @@ pre {
 	padding: 10px;
 	background: #222; color: #fff;
 }
-p {
-	padding-bottom: 10px;
+
+body, p, h1, h2, h3, ul, li, a:link, a:visited, a:hover, a:active, .nav, .admin  {
+	font-family: Myriad, Arial, sans-serif;
 }
+
+p { 
+font-size: 1em; 
+color: #000;
+background-color: #fff;
+line-height:  1.7em;
+margin-left: 0px;
+margin-right: 0px;
+padding-bottom: 10px;  
+}
+
+
+h1 {
+font-size: 1.7em;
+color: #538681; 
+background: #fff;
+margin: 15px 0px 10px 0px;
+border-bottom: none;
+}
+
+h2 {
+font-size: 1.3em;
+color: #538681; 
+background: #ffffff;
+line-height:  1.5em;
+}
+
+
+a:link {
+color:#538681;
+text-decoration:underline;
+} 
+     
+a:visited {
+color:#538681;
+text-decoration:underline;
+} 
+
+a:hover {
+color:#7d9f15;
+}  
+
+a:active {
+color:#7d9f15;
+text-decoration:underline;
+}   
 
 a.button,
 button,
@@ -34,6 +81,10 @@ input[type="button"]:hover {
 	color: #fff;
 }
 
+.note {
+	font-size: .9em;
+}
+
 form {
 	margin: 50px;
 }
@@ -42,36 +93,151 @@ form {
 	margin: 0px auto;
 	padding: 0px auto;
 	width: 960px;
+	
 }
-div.nav {
+
+#headerplaced {
+		
+}
+
+.header {
+	background: #8cb217;
+	height: 100px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.imageleft {
+	float:left;
+	width:300px;
+}
+
+.admin {
+	list-style-type: none;
+	font-size: .9em;
+	font-weight: bold;
+	float: right;
+	line-height:  1.7em;
+	background:#8cb217;
+	padding: 8px 20px;
+	margin: 0px;
+}
+
+.nav ul, li {
+	list-style-type: none;
+}
+
+.admin a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.admin a:hover {
+	color: #d16607;
+	text-decoration: none;
+}
+
+.nav {
 	display: block;
 	width: 100%;
-	height: 50px;
-	margin-bottom: 10px;
-	font-size: 20px;
-	text-transform: uppercase;
-	border-bottom: 10px dotted #222;
+	height: 20px;
+	font-size: 1.2em;
+	text-transform: none;
+	background: #538681;
+	padding: 0px;
+	margin: 0px;
+	clear: both;
+
 }
+
 .nav ul {
 	list-style-type: none;
+	text-align: center;
+	background: #538681;
+	padding: 0px;
+	margin: 0px;
 }
 
 .nav ul li {
 	list-style-type: none;
-	display: inline;
-	float: left;
-	padding: 10px;
+	display: inline-block;
+	padding: 10px 25px 5px 25px;
 	text-align: center;
 }
 .nav ul li a {
-	color: #000;
+	color: #ffffff;
 	text-decoration: none;
 }
 .nav ul li a:hover {
-	color: red;
+	color: #8cb217;
 }
 .nav ul li.current, li.current a {
-	background: #ccc;
+	background: #538681;
+}
+
+/* the following (content, main sidebar, main, sidebar)is what I copied from HW5-1 and is what appears to create the columns 
+when it didn't work, I added one block in the page to "contain" the two main divs in nav.inc, but it didn't make a difference
+I've done a lot of changes, but NOTHING is breaking or registering -- must be something else off */
+
+
+.content {
+	display: table;
+	clear: both;
+	width: 100%;
+	margin: 16px 0px 0px 0px;
+}		
+	
+.main, .sidebar {
+	float: none;
+	padding: 0px;
+	vertical-align: top;
+}
+	
+.main {
+	width: 71%;
+	background-color: #ffffff;
+	display: table-cell;
+	vertical-align:top;
+	padding: 2%;
+
+}
+	
+.sidebar {
+	width: 21%;
+	display: table-cell;
+	vertical-align: top;
+	background-color: #ccbd7e;
+	padding: 2%;
+}
+
+.sidebar p {
+	background-color: #ccbd7e;
+	
+}
+
+.mainhome, .sidebarhome {
+	float: none;
+	padding: 0px;
+	vertical-align: top;
+}
+	
+	
+.sidebarhome {
+	width: 21%;
+	display: table-cell;
+	vertical-align: top;
+	background-color: #ffffff;
+	border-right: 2px solid #538681;
+	padding: 2%;
+}
+
+.mainhome {
+	width: 71%;
+	background-color: #ffffff;
+	display: table-cell;
+	vertical-align:top;
+	padding: 2%;
+
 }
 
 .success {
@@ -93,9 +259,12 @@ div.nav {
 	padding: 10px;
 }
 
-.clear {
-	clear: both;
-}
+#footer {
+	border-top: 2px solid #538681;
+	border-width: 100%;
+	clear:both;
+	}
+	
 
 /*Specific to jquery.validate*/
 .error {

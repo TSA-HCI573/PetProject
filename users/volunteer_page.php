@@ -11,8 +11,8 @@ return_meta();
 
 	<?php include '/user_nav.inc.php'; ?>
 
-	<h1>Pet Owner Form</h1>
-	<p>This is where the Pet Owner form will be located -- assuming it is on a separate page from the registration form.</p>
+	<h1>Client Page</h1>
+	<p>This is for information for the pet-owner user and where the pet owner will see their information and be able to update it.</p>
 	
 
 </div>

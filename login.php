@@ -97,10 +97,12 @@ return_meta("Log in to your account");
 </script>
 </head>
 <body>
+
 <div id="container">
-
+	<div id="headerplaced">
 	<?php include 'includes/constant/nav.inc.php'; ?>
-
+	</div>
+	
 	<?php
 	//Show message if isset
 	if(isset($msg) || !empty($_GET['msg']))
@@ -121,23 +123,45 @@ return_meta("Log in to your account");
 		}
 		echo '</div>';
 	}
+			
 	?>
+	
+	<div class="content">
+	
+		<div class="main">
 
-	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="login_form">
-	<table cellpadding="5" cellspacing="5" border="0">
-	<tr>
-	<td>Username/Email:</td>
-	<td><input type="text" name="user" value="" class="required" /></td>
-	</tr>
-	<td>Password:</td>
-	<td><input type="text" name="pass" value="" class="required" /></td>
-	</tr>
-	<tr>
-	<td colspan="2" align="center"><input type="submit" name="login" value="Login" /></td>
-	</tr>
-	</table>
-	</form>
+		<h1>Login</h1>
+		
+		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="login_form">
+		<table cellpadding="5" cellspacing="5" border="0">
+		<tr>
+		<td>Username/Email:</td>
+		<td><input type="text" name="user" value="" class="required" /></td>
+		</tr>
+		<td>Password:</td>
+		<td><input type="text" name="pass" value="" class="required" /></td>
+		</tr>
+		<tr>
+		<td colspan="2" align="center"><input type="submit" name="login" value="Login" /></td>
+		</tr>
+		</table>
+		</form>
 
+		</div>
+		
+		<div class="sidebar">
+		
+		<p>Here is sidebar content such as tips, brag facts, resources and links, upcoming events</p>
+		
+					
+		</div>
+	
+	</div>
+	
+	<div id="footer">
+	<p>Here's some content for the footer. Need to use an include for this.</p>
+	</div>
+	
 </div>
 </body>
 </html>

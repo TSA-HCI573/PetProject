@@ -31,7 +31,7 @@ if(isset($_POST['update']))
 <body>
 <div id="container">
 
-	<?php include '../includes/constant/nav.inc.php'; ?>
+	<?php include '/user_nav.inc.php'; ?>
 	
 	<h1>Keep your information updated!</h1>
 

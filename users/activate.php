@@ -62,7 +62,7 @@ if (isset($_POST['activate']))
 <body>
 <div id="container">
 
-	<?php include '../includes/constant/nav.inc.php'; ?>
+	<?php include '/user_nav.inc.php'; ?>
 
 	<?php
 	//Show message if isset

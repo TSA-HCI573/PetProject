@@ -8,13 +8,42 @@ return_meta();
 <title>Home</title></head>
 <body>
 <div id="container">
-
+	<div id="headerplaced">
 	<?php include 'includes/constant/nav.inc.php'; ?>
+	
+	</div>
+	
+	<div class="content">
+	
+		<div class="sidebarhome">
 
-	<h1>Home page</h1>
-	<p>This is the home page for the public site.</p>
-	<p>I've started by copying the basic structure of HW4 (instructor version, not completed version) and added pages where necessary. So for the user system specifics, you will need to delete the code and insert your version where necessary.</p>
-
+		<h2>What would you like to do?</h2>
+		
+		<p><strong>Volunteer </strong>button</p>
+		
+		<p><strong>Get Pet Assistance </strong>button</p>
+		
+		<p class="note"><strong>Register first!</strong> When volunteering or requesting assistance for the first time, you will be first directed to register on the Pet Project website. </p>
+						
+		</div>
+		
+		<div class="mainhome">
+		
+		<p>Home page content/photo.</p>
+		<img src="images/unpurchased_photo.jpg">
+		
+				
+		
+		</div>
+	
+	</div>
+	
+	<div id="footer"> 
+	
+	<p>Here's some content for the footer. Need to use an include for this.</p>
+	
+	</div>
+	
 </div>
 </body>
 </html>

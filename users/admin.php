@@ -103,7 +103,7 @@ if(isset($_POST['add_user']))
 <body>
 <div id="container">
 
-	<?php include '../includes/constant/nav.inc.php'; ?>
+	<?php include '/user_nav.inc.php'; ?>
 
 	<h1>Hey <?php echo $_SESSION['user_name']; ?>, Manage your users</h1>
 
