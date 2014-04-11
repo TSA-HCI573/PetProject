@@ -19,6 +19,8 @@ return_meta();
 
 		<h2>What would you like to do?</h2>
 		
+		<p>A CHANGE </p>
+		
 		<p><strong>Volunteer </strong>button</p>
 		
 		<p><strong>Get Pet Assistance </strong>button</p>
