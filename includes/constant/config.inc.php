@@ -9,7 +9,7 @@ define ("DB_PASS","hci573"); // set database password
 define ("DB_NAME","petproject"); // set database name
 
 //tables
-define ("USERS", "users");
+define ("USERS", "Users");
 define ("USER_ROLE", "UserRole");
 define ("USER_PETS", "UserPets");
 define ("MATCHUPS", "MatchUps");

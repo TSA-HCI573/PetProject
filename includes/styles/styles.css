@@ -133,7 +133,7 @@ form {
 }
 
 .admin a:hover {
-	color: #d16607;
+	color: #dd6b05;
 	text-decoration: none;
 }
 
@@ -206,12 +206,12 @@ I've done a lot of changes, but NOTHING is breaking or registering -- must be so
 	width: 21%;
 	display: table-cell;
 	vertical-align: top;
-	background-color: #ccbd7e;
+	background-color: #967f56;
 	padding: 2%;
 }
 
 .sidebar p {
-	background-color: #ccbd7e;
+	background-color: #967f56;
 	
 }
 

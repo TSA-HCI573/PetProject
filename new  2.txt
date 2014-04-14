@@ -1,0 +1,16 @@
+    $sql ="create table if not exists Users (
+        Id bigint(20) not null auto_increment,
+        FirstName varchar(100),
+        LastName varchar(100),
+        Email varchar(100),
+        Password varchar(100),
+        md5_id varchar(200),
+        UserName varchar(100),
+        Address1 varchar(100),
+        Address2 varchar(100),
+        City varchar(50),
+        State varchar(2),
+        ZipCode varchar(7),
+        Bio mediumtext,
+        ProfileImagePath varchar(200),
+        primary key (Id))";
