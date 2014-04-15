@@ -39,6 +39,14 @@ background: #ffffff;
 line-height:  1.5em;
 }
 
+td {
+padding: 10px;
+white-space:nowrap;
+}
+
+textarea {
+    resize: none;
+}
 
 a:link {
 color:#538681;

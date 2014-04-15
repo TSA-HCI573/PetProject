@@ -110,6 +110,36 @@ include 'includes/constant/config.inc.php';
 
         return;
     } 
+        
+      //create requests table
+    $sql ="create table if not exists Requests (
+        Id bigint(20) not null auto_increment,
+        UserId bigint(20),
+        Monday boolean,
+        Tuesday boolean,
+        Wednesday boolean,
+        Thursday boolean,
+        Friday boolean,
+        Saturday boolean,
+        Sunday boolean,
+        AM boolean,
+        PM boolean,
+        PetType varchar(100),
+		DogWalking boolean,
+		Grooming boolean,
+		AdministerMeds boolean,
+		DeliverFood boolean,
+		Transport boolean,
+		FosterCare boolean,
+        Other varchar(200),
+        Comments mediumtext,
+        primary key (Id))";
+    if($con->query($sql) === FALSE)
+    {
+        echo "<br/> Error creating requests table <br/>". $con->error;
+        return;
+    }
+    
     echo "<br/>Database Creation Sucessful<br/> ";
     
 	if(isTableEmpty($con,'Users'))
