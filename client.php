@@ -10,20 +10,19 @@ if($_POST and $_GET)
 	if ($_GET['cmd'] == 'submitPetAssist'){
 	
 		//Assign variables and sanitize POST data
-		$client = mysql_real_escape_string($_POST['client']);
-		$quarter = mysql_real_escape_string($_POST['quarter']);
-		$amount = mysql_real_escape_string($_POST['amount']);
-	 
+		$monday = mysql_real_escape_string($_POST['monday']);
+		$tuesday = mysql_real_escape_string($_POST['tuesday']);
+		//echo $monday . " " . $ tuesday;
+	 	echo "Hello";
 		//Build our query statement
-		mysql_query("INSERT INTO ".THE_TABLE." (ci_ci, ci_qt, ci_amt, ci_added) VALUES ('" . $client . "', '" . $quarter . "', '" .$amount . "', now())") or die(mysql_error());
+// 		var insertRequest = "INSERT INTO ".REQUEST." (UserId, Monday, Tuesday) VALUES (1, '" . $monday . "', '" .$tuesday . "'";
+		mysql_query("INSERT INTO ".REQUEST." (UserId, Monday, Tuesday) VALUES (1, '" . $monday . "', '" .$tuesday . "'") or die(mysql_error());
+// 		 echo insertRequest;
 	 
 		//End this portion of the script
 		exit();
 	}
-	else if ($_GET['cmd'] == 'delete_all'){
-		//Left for exercise
-	
-	}
+
 }
 
 ?>
@@ -36,30 +35,26 @@ if($_POST and $_GET)
 //Form processing function start
 $(function()
 {
-   
-	//TO DO: automatically focus on the first input field using the focus() function
-    
-	
 	$(".submit").click(function()
     {
         
 		//create three variables to store the data entered into the form
-		boolean weekdays = $("#weekdays").val();
-        boolean weekends = $("#weekends").val();
-        boolean am = $("#am").val();
-        boolean pm = $("#pm").val();
-        boolean petType = $("#pettype").val();
-        boolean dogwalking = $("#dogwalking").val();
-        boolean grooming =$("#grooming").val();
-        boolean administermeds =$("#administermeds").val();
-        boolean deliverfood =$("#deliverfood").val();
-        boolean transportation =$("#transportation").val();
-        boolean fostercare =$("#fostercare").val();
-        var other =$("#other").val(); 
-		var comments =$("#comments").val(); 
+		boolean monday = $("#Monday").val();
+		boolean tuesday = $("#Tuesday").val();
+//         boolean am = $("#am").val();
+//         boolean pm = $("#pm").val();
+//         boolean petType = $("#pettype").val();
+//         boolean dogwalking = $("#dogwalking").val();
+//         boolean grooming =$("#grooming").val();
+//         boolean administermeds =$("#administermeds").val();
+//         boolean deliverfood =$("#deliverfood").val();
+//         boolean transportation =$("#transportation").val();
+//         boolean fostercare =$("#fostercare").val();
+//         var other =$("#other").val(); 
+// 		var comments =$("#comments").val(); 
         //Check for empty values
         
-        if(weekdays == '' || weekends == '' || am == '' || pm == '')
+        if(!monday && !tuesday)
         {
 			//here, we change the html content of all divs with class="error" and show them
 			//there should be only 1 such div but the code would affect multiple if they were present in the page
@@ -70,7 +65,7 @@ $(function()
 			//construct the data string - this should look something like:
 			//	client=John&quarter=Q1&amount=3456
 			
-			var datastring = 'client=' + client + "&quarter=" + quarter + "&amount=" + amount;
+			//var datastring = 'client=' + client + "&quarter=" + quarter + "&amount=" + amount;
  
 			/*
 				Make the AJAX request. The request is made to $_SERVER['PHP_SELF'], i.e., clients_form.php

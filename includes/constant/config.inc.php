@@ -24,8 +24,8 @@ define ("SITE_ROOT", $_SERVER['DOCUMENT_ROOT']."/PetProject");
 //define ("GLOBAL_EMAIL", "notused@gmail.com");
 define ("REQUIRE_ACTIVIATION",false); //keep this as false
 
-$link = mysql_connect(DB_HOST, DB_USER, DB_PASS) or die("Couldn't make connection.");
-echo DB_HOST . " " . DB_USER . " " . DB_PASS;
+$link = mysql_connect(DB_HOST, DB_USER, DB_PASS) or die("Couldn't make connection.");// 
+// echo DB_HOST . " " . DB_USER . " " . DB_PASS;
 
 $db = mysql_select_db(DB_NAME, $link) or die("Couldn't select database");
 
