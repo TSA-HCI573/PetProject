@@ -13,7 +13,7 @@ define ("USERS", "Users");
 define ("USER_ROLE", "UserRole");
 define ("USER_PETS", "UserPets");
 define ("MATCHUPS", "MatchUps");
-define ("REQUEST", "Request");
+define ("REQUESTS", "Requests");
 
 
 //site base

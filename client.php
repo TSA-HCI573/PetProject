@@ -7,24 +7,33 @@ return_meta();
 //Check for post data
 if($_POST and $_GET)
 {
-	if ($_GET['cmd'] == 'submitPetAssist'){
-	
+	if ($_GET['cmd'] == 'add'){
+		echo "POST";
 		//Assign variables and sanitize POST data
 		$monday = mysql_real_escape_string($_POST['monday']);
 		$tuesday = mysql_real_escape_string($_POST['tuesday']);
-		//echo $monday . " " . $ tuesday;
-	 	echo "Hello";
+		$wednesday = mysql_real_escape_string($_POST['wednesday']);
+		$thursday = mysql_real_escape_string($_POST['thursday']);
+		$friday = mysql_real_escape_string($_POST['friday']);
+		$saturday = mysql_real_escape_string($_POST['saturday']);
+		$sunday = mysql_real_escape_string($_POST['sunday']);
+		$am = mysql_real_escape_string($_POST['am']);
+		$pm = mysql_real_escape_string($_POST['pm']);
+		//$petType = mysql_real_escape_string($_POST['PetType']);
+
+
 		//Build our query statement
-// 		var insertRequest = "INSERT INTO ".REQUEST." (UserId, Monday, Tuesday) VALUES (1, '" . $monday . "', '" .$tuesday . "'";
-		mysql_query("INSERT INTO ".REQUEST." (UserId, Monday, Tuesday) VALUES (1, '" . $monday . "', '" .$tuesday . "'") or die(mysql_error());
-// 		 echo insertRequest;
+ 		//var insertRequest = "INSERT INTO ".REQUEST." (UserId, Monday, petType) VALUES (1, '" . $monday . "', '" .$petType . "')";
+ 		//mysql_query("INSERT INTO Requests(UserId, Monday, petType) VALUES (1, 1, 'testing')") or die(mysql_error());
+		mysql_query("INSERT INTO ".REQUESTS."(UserId, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) 
+		VALUES (1, '" . $monday . "', '" . $tuesday. "', '" . $wednesday . "', '" . $thursday . "', '" . $friday . "', '" . $saturday . "', '" . $sunday . "')") or die(mysql_error());
+ 	//	 echo insertRequest;
 	 
 		//End this portion of the script
 		exit();
 	}
 
 }
-
 ?>
 <head>
 <title>Pet Owners Seeking Assistance</title>
@@ -39,8 +48,18 @@ $(function()
     {
         
 		//create three variables to store the data entered into the form
-		boolean monday = $("#Monday").val();
-		boolean tuesday = $("#Tuesday").val();
+		var monday = $('#monday').prop('checked') ? 1:0;
+		var tuesday = $('#tuesday').prop('checked') ? 1:0;
+		var wednesday = $('#wednesday').prop('checked') ? 1:0;
+		var thursday = $('#thursday').prop('checked') ? 1:0;
+		var friday = $('#friday').prop('checked') ? 1:0;
+		var saturday = $('#saturday').prop('checked') ? 1:0;
+		var sunday = $('#sunday').prop('checked') ? 1:0;
+		var am = $('#am').prop('checked') ? 1:0;
+		var pm = $('#pm').prop('checked') ? 1:0;
+		
+		//boolean monday = $("#Monday").val();
+		//boolean tuesday = $("#Tuesday").val();
 //         boolean am = $("#am").val();
 //         boolean pm = $("#pm").val();
 //         boolean petType = $("#pettype").val();
@@ -54,7 +73,8 @@ $(function()
 // 		var comments =$("#comments").val(); 
         //Check for empty values
         
-        if(!monday && !tuesday)
+//         if(!monday && !tuesday)
+		if(petType="")
         {
 			//here, we change the html content of all divs with class="error" and show them
 			//there should be only 1 such div but the code would affect multiple if they were present in the page
@@ -62,10 +82,11 @@ $(function()
         }
         else
         {
-			//construct the data string - this should look something like:
-			//	client=John&quarter=Q1&amount=3456
+			//construct the data string ]
 			
-			//var datastring = 'client=' + client + "&quarter=" + quarter + "&amount=" + amount;
+				var datastring =  "monday=" + monday + "&tuesday=" + tuesday + "&wednesday=" + wednesday + "&thursday=" + thursday + "&friday=" + friday + "&saturday=" + saturday
+								+ "&sunday=" + sunday + "&am=" + am + "&pm=" + pm;
+ 
  
 			/*
 				Make the AJAX request. The request is made to $_SERVER['PHP_SELF'], i.e., clients_form.php
@@ -76,11 +97,11 @@ $(function()
 			$.ajax( 
 				{
 				type: "POST",
-				url: "<?php echo $_SERVER['PHP_SELF']; ?>?cmd=submitPetAssist", 
+				url: "<?php echo $_SERVER['PHP_SELF']; ?>?cmd=add", 
 				data: datastring,
 				success: function()
 					{
-						uncheckAll();
+						//uncheckAll();
 						$('.success').fadeIn(2000).show().html('Pet Assistance Requested.').fadeOut(6000); //Show, then hide success msg
 						$('.error').fadeOut(2000).hide(); //If showing error, fade out
 		 
@@ -100,17 +121,17 @@ function refresh_content(){
 	
 }
 
-function unCheckAll()
-{
-  var checkboxes = new Array(); 
-  checkboxes = document[client].getElementsByTagName('input');
- 
-  for (var i=0; i<checkboxes.length; i++)  {
-    if (checkboxes[i].type == 'checkbox')   {
-      checkboxes[i].checked = false;
-    }
-  }
-}
+// function unCheckAll()
+// {
+//   var checkboxes = new Array(); 
+//   checkboxes = document[client].getElementsByTagName('input');
+//  
+//   for (var i=0; i<checkboxes.length; i++)  {
+//     if (checkboxes[i].type == 'checkbox')   {
+//       checkboxes[i].checked = false;
+//     }
+//   }
+// }
 </script>
 </head>
 <body>
@@ -131,38 +152,38 @@ function unCheckAll()
  -->
 		<form method="post" name="form" id="form">
 		
-		   	<p><label>Pet Type</label>
-   			  <select name="petType"> 
-        			<option VALUE" " selected="selected"></option>
-       				<option VALUE="abc"> Dog </option>
-        			<option VALUE="def"> Cat </option>
-        			<option VALUE="def"> Bird </option> 
+		    	<p><label>Pet Type</label>
+   			  <select name="petType" id="petType"> 
+        			<option VALUE"" selected="selected"></option>
+       				<option name="petType" id="petType"VALUE="Dog"> Dog </option>
+        			<option VALUE="Cat"> Cat </option>
+        			<option VALUE="Bird"> Bird </option> 
     			</select>
-		
-   			 <p><label>I'd like assistance during </label></br>
+		</p>
+   			 <p><label>I'd like assistance during </label></p></br>
    			 <table>
    			 <tr>
-			 	<td><input type="checkbox" id="Monday" name="Monday" value="True">
-			 	    <label for="Monday">Monday</label>
+			 	<td><input type="checkbox" id="monday" name="monday"">
+			 	    <label for="monday">Monday</label>
 			 	</td>
-			 	<td><input type="checkbox" id="Tuesday" name="Tuesday" value="True">
-			 		<label for="Tuesday">Tuesday</label></td>
-			 	<td><input type="checkbox" id="Wednesday" name="Wednesday" value="True">
-			 		<label for="Wednesday">Wednesday</label></td>
-			 	<td><input type="checkbox" id="Thursday" name="Thursday" value="True">
-			 		<label for="Thursday">Thursday</label></td>
-			 	<td><input type="checkbox" id="Friday" name="Friday" value="True">
-			 		<label for="Friday">Friday</label></td>
+			 	<td><input type="checkbox" id="tuesday" name="tuesday">
+			 		<label for="tuesday">Tuesday</label></td>
+			 	<td><input type="checkbox" id="wednesday" name="wednesday">
+			 		<label for="wednesday">Wednesday</label></td>
+			 	<td><input type="checkbox" id="thursday" name="thursday">
+			 		<label for="thursday">Thursday</label></td>
+			 	<td><input type="checkbox" id="friday" name="friday">
+			 		<label for="friday">Friday</label></td>
 			 </tr>
 			 <tr>
-			 	<td><input type="checkbox" id="Saturday" name="Saturday" value="True">
-			 		<label for="Saturday">Saturday</label></td>
-				 <td><input type="checkbox" id="Sunday" name="Sunday" value="True">
-			 		<label for="Sunday">Sunday</label></td>
+			 	<td><input type="checkbox" id="saturday" name="saturday">
+			 		<label for="saturday">Saturday</label></td>
+				 <td><input type="checkbox" id="sunday" name="sunday">
+			 		<label for="sunday">Sunday</label></td>
 			 <tr>
-			 	<td><input type="checkbox" id="am" name="am" value="True">
+			 	<td><input type="checkbox" id="am" name="am">
 			 		<label for="am">AM</label></td>
-				 <td><input type="checkbox" id="pm" name="pm" value="True">
+				 <td><input type="checkbox" id="pm" name="pm">
 			 		<label for="pm">PM</label></td>
 			 </table>
    			 
