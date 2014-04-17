@@ -1,12 +1,15 @@
 body {
 	margin: 0px auto;
 	padding: 0px auto;
-	font-size: 14px;
+	font-size: 1em;
+	color: #333333;
+	
 }
 pre {
 	margin-left: 20px;
 	padding: 10px;
-	background: #222; color: #fff;
+	background: #222; 
+	color: #fff;
 }
 
 body, p, h1, h2, h3, ul, li, a:link, a:visited, a:hover, a:active, .nav, .admin  {
@@ -14,27 +17,30 @@ body, p, h1, h2, h3, ul, li, a:link, a:visited, a:hover, a:active, .nav, .admin 
 }
 
 p { 
-font-size: 1em; 
-color: #000;
-background-color: #fff;
+font-size: .9em; 
+color: #333333;
+background-color: #ffffff;
 line-height:  1.7em;
 margin-left: 0px;
 margin-right: 0px;
 padding-bottom: 15px;  
 }
 
+.footnote  {
+	font-size: .6em;
+}
 
 h1 {
-font-size: 1.7em;
-color: #538681; 
+font-size: 1.3em;
+color: #447772; 
 background: #fff;
 margin: 15px 0px 10px 0px;
 border-bottom: none;
 }
 
 h2 {
-font-size: 1.3em;
-color: #538681; 
+font-size: 1.1em;
+color: #447772; 
 background: #ffffff;
 line-height:  1.5em;
 }
@@ -49,12 +55,12 @@ textarea {
 }
 
 a:link {
-color:#538681;
+color:#447772;
 text-decoration:underline;
 } 
      
 a:visited {
-color:#538681;
+color:#447772;
 text-decoration:underline;
 } 
 
@@ -149,7 +155,7 @@ form {
 	display: block;
 	width: 100%;
 	height: 20px;
-	font-size: 1.2em;
+	font-size: 1em;
 	text-transform: none;
 	background: #538681;
 	padding: 0px;
@@ -169,7 +175,7 @@ form {
 .nav ul li {
 	list-style-type: none;
 	display: inline-block;
-	padding: 10px 25px 5px 25px;
+	padding: 10px 35px 5px 35px;
 	text-align: center;
 }
 .nav ul li a {
@@ -182,10 +188,6 @@ form {
 .nav ul li.current, li.current a {
 	background: #538681;
 }
-
-/* the following (content, main sidebar, main, sidebar)is what I copied from HW5-1 and is what appears to create the columns 
-when it didn't work, I added one block in the page to "contain" the two main divs in nav.inc, but it didn't make a difference
-I've done a lot of changes, but NOTHING is breaking or registering -- must be something else off */
 
 
 .content {
@@ -214,23 +216,23 @@ I've done a lot of changes, but NOTHING is breaking or registering -- must be so
 	width: 21%;
 	display: table-cell;
 	vertical-align: top;
-	background-color: #967f56;
+	background-color: #dcb23e;
 	padding: 2%;
 }
 
 .sidebar p {
-	background-color: #967f56;
+	background-color: #dcb23e;
 	
 }
 
-.mainhome, .sidebarhome {
+.mainhome, .leftbarhome, .rightbarhome {
 	float: none;
 	padding: 0px;
 	vertical-align: top;
 }
 	
 	
-.sidebarhome {
+.leftbarhome {
 	width: 21%;
 	display: table-cell;
 	vertical-align: top;
@@ -240,12 +242,25 @@ I've done a lot of changes, but NOTHING is breaking or registering -- must be so
 }
 
 .mainhome {
-	width: 71%;
+	width: 50%;
 	background-color: #ffffff;
 	display: table-cell;
 	vertical-align:top;
 	padding: 2%;
 
+}
+
+.rightbarhome {
+	width: 21%;
+	display: table-cell;
+	vertical-align: top;
+	background-color: #dcb23e;
+	padding: 2%;
+}
+
+.rightbarhome p {
+	background-color: #dcb23e;
+	
 }
 
 .success {

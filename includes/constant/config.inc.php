@@ -283,11 +283,11 @@ function filter($data)
 }
 
 /*Function to easily output all our css, js, etc...*/
-function return_meta($title = NULL, $keywords = NULL, $description = NULL)
+function return_meta($title = NULL, $keywords = NULL, $description = NULL)  // I want the page title, keywords, and description to be based on the page -- only if they are empty do I want to put this other stuff in there -- it's overriding the hard-coded page title right now.
 {
 	if(is_null($title))
 	{
-		$title = "PHP Web Development, Usability, and Interface Design";
+		$title = "Pet Project";
 	}
 
 	$meta = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
