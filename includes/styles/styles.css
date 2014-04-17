@@ -189,7 +189,10 @@ form {
 	background: #538681;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 32b5f660a2944dd00972e327e16a7d7f1ad78d9a
 .content {
 	display: table;
 	clear: both;
@@ -231,6 +234,7 @@ form {
 	vertical-align: top;
 }
 	
+<<<<<<< HEAD
 	
 .leftbarhome {
 	width: 21%;
@@ -240,6 +244,8 @@ form {
 	border-right: 2px solid #538681;
 	padding: 2%;
 }
+=======
+>>>>>>> 32b5f660a2944dd00972e327e16a7d7f1ad78d9a
 
 .mainhome {
 	width: 50%;
@@ -281,12 +287,6 @@ form {
 	margin: 20px;
 	padding: 10px;
 }
-
-#footer {
-	border-top: 2px solid #538681;
-	border-width: 100%;
-	clear:both;
-	}
 	
 
 /*Specific to jquery.validate*/
