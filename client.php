@@ -185,19 +185,25 @@ function resetForm(formid) {
 		<p>There will be some generic information on how the services work. There will be prominent links to the User home page and Registration.</p>
  -->
 		<form method="post" name="form" id="form">
-			<p>
-			Start Date: <input type="text" id="datepicker" name="datepicker" ><br/>
-			<label>Pet Type</label>
+			<table>
+			<tr><td>Start Date: </td>
+				<td><input type="text" id="datepicker" name="datepicker" ></td>
+			</tr>
+			<tr>
+				<td><label>Pet Type</label></td>
+				<td>
    			  <select name="petType" id="petType"> 
         			<option VALUE"" selected="selected"></option>
        				<option name="petType" id="petType"VALUE="Dog"> Dog </option>
         			<option VALUE="Cat"> Cat </option>
         			<option VALUE="Bird"> Bird </option> 
         			<option VALUE="Other"> Other </option>
-    			</select>
+    			</select> </td>
+    			</tr>
+    			</table><br/>
 			
-   			 <p><label>I'd like assistance during </label></p>
    			 <table>
+   			 <tr><label>I'd like assistance on the following days:</label></tr>
    			 <tr>
 			 	<td><input type="checkbox" id="monday" name="monday"">
 			 	    <label for="monday">Monday</label>
@@ -215,16 +221,20 @@ function resetForm(formid) {
 			 	<td><input type="checkbox" id="saturday" name="saturday">
 			 		<label for="saturday">Saturday</label></td>
 				 <td><input type="checkbox" id="sunday" name="sunday">
-			 		<label for="sunday">Sunday</label></td>
+			 		<label for="sunday">Sunday</label></td></tr>
+   			</table><br/>
+   			<table>
+   			 <tr><label>My preferred time of day is:</label></tr>
 			 <tr>
 			 	<td><input type="checkbox" id="am" name="am">
 			 		<label for="am">AM</label></td>
 				 <td><input type="checkbox" id="pm" name="pm">
-			 		<label for="pm">PM</label></td>
-			 </table>
+			 		<label for="pm">PM</label></td></tr>
+			 </table><br/>
    			 
-   			 <p><label>Requested Services </label></br>
+   	
    			 <table>
+   			 <tr>Requested Services</tr>
    			 <tr>
 			 	<td><input type="checkbox" id="dogwalking" name="dogwalking" value="True">
 			 	    <label for="dogwalking">Dog Walking</label>
@@ -247,16 +257,19 @@ function resetForm(formid) {
 			 <tr>
 			 	<td valign="top">
 			 		<label for="OtherChk">Other</label></td>
-<!-- 			 	<td colspan="2" rows="2"><input type="text" id="Other" name="Other" size="150" /></p> -->
 				<td width="350" valign="top">
 					<textarea name="other" id="other" rows="3" style="width:100%" maxlength="200"></textarea>
 			 	</td>
 
 			</tr>
-			 </table>
-   			 
-   			 <p><label>Additional Comments: </label><br/>
+			 </table><br/>
+   			 <table>
+   			 <tr>Additional Comments:</tr>
+   			 </table>
+   			 <tr>
    			 <textarea name="comments" id="comments" rows="5" style="width:73%" maxlength="300"></textarea>	
+   			 </tr>
+   			 </table>
     		<p><button type="submit" class="submit" value="insert">Request Pet Assistance</button></p>
 		</form>
 		
