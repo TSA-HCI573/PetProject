@@ -183,11 +183,6 @@ form {
 	background: #538681;
 }
 
-/* the following (content, main sidebar, main, sidebar)is what I copied from HW5-1 and is what appears to create the columns 
-when it didn't work, I added one block in the page to "contain" the two main divs in nav.inc, but it didn't make a difference
-I've done a lot of changes, but NOTHING is breaking or registering -- must be something else off */
-
-
 .content {
 	display: table;
 	clear: both;
@@ -229,15 +224,6 @@ I've done a lot of changes, but NOTHING is breaking or registering -- must be so
 	vertical-align: top;
 }
 	
-	
-.sidebarhome {
-	width: 21%;
-	display: table-cell;
-	vertical-align: top;
-	background-color: #ffffff;
-	border-right: 2px solid #538681;
-	padding: 2%;
-}
 
 .mainhome {
 	width: 71%;
@@ -266,12 +252,6 @@ I've done a lot of changes, but NOTHING is breaking or registering -- must be so
 	margin: 20px;
 	padding: 10px;
 }
-
-#footer {
-	border-top: 2px solid #538681;
-	border-width: 100%;
-	clear:both;
-	}
 	
 
 /*Specific to jquery.validate*/

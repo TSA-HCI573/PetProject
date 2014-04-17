@@ -10,6 +10,10 @@ if($_POST and $_GET)
 	if ($_GET['cmd'] == 'add'){
 		echo "POST";
 		//Assign variables and sanitize POST data
+		$startDate = mysql_real_escape_string($_POST['startDate']);
+		
+		$petType = mysql_real_escape_string($_POST['petType']);		
+				
 		$monday = mysql_real_escape_string($_POST['monday']);
 		$tuesday = mysql_real_escape_string($_POST['tuesday']);
 		$wednesday = mysql_real_escape_string($_POST['wednesday']);
@@ -19,14 +23,30 @@ if($_POST and $_GET)
 		$sunday = mysql_real_escape_string($_POST['sunday']);
 		$am = mysql_real_escape_string($_POST['am']);
 		$pm = mysql_real_escape_string($_POST['pm']);
-		//$petType = mysql_real_escape_string($_POST['PetType']);
+		
 
+		$dogwalking = mysql_real_escape_string($_POST['dogwalking']);
+		$grooming = mysql_real_escape_string($_POST['grooming']);
+		$administermeds = mysql_real_escape_string($_POST['administermeds']);
+		$deliverfood = mysql_real_escape_string($_POST['deliverfood']);
+		$transportation = mysql_real_escape_string($_POST['transportation']);
+		$fostercare = mysql_real_escape_string($_POST['fostercare']);
+		$other = mysql_real_escape_string($_POST['other']);
+		$comments = mysql_real_escape_string($_POST['comments']);
 
-		//Build our query statement
- 		//var insertRequest = "INSERT INTO ".REQUEST." (UserId, Monday, petType) VALUES (1, '" . $monday . "', '" .$petType . "')";
- 		//mysql_query("INSERT INTO Requests(UserId, Monday, petType) VALUES (1, 1, 'testing')") or die(mysql_error());
-		mysql_query("INSERT INTO ".REQUESTS."(UserId, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) 
-		VALUES (1, '" . $monday . "', '" . $tuesday. "', '" . $wednesday . "', '" . $thursday . "', '" . $friday . "', '" . $saturday . "', '" . $sunday . "')") or die(mysql_error());
+		//Build insert sql statement
+		
+ 		debug_to_console("INSERT INTO ".REQUESTS."(UserId,  BeginDate, PetType, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, AM, PM,
+		dogwalking, grooming, administermeds, deliverfood, transport, fostercare, other, comments ) 
+		VALUES (1, '" . $startDate . "', '" .$petType . "', '" .$monday . "', '" . $tuesday. "', '" . $wednesday . "', '" . $thursday . "', '" . $friday . 
+		"', '" . $saturday . "', '" . $sunday . "', '" . $am . "', '" . $pm . "', '" . $dogwalking. "', '" . $grooming. "', '" . $administermeds. "', '" . 
+		$deliverfood. "', '" . $transportation. "', '" . $fostercare . "', '" .$other. "', '" . $comments."')");
+
+		mysql_query("INSERT INTO ".REQUESTS."(UserId, BeginDate, PetType, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, AM, PM,
+		dogwalking, grooming, administermeds, deliverfood, transport, fostercare, other, comments ) 
+		VALUES (1, '" . $startDate . "', '" .$petType . "', '" .$monday . "', '" . $tuesday. "', '" . $wednesday . "', '" . $thursday . "', '" . $friday . 
+		"', '" . $saturday . "', '" . $sunday . "', '" . $am . "', '" . $pm . "', '" . $dogwalking. "', '" . $grooming. "', '" . $administermeds. "', '" . 
+		$deliverfood. "', '" . $transportation. "', '" . $fostercare . "', '" .$other. "', '" . $comments."')") or die(mysql_error());
  	//	 echo insertRequest;
 	 
 		//End this portion of the script
@@ -34,12 +54,25 @@ if($_POST and $_GET)
 	}
 
 }
+
+function debug_to_console( $data ) {
+
+    if ( is_array( $data ) )
+        $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
+    else
+        $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
+
+    echo $output;
+}
+
 ?>
 <head>
 <title>Pet Owners Seeking Assistance</title>
 <link rel="stylesheet" type="text/css" media="all" href="includes/styles/styles.css" />
+ <link rel="stylesheet" href="includes/js/jquery-ui.css">
 
 <script src="includes/js/jquery-1.10.2.js"></script>
+<script src="includes/js/jquery-ui-1.10.4.js"></script>
 <script>
 //Form processing function start
 $(function()
@@ -48,6 +81,11 @@ $(function()
     {
         
 		//create three variables to store the data entered into the form
+		
+		var startDate = $('#datepicker').val();
+		
+		var petType  = $('#petType').val();
+		//day / times
 		var monday = $('#monday').prop('checked') ? 1:0;
 		var tuesday = $('#tuesday').prop('checked') ? 1:0;
 		var wednesday = $('#wednesday').prop('checked') ? 1:0;
@@ -57,24 +95,21 @@ $(function()
 		var sunday = $('#sunday').prop('checked') ? 1:0;
 		var am = $('#am').prop('checked') ? 1:0;
 		var pm = $('#pm').prop('checked') ? 1:0;
+		//requested services
+
+		var dogwalking = $('#dogwalking').prop('checked') ? 1:0;
+		var grooming = $('#grooming').prop('checked') ? 1:0;
+		var administermeds = $('#administermeds').prop('checked') ? 1:0;
+		var deliverfood = $('#deliverfood').prop('checked') ? 1:0;
+		var transportation = $('#transport').prop('checked') ? 1:0;
+		var fostercare = $('#fostercare').prop('checked') ? 1:0;
+		var other =$("#other").val();
 		
-		//boolean monday = $("#Monday").val();
-		//boolean tuesday = $("#Tuesday").val();
-//         boolean am = $("#am").val();
-//         boolean pm = $("#pm").val();
-//         boolean petType = $("#pettype").val();
-//         boolean dogwalking = $("#dogwalking").val();
-//         boolean grooming =$("#grooming").val();
-//         boolean administermeds =$("#administermeds").val();
-//         boolean deliverfood =$("#deliverfood").val();
-//         boolean transportation =$("#transportation").val();
-//         boolean fostercare =$("#fostercare").val();
-//         var other =$("#other").val(); 
-// 		var comments =$("#comments").val(); 
-        //Check for empty values
-        
-//         if(!monday && !tuesday)
-		if(petType="")
+		//additional comments
+		var comments =$("#comments").val(); 
+		
+		//Check for empty values
+        if(!monday && !tuesday && !wednesday && !thursday && !friday && !saturday && !sunday)
         {
 			//here, we change the html content of all divs with class="error" and show them
 			//there should be only 1 such div but the code would affect multiple if they were present in the page
@@ -84,9 +119,10 @@ $(function()
         {
 			//construct the data string ]
 			
-				var datastring =  "monday=" + monday + "&tuesday=" + tuesday + "&wednesday=" + wednesday + "&thursday=" + thursday + "&friday=" + friday + "&saturday=" + saturday
-								+ "&sunday=" + sunday + "&am=" + am + "&pm=" + pm;
- 
+			var datastring =  "monday=" + monday + "&tuesday=" + tuesday + "&wednesday=" + wednesday + "&thursday=" + thursday + "&friday=" + friday + "&saturday=" + saturday
+							+ "&sunday=" + sunday + "&am=" + am + "&pm=" + pm + "&dogwalking=" + dogwalking + "&grooming=" + grooming + "&administermeds=" + administermeds
+						    + "&deliverfood=" + deliverfood + "&transportation=" + transportation + "&fostercare=" + fostercare + "&other=" + other + "&comments=" + comments 
+						    + "&startDate=" + startDate +"&petType=" + petType;
  
 			/*
 				Make the AJAX request. The request is made to $_SERVER['PHP_SELF'], i.e., clients_form.php
@@ -101,8 +137,9 @@ $(function()
 				data: datastring,
 				success: function()
 					{
-						//uncheckAll();
-						$('.success').fadeIn(2000).show().html('Pet Assistance Requested.').fadeOut(6000); //Show, then hide success msg
+						
+						$('.success').fadeIn(2000).show().html('Pet Assistance Requested. ').fadeOut(6000); //Show, then hide success msg
+						resetForm('form');
 						$('.error').fadeOut(2000).hide(); //If showing error, fade out
 		 
 					}
@@ -121,17 +158,14 @@ function refresh_content(){
 	
 }
 
-// function unCheckAll()
-// {
-//   var checkboxes = new Array(); 
-//   checkboxes = document[client].getElementsByTagName('input');
-//  
-//   for (var i=0; i<checkboxes.length; i++)  {
-//     if (checkboxes[i].type == 'checkbox')   {
-//       checkboxes[i].checked = false;
-//     }
-//   }
-// }
+$(function() {
+$( "#datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
+});
+
+function resetForm(formid) {
+ $(':input','#'+formid) .not(':button, :submit, :reset, :hidden') .val('') .removeAttr('checked') .removeAttr('selected');
+ }
+ 
 </script>
 </head>
 <body>
@@ -151,16 +185,18 @@ function refresh_content(){
 		<p>There will be some generic information on how the services work. There will be prominent links to the User home page and Registration.</p>
  -->
 		<form method="post" name="form" id="form">
-		
-		    	<p><label>Pet Type</label>
+			<p>
+			Start Date: <input type="text" id="datepicker" name="datepicker" ><br/>
+			<label>Pet Type</label>
    			  <select name="petType" id="petType"> 
         			<option VALUE"" selected="selected"></option>
        				<option name="petType" id="petType"VALUE="Dog"> Dog </option>
         			<option VALUE="Cat"> Cat </option>
         			<option VALUE="Bird"> Bird </option> 
+        			<option VALUE="Other"> Other </option>
     			</select>
-		</p>
-   			 <p><label>I'd like assistance during </label></p></br>
+			
+   			 <p><label>I'd like assistance during </label></p>
    			 <table>
    			 <tr>
 			 	<td><input type="checkbox" id="monday" name="monday"">
@@ -190,37 +226,37 @@ function refresh_content(){
    			 <p><label>Requested Services </label></br>
    			 <table>
    			 <tr>
-			 	<td><input type="checkbox" id="DogWalking" name="DogWalking" value="True">
-			 	    <label for="DogWalking">Dog Walking</label>
+			 	<td><input type="checkbox" id="dogwalking" name="dogwalking" value="True">
+			 	    <label for="dogwalking">Dog Walking</label>
 			 	</td>
-			 	<td><input type="checkbox" id="Grooming" name="Grooming" value="True">
-			 		<label for="Grooming">Grooming</label></td>
-			 	<td><input type="checkbox" id="AdministerMed" name="AdministerMed" value="True">
-			 		<label for="AdministerMed">Administer Meds</label></td>
+			 	<td><input type="checkbox" id="grooming" name="grooming" value="True">
+			 		<label for="grooming">Grooming</label></td>
+			 	<td><input type="checkbox" id="administermeds" name="administermeds" value="True">
+			 		<label for="administermeds">Administer Meds</label></td>
 			 </tr>
 			 <tr>
-				<td><input type="checkbox" id="Transport" name="Transport" value="True">
-			 		<label for="Transport">Transportation</label></td>
-			 	<td ><input type="checkbox" id="DeliverFood" name="DeliverFood" value="True">
-			 		<label for="DeliverFood">Deliver Food</label></td>
-			 	<td><input type="checkbox" id="FosterCare" name="FosterCare" value="True">
-			 		<label for="FosterCare">Foster Care</label></td>
+				<td><input type="checkbox" id="transport" name="transport" value="True">
+			 		<label for="transport">Transportation</label></td>
+			 	<td ><input type="checkbox" id="deliverfood" name="deliverfood" value="True">
+			 		<label for="deliverfood">Deliver Food</label></td>
+			 	<td><input type="checkbox" id="fostercare" name="fostercare" value="True">
+			 		<label for="fostercare">Foster Care</label></td>
 			 </tr>
 			 </table>
 			 <table>
 			 <tr>
-			 	<td valign="top"><input type="checkbox" id="OtherChk" name="OtherChk" value="True">
+			 	<td valign="top">
 			 		<label for="OtherChk">Other</label></td>
 <!-- 			 	<td colspan="2" rows="2"><input type="text" id="Other" name="Other" size="150" /></p> -->
 				<td width="350" valign="top">
-					<textarea name="Other" rows="3" style="width:100%" maxlength="200"></textarea>
+					<textarea name="other" id="other" rows="3" style="width:100%" maxlength="200"></textarea>
 			 	</td>
 
 			</tr>
 			 </table>
    			 
    			 <p><label>Additional Comments: </label><br/>
-   			 <textarea name="Comments" rows="5" style="width:73%" maxlength="300"></textarea>	
+   			 <textarea name="comments" id="comments" rows="5" style="width:73%" maxlength="300"></textarea>	
     		<p><button type="submit" class="submit" value="insert">Request Pet Assistance</button></p>
 		</form>
 		

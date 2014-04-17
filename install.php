@@ -115,7 +115,8 @@ include 'includes/constant/config.inc.php';
     $sql ="create table if not exists Requests (
         Id bigint(20) not null auto_increment,
         UserId bigint(20),
-        Monday boolean,
+        BeginDate Date,
+    	Monday boolean,
         Tuesday boolean,
         Wednesday boolean,
         Thursday boolean,
