@@ -257,10 +257,16 @@ form {
 	padding: 2%;
 }
 
-.rightbarhome p h1 h2 h3{
-	background-color: #dcb23e;
+.rightbarhome p  {
+	color: #ffffff;
+	background: #dcb23e;
 	
 }
+
+.rightbarhome h2  {
+
+	background: #dcb23e;
+}	
 
 .success {
 	background: green;
