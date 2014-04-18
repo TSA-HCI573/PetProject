@@ -87,7 +87,7 @@
 				if(!strpos($_SERVER['SCRIPT_NAME'], '/users/index.php') and basename($_SERVER['SCRIPT_NAME']) == 'index.php') { echo "class=\"current\""; }
 			?> >
 			
-			<a href="<?php echo SITE_BASE; ?>/volunteer.php">Volunteer</a>
+			<a href="<?php echo SITE_BASE; ?>/volunteer.php">Volunteer Your Services</a>
 			</li>
 						
 			<!-- REQUEST PET ASSISTANCE link -->

@@ -12,37 +12,44 @@ pre {
 	color: #fff;
 }
 
+/* BODY CONTENT -- The basic styles you will use for text content */
+
 body, p, h1, h2, h3, ul, li, a:link, a:visited, a:hover, a:active, .nav, .admin  {
 	font-family: Myriad, Arial, sans-serif;
 }
 
 p { 
-font-size: .9em; 
-color: #333333;
-background-color: #ffffff;
-line-height:  1.7em;
-margin-left: 0px;
-margin-right: 0px;
-padding-bottom: 15px;  
-}
-
-.footnote  {
-	font-size: .6em;
+	font-size: .9em; 
+	color: #333333;
+	background-color: #ffffff;
+	line-height: 1.7em;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-bottom: 15px;  
 }
 
 h1 {
-font-size: 1.3em;
-color: #447772; 
-background: #fff;
-margin: 15px 0px 10px 0px;
-border-bottom: none;
+	font-size: 1.3em;
+	color: #447772; 
+	background: #fff;
+	margin: 15px 0px 10px 0px;
+	border-bottom: none;
 }
 
 h2 {
-font-size: 1.1em;
-color: #447772; 
-background: #ffffff;
-line-height:  1.5em;
+	font-size: 1.1em;
+	color: #447772; 
+	background: #ffffff;
+	line-height:  1.5em;
+}
+
+.orangetext {
+	color: #dd6b05;
+}
+
+.footnote  {
+	font-size: .7em;
+
 }
 
 td {
@@ -50,9 +57,7 @@ padding: 10px;
 white-space:nowrap;
 }
 
-textarea {
-    resize: none;
-}
+/* LINKS */
 
 a:link {
 color:#447772;
@@ -73,35 +78,9 @@ color:#7d9f15;
 text-decoration:underline;
 }   
 
-a.button,
-button,
-input[type="submit"],
-input[type="reset"],
-input[type="button"] {
-	padding: 10px;
-	border: 2px solid #ccc;
-	cursor: pointer;
-}
 
-a.button:hover,
-button:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-input[type="button"]:hover {
-	padding: 10px;
-	border: 2px solid #000;
-	cursor: pointer;
-	background: green;
-	color: #fff;
-}
 
-.note {
-	font-size: .9em;
-}
-
-form {
-	margin: 50px;
-}
+/* PAGE LAYOUT STRUCTURE -- contains the header and content sections */
 
 #container {
 	margin: 0px auto;
@@ -109,6 +88,8 @@ form {
 	width: 960px;
 	
 }
+
+/* HEADER and NAVIGATION */
 
 #headerplaced {
 		
@@ -175,7 +156,7 @@ form {
 .nav ul li {
 	list-style-type: none;
 	display: inline-block;
-	padding: 10px 35px 5px 35px;
+	padding: 10px 20px 5px 35px;
 	text-align: center;
 }
 .nav ul li a {
@@ -188,6 +169,8 @@ form {
 .nav ul li.current, li.current a {
 	background: #538681;
 }
+
+/* CONTENT holds the 2 columns for most pages: main and sidebar */
 
 .content {
 	display: table;
@@ -217,6 +200,7 @@ form {
 	vertical-align: top;
 	background-color: #dcb23e;
 	padding: 2%;
+	
 }
 
 .sidebar p {
@@ -224,13 +208,14 @@ form {
 	
 }
 
+/* HOME PAGE LAYOUT -- is different from the rest of the pages - 3 columns: mainhome, leftbarhome, and rightbarhome */
+
 .mainhome, .leftbarhome, .rightbarhome {
 	float: none;
 	padding: 0px;
 	vertical-align: top;
 }
-	
-	
+		
 .leftbarhome {
 	width: 21%;
 	display: table-cell;
@@ -268,6 +253,86 @@ form {
 	background: #dcb23e;
 }	
 
+/* FOOTER */
+
+#footer {
+	border-top: 2px solid #538681;
+	border-width: 100%;
+	clear:both;
+		}
+
+
+/* FORM styles  */
+
+form {
+	margin: 0px;
+	width: 650px;
+	padding: 20px;
+	color: #333333;
+	border: solid 2px #8cb217;
+	background: #ffffff;
+}
+
+.formlabels {
+	font-family: Myriad, Arial, sans-serif;
+	font-size: .8em;
+	color: #447772;
+	font-weight: bold;
+	margin-bottom: 0px;
+	padding-bottom: 20px;
+}
+
+a.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+	padding: 10px;
+	background: #dd6b05;
+	color: #fff;
+	font-weight: bold;
+	border: 2px solid #f6a35a;
+	cursor: pointer;
+}
+
+a.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover {
+	padding: 10px;
+	border: 2px solid #f6a35a;
+	cursor: pointer;
+	font-weight: bold;
+	background: #dcb23e;
+	color: #ffffff;
+}
+
+/*  this is old
+button {
+	clear:both;
+	margin-left:10px;
+	width:125px;
+	height:32px;
+	background: #dd6b05;
+	line-height:31px;
+	color:#FFFFFF;
+	font-size: .9em;
+	border: 2px solid #f6a35a;
+	padding-bottom: 33px;
+
+}
+
+*/
+
+textarea {
+    resize: none;
+}
+
+		
+
+/* MISC -- not sure if we are using or not */
+
 .success {
 	background: green;
 	color: #fff;
@@ -287,11 +352,6 @@ form {
 	padding: 10px;
 }
 	
-#footer {
-	border-top: 2px solid #538681;
-	border-width: 100%;
-	clear:both;
-		}
 
 	
 	

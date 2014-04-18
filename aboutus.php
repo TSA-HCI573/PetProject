@@ -33,7 +33,7 @@ return_meta();
 	</div>
 	
 	<div id="footer">
-	<p>Here's some content for the footer. Need to use an include for this.</p>
+	<?php include 'includes/constant/footer.inc.php'; ?>
 	</div>
 	
 </div>
