@@ -91,7 +91,7 @@
         return;
     }   	
     $sql ="create table if not exists MatchUps(
-	Id bigint(20),
+	Id bigint(20) not null auto_increment,
 	ClientId bigint(20),
 	VolunteerId bigint(20),
 	PetType varchar(45),
@@ -100,7 +100,8 @@
 	EndTime time,
 	Completed boolean,
 	UserReview int,
-	ClientReview int);";
+    ClientReview int,
+    primary key(Id));";
 
     if($con->query($sql) === FALSE)
     {
@@ -109,6 +110,28 @@
         return;
     } 
     echo "<br/>Database Creation Sucessful<br/> ";
+
+
+    require 'includes/constant/config.inc.php';
+
+    
+    if(isTableEmpty($con, "Users"))
+    {
+        add_user("user1", "user1", "user1", "pass", "user1@user1.com", "", "", "", "", "", "", "" );
+    }
+    if(isTableEmpty($con, "UserRole"))
+    {
+        $sql = "insert into UserRole (UserId,UserType) values(1, 'Client')";
+        if($con->query($sql))
+        {
+            echo "Succesfully Populated UserRole";
+        }
+        else
+        {
+            echo $con->error;
+        }
+
+    }
     
     $con->close();
 ?>

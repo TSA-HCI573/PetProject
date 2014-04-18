@@ -1,6 +1,6 @@
 <?php
 
-include 'includes/constant/config.inc.php';
+include '../includes/constant/config.inc.php';
 session_start();
 return_meta();
 ?>
@@ -9,11 +9,10 @@ return_meta();
 <body>
 <div id="container">
 
-	<?php include '/user_nav.inc.php'; ?>
+	<?php include 'includes/user_nav.inc.php'; ?>
 
 	<h1>Client Page</h1>
-	<p>This is for information for the pet-owner user and where the pet owner will see their information and be able to update it.</p>
-	
+    <a href="client_times.php">Request Assistance</a>
 
 </div>
 </body>

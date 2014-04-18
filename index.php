@@ -17,7 +17,7 @@ return_meta();
 	
 		<div class="sidebarhome">
 
-		<h2>What would you like to do?</h2>
+        <h2>What would you like to do? </h2>
 		
 		<p><strong>Volunteer </strong>button</p>
 		

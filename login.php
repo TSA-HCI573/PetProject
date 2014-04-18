@@ -24,20 +24,20 @@ if(isset($_POST['login']))
 		$err[] = "You seem to have forgotten your password.";
 	}
 	//Select only ONE password from the db table if the username = username, or the user input email (after being encrypted) matches an encrypted email in the db
-	$q = mysql_query("SELECT usr_pwd, id, approved FROM ".USERS." WHERE user_name = '$username' OR usr_email = AES_ENCRYPT('$username', '$salt')") or die(mysql_error());
+	$q = mysql_query("SELECT Password, Id FROM ".USERS." WHERE UserName = '$username' OR Email = AES_ENCRYPT('$username', '$salt')") or die(mysql_error());
 
 	//Select only the password if a user matched
 	
 	
-	list($pass, $userid, $approved) = mysql_fetch_row($q);
-	
+	list($pass, $userid ) = mysql_fetch_row($q);
+    echo "UserId". $userid;
 	
 	//now the variable $pass holds the value in column usr_pwd, $userid holds the value for id, and $approved holds the value for approved
 
-	if($approved == 0)
-	{
-		$err[] = "You must activate your account, and may do so <a href=\"users/activate.php\">here</a>";
-	}
+	//if($approved == 0)
+	//{
+//		$err[] = "You must activate your account, and may do so <a href=\"users/activate.php\">here</a>";
+//	}
 
 	if(empty($err))
 	{
@@ -47,8 +47,13 @@ if(isset($_POST['login']))
 			if(hash_pass($pass2) === $pass)
 			{
 
-				$user_info = mysql_query("SELECT id, full_name, user_name, user_level FROM ".USERS." WHERE id = '$userid' LIMIT 1") or die("Unable to get user info");
-				list($id, $name, $username, $level) = mysql_fetch_row($user_info);
+                $user_info = mysql_query("SELECT Id, FirstName, UserName FROM ".USERS.
+                    " WHERE Id = $userid LIMIT 1") or die("Unable to get user info" . mysql_error($link));
+                $user_role = mysql_query("select UserType from UserRole where UserId = $userid limit 1")
+                    or die("Unable to get user role" . mysql_error($link));
+
+                list($role) = mysql_fetch_row($user_role);
+				list($id, $name, $username) = mysql_fetch_row($user_info);
 
 				session_start();
 				//REALLY start new session (wipes all prior data)
@@ -57,13 +62,12 @@ if(isset($_POST['login']))
 				//update the timestamp and key for session verification
 				$stamp = time();
 				$ckey = generate_key();
-				mysql_query("UPDATE ".USERS." SET ctime = '$stamp', ckey = '$ckey', num_logins = num_logins+1, last_login = now() WHERE id='$id'") or die(mysql_error());
+				//mysql_query("UPDATE ".USERS." SET ctime = '$stamp', ckey = '$ckey', num_logins = num_logins+1, last_login = now() WHERE id='$id'") or die(mysql_error());
 
 				//Assign session variables to information specific to user
-				$_SESSION['user_id'] = $id;
-				$_SESSION['fullname'] = $name;
-				$_SESSION['user_name'] = $username;
-				$_SESSION['user_level'] = $level;
+				$_SESSION['UserId'] = $id;
+				$_SESSION['FirstName'] = $name;
+				$_SESSION['UserName'] = $username;
 				$_SESSION['stamp'] = $stamp;
 				$_SESSION['key'] = $ckey;
 				$_SESSION['logged'] = true;
@@ -75,7 +79,19 @@ if(isset($_POST['login']))
 				$msg = "Logged in successfully!";
 
 				//redirect to a new location
-				header("Location: ".SITE_BASE."/users");
+                if($role === "Client")
+                {
+                    header("Location: " . SITE_BASE . "/users/client_page.php");
+                }
+                else if($role ==="Volunteer")
+                {
+                    header("Location: " . SITE_BASE."/users/volunteer_page.php");
+                }
+                else
+                {
+                    header("Location: ".SITE_BASE."/users");
+                }
+
 			} //end passwords matched
 			else
 			{

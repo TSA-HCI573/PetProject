@@ -1,7 +1,8 @@
 <?php
 
 ini_set('display_errors', 'On');
-error_reporting(E_ALL | E_STRICT);
+//error_reporting(E_ALL | E_STRICT);
+error_reporting(E_ERROR);
 
 define ("DB_HOST", "localhost"); // set database host
 define ("DB_USER", "hci573"); // set database user
@@ -9,7 +10,7 @@ define ("DB_PASS","hci573"); // set database password
 define ("DB_NAME","petproject"); // set database name
 
 //tables
-define ("USERS", "users");
+define ("USERS", "Users");
 define ("USER_ROLE", "UserRole");
 define ("USER_PETS", "UserPets");
 define ("MATCHUPS", "MatchUps");
@@ -17,6 +18,7 @@ define ("MATCHUPS", "MatchUps");
 //site base
 define ("SITE_BASE", "http://".$_SERVER['HTTP_HOST']."/PetProject");
 define ("SITE_ROOT", $_SERVER['DOCUMENT_ROOT']."/PetProject");
+define ("JS", SITE_BASE ."/includes/js");
 
 //email to use for verification
 //define ("GLOBAL_EMAIL", "notused@gmail.com");
@@ -38,7 +40,9 @@ global $password_store_key;
 
 
 /* Function that adds a new user to our system */
-function add_user($firstname, $lastname, $username, $password, $email, $address1, $address2, $city, $state, $zipcode, $bio, $profileImagePath ){
+function add_user($firstname, $lastname, $username, $password, $email, $address1, $address2, $city,
+    $state, $zipcode, $bio, $profileImagePath )
+{
 	
 	//declaring $salt and $link as global allows the function to access the values stored in these variables
 	global $salt;
@@ -87,8 +91,11 @@ function add_user($firstname, $lastname, $username, $password, $email, $address1
 		//the function hash_pass is defined in config.inc.php
 		$password = hash_pass($password);
 		
-		$q1 = mysql_query("INSERT INTO ".USERS." (FirstName, LastName, Email, Password, UserName, Address1, Address2, City, State, ZipCode, Bio, ProfileImagePath) 
-		VALUES ('$firstname',  '$lastname', AES_ENCRYPT('$email', '$salt'), '$password', '$username', '$address1', '$address2', '$city',  '$state', '$zipcode', '$bio', '$profileImagePath')", $link) or die("Unable to insert data");
+        $q1 = mysql_query("INSERT INTO ".USERS." (FirstName, LastName, Email, Password, UserName,
+            Address1, Address2, City, State, ZipCode, Bio, ProfileImagePath) 
+            VALUES ('$firstname',  '$lastname', AES_ENCRYPT('$email', '$salt'), '$password', '$username',
+                '$address1', '$address2', '$city',  '$state', '$zipcode', '$bio', 
+                '$profileImagePath')", $link) or die("Unable to insert data".mysql_error($link));
 
 
 		
@@ -157,6 +164,7 @@ function add_user($firstname, $lastname, $username, $password, $email, $address1
 	
 	return $err;
 }
+
 
 /*Function to secure pages and check users*/
 function secure_page()
