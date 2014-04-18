@@ -258,7 +258,7 @@ form {
 }
 
 .rightbarhome p  {
-	color: #ffffff;
+	color: #000000;
 	background: #dcb23e;
 	
 }
@@ -287,7 +287,14 @@ form {
 	padding: 10px;
 }
 	
+#footer {
+	border-top: 2px solid #538681;
+	border-width: 100%;
+	clear:both;
+		}
 
+	
+	
 /*Specific to jquery.validate*/
 .error {
 	color: red;
