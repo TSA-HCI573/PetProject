@@ -1,5 +1,7 @@
 <?php
 
+include 'includes/constant/config.inc.php'; 
+
     function isTableEmpty($con, $table)
     {
         echo "Determine if empty";
@@ -109,6 +111,37 @@
 
         return;
     } 
+        
+      //create requests table
+    $sql ="create table if not exists Requests (
+        Id bigint(20) not null auto_increment,
+        UserId bigint(20),
+        BeginDate Date,
+    	Monday boolean,
+        Tuesday boolean,
+        Wednesday boolean,
+        Thursday boolean,
+        Friday boolean,
+        Saturday boolean,
+        Sunday boolean,
+        AM boolean,
+        PM boolean,
+        PetType varchar(100),
+		DogWalking boolean,
+		Grooming boolean,
+		AdministerMeds boolean,
+		DeliverFood boolean,
+		Transport boolean,
+		FosterCare boolean,
+        Other varchar(200),
+        Comments mediumtext,
+        primary key (Id))";
+    if($con->query($sql) === FALSE)
+    {
+        echo "<br/> Error creating requests table <br/>". $con->error;
+        return;
+    }
+    
     echo "<br/>Database Creation Sucessful<br/> ";
 
 
@@ -133,5 +166,40 @@
 
     }
     
+	if(isTableEmpty($con,'Users'))
+	{
+		$sql ="insert into Users (
+		FirstName,
+		LastName,
+		Email,
+		Password,
+		md5_id,
+		UserName,
+		Address1,
+		Address2,
+		City,
+		State,
+		ZipCode,
+		Bio,
+		ProfileImagePath)
+		values(
+		'Amy',
+		'Kern',
+		'akern@iastate.edu',
+		'abc123',
+		'lkj',
+		'akern',
+		'6680 123rd Lane',
+		'lk',
+		'Indianola',
+		'IA',
+		'50125',
+		'something about me, a clob',
+		'dummy.jpg');";
+		if($con->query($sql) === FALSE)
+		{
+			echo "<br/> Error populating users table <br/>" . $con->error;
+		}
+	}
     $con->close();
 ?>
