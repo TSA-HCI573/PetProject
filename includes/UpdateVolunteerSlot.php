@@ -24,7 +24,7 @@
         from 
             MatchUps 
         where 
-            ClientId = $userId and
+            VolunteerId = $userId and
             StartTime = time('$time') and
             Day = '$day';";
 
@@ -51,7 +51,7 @@
         from 
             MatchUps 
         where 
-            ClientId = $userId and
+            VolunteerId = $userId and
             StartTime = time('$time') and
             Day = '$day';";
 
@@ -60,7 +60,7 @@
     else
     {
         echo("Not there Yet");
-        $sql ="insert into MatchUps (ClientId, StartTime, Day)
+        $sql ="insert into MatchUps (VolunteerId, StartTime, Day)
             values($userId, time('$time'), '$day');";
         $con->query($sql);
     }

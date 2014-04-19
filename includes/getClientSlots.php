@@ -1,88 +1,38 @@
 <?php
-
     include 'constant/config.inc.php';
-    error_reporting(E_ALL | E_STRICT);
-    //error_reporting(E_ERROR);
 
-    function GetClientSlots($userId)
-    {
-        if(!isset($userId))
-        {
-            return;
-        }
-        $sql = 
-            "select 
-                m.StartTime, 
-                m.Day,
-                u.FirstName, 
-                u.LastName 
-            from 
-                MatchUps m left outer join Users u on 
-                m.VolunteerId = u.Id 
-            where 
-                ClientId = $userId;";
+    function GetAvailableSlots($userId)
+    { 
+        $sql ="select * from MatchUps where ClientId = null or ClientId = $userId;";
         $con = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME); 
 
-        $mySlots =array();
-        if($result = $con->query($sql))
+        if($con->connect_errno)
         {
-            $tempArray = array();
-            while($row = $result->fetch_array())
-            {
-                $tempArray = $row;
-                array_push($mySlots, $tempArray);
-            }
+            echo "Failed to connect to mysql: " . msqli_connect_error($con);
+            return;
         }
         else
         {
-            echo $con->error;
-        }
-
-        $days = array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday","Saturday");
-        $slots = array();
-        foreach($days as $day)
-        {
-            
-            for($i = 8; $i <20; $i++)
+            $matchups = array();
+            if($result = $con->query($sql))
             {
-                $slot = array();
-                if($i< 10)
+                $tempArray = array();
+                while($row = $result->fetch_object())
                 {
-                    $slot['time'] = '0' . $i . ':00:00';
+                    $tempArray =$row;
+                    array_push($matchups, $tempArray);
                 }
-                else
-                {
-                    $slot['time'] = $i . ':00:00';
-                }
-                $slot['volunteer'] = "";
-                $slot['client'] = false;
-                
-
-                foreach($mySlots as $s)
-                {
-                    $startTime =strval($s['StartTime']);
-                    $time = strval($slot['time']);
-
-                    //echo $startTime . " = " . $time . " | ";
-                    if( $startTime == $time && $s['Day'] == $day)
-                    {
-                        $slot['client'] = true;
-                        $name ="";
-                        if($s['FirstName'] != null
-                            && $s['LastName'] != null)
-                        {
-                            $name = $s['FirstName']. " " . $s['LastName'];
-                        } 
-
-                        $slot['volunteer'] = $name;
-                    }
-                }
-                $slots[$day][] = $slot;
+                echo json_encode($matchups);
             }
+
+
         }
-        echo json_encode($slots);
+        $con->close();
     }
-    $userid = $_GET['userid'];
-    GetClientSlots($userid);
+
+    
+    $userid = $_POST['userid'];
+    GetAvailableSlots($userid);
 
 ?>
+

@@ -1,7 +1,5 @@
 <?php
 
-include 'includes/constant/config.inc.php'; 
-
     function isTableEmpty($con, $table)
     {
         echo "Determine if empty";
@@ -154,7 +152,7 @@ include 'includes/constant/config.inc.php';
     }
     if(isTableEmpty($con, "UserRole"))
     {
-        $sql = "insert into UserRole (UserId,UserType) values(1, 'Client')";
+        $sql = "insert into UserRole (UserId,UserType) values(1, 'Volunteer')";
         if($con->query($sql))
         {
             echo "Succesfully Populated UserRole";
@@ -166,40 +164,5 @@ include 'includes/constant/config.inc.php';
 
     }
     
-	if(isTableEmpty($con,'Users'))
-	{
-		$sql ="insert into Users (
-		FirstName,
-		LastName,
-		Email,
-		Password,
-		md5_id,
-		UserName,
-		Address1,
-		Address2,
-		City,
-		State,
-		ZipCode,
-		Bio,
-		ProfileImagePath)
-		values(
-		'Amy',
-		'Kern',
-		'akern@iastate.edu',
-		'abc123',
-		'lkj',
-		'akern',
-		'6680 123rd Lane',
-		'lk',
-		'Indianola',
-		'IA',
-		'50125',
-		'something about me, a clob',
-		'dummy.jpg');";
-		if($con->query($sql) === FALSE)
-		{
-			echo "<br/> Error populating users table <br/>" . $con->error;
-		}
-	}
     $con->close();
 ?>

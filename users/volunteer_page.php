@@ -1,6 +1,6 @@
 <?php
 
-include 'includes/constant/config.inc.php';
+include '../includes/constant/config.inc.php';
 session_start();
 return_meta();
 ?>
@@ -11,10 +11,8 @@ return_meta();
 
 	<?php include '/user_nav.inc.php'; ?>
 
-	<h1>Client Page</h1>
-	<p>This is for information for the pet-owner user and where the pet owner will see their information and be able to update it.</p>
-	
-
+	<h1>Volunteer Page</h1>
+	    <a href="volunteer_times.php">Post Volunteer Posistions</a>
 </div>
 </body>
 </html>

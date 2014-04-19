@@ -70,17 +70,17 @@
                 var result = "";
                 result +="<td";
                 
-                if(day[index].client == true)
+                if(day[index].volunteer == true)
                 {
                     result += " class ='selected' > ";
-                    result +=" <p class='hover'> Click to Cancel Request </p>";
+                    result +=" <p class='hover'> Click to Cancel</p>";
                 }
                 else
                 {
                     result += " class ='slot' >";
-                    result +=" <p class='hover'> Click to Request a Volunteer for this time</p>";
+                    result +=" <p class='hover'>Click here post availability for this time</p>";
                 }
-                result += "<p>" + day[index].volunteer + "</p>";
+                result += "<p>" + day[index].client + "</p>";
                 result += "<p class='hiddenTime'>"+day[index].time +"</p>";
                 result += "<p class='hiddenDay'>"+dayName+"</td>";
                 return result;
@@ -105,9 +105,9 @@
             
             function getSlots()
             {
-                var clientAPI = "<?php echo SITE_BASE .'/includes/getClientSlots.php' ?>";
+                var volunteerAPI = "<?php echo SITE_BASE .'/includes/getVolunteerSlots.php' ?>";
                 var user = "<?php echo $_SESSION['UserId'] ?>";
-                $.getJSON(clientAPI,
+                $.getJSON(volunteerAPI,
                 {
                     userid: user 
                 }).done(function(days)
@@ -152,18 +152,18 @@
                     );
                     $(".selected").click(function()
                         {
-                            var clientAPI = "<?php echo SITE_BASE .'/includes/UpdateClientSlot.php' ?>";
+                            var volunteerAPI = "<?php echo SITE_BASE .'/includes/UpdateVolunteerSlot.php' ?>";
                             var time = $(this).children(".hiddenTime").text();
                             var day = $(this).children(".hiddenDay").text();
                             var user = "<?php echo $_SESSION['UserId'] ?>";
-                            $.post(clientAPI , { userid: user, time: time, day: day } ).done(function()
+                            $.post(volunteerAPI , { userid: user, time: time, day: day } ).done(function()
                             {
                                 getSlots();
                             });
                         });
                         $(".slot").click(function()
                         {
-                            var clientAPI = "<?php echo SITE_BASE .'/includes/UpdateClientSlot.php' ?>";
+                            var clientAPI = "<?php echo SITE_BASE .'/includes/UpdateVolunteerSlot.php' ?>";
                             var time = $(this).children(".hiddenTime").text();
                             var day = $(this).children(".hiddenDay").text();
                             var user = "<?php echo $_SESSION['UserId'] ?>";

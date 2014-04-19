@@ -12,7 +12,7 @@ return_meta();
 	<?php include 'includes/user_nav.inc.php'; ?>
 
 	<h1>Client Page</h1>
-    <a href="client_times.php">Request Assistance</a>
+
 
 </div>
 </body>
