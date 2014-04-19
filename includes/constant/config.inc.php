@@ -339,8 +339,6 @@ function hash_pass($pass)
 	$hashed = sha1(md5($hashed));
 	return $hashed;
 }
-<<<<<<< HEAD
-=======
 
 //function which returns all stored entries wrapped up in HTML code
 function load_messages()
@@ -377,4 +375,3 @@ function load_messages()
     }
     return $build;
 }
->>>>>>> ad983e2168d9b39b506faca032c30a4c1092dba5
