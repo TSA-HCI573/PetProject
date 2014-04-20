@@ -25,7 +25,7 @@
             MatchUps 
         where 
             VolunteerId = $userId and
-            StartTime = time('$time') and
+            Time = '$time' and
             Day = '$day';";
 
     $con = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME); 
@@ -52,7 +52,7 @@
             MatchUps 
         where 
             VolunteerId = $userId and
-            StartTime = time('$time') and
+            Time = '$time' and
             Day = '$day';";
 
         $con->query($sql);
@@ -60,8 +60,8 @@
     else
     {
         echo("Not there Yet");
-        $sql ="insert into MatchUps (VolunteerId, StartTime, Day)
-            values($userId, time('$time'), '$day');";
+        $sql ="insert into MatchUps (VolunteerId, Time, Day)
+            values($userId, '$time', '$day');";
         $con->query($sql);
     }
 $con->close();

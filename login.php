@@ -1,5 +1,5 @@
 <?php
-require 'includes/constant/config.inc.php';
+include_once 'includes/constant/config.inc.php';
 
 //Pre-assign our variables to avoid undefined indexes
 $username = NULL;
@@ -81,11 +81,11 @@ if(isset($_POST['login']))
 				//redirect to a new location
                 if($role === "Client")
                 {
-                    header("Location: " . SITE_BASE . "/users/client_page.php");
+                    header("Location: " . SITE_BASE . "/users/client.php");
                 }
                 else if($role ==="Volunteer")
                 {
-                    header("Location: " . SITE_BASE."/users/volunteer_page.php");
+                    header("Location: " . SITE_BASE."/users/volunteer.php");
                 }
                 else
                 {
@@ -155,7 +155,7 @@ return_meta("Log in to your account");
 		<td><input type="text" name="user" value="" class="required" /></td>
 		</tr>
 		<td>Password:</td>
-		<td><input type="text" name="pass" value="" class="required" /></td>
+		<td><input type="password" name="pass" value="" class="required" /></td>
 		</tr>
 		<tr>
 		<td colspan="2" align="center"><input type="submit" name="login" value="Login" /></td>

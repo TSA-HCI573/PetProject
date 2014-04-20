@@ -3,6 +3,36 @@
     include 'constant/config.inc.php';
     error_reporting(E_ALL | E_STRICT);
     //error_reporting(E_ERROR);
+    
+
+    function AddSlot($mySlots, $time, $day)
+    {
+        $slot = array();
+        $slot['time'] = $time; 
+        $slot['client'] = "";
+        $slot['volunteer'] = false;
+        
+
+        foreach($mySlots as $s)
+        {
+            $dbTime =$s['Time'];
+
+            //echo $startTime . " = " . $time . " | ";
+            if( $dbTime == $time && $s['Day'] == $day)
+            {
+                $slot['volunteer'] = true;
+                $name ="";
+                if($s['FirstName'] != null
+                    && $s['LastName'] != null)
+                {
+                    $name = $s['FirstName']. " " . $s['LastName'];
+                } 
+
+                $slot['client'] = $name;
+            }
+        }
+        return $slot;
+    }
 
     function GetVolunteerSlots($userId)
     {
@@ -12,7 +42,7 @@
         }
         $sql = 
             "select 
-                m.StartTime, 
+                m.Time, 
                 m.Day,
                 u.FirstName, 
                 u.LastName 
@@ -43,42 +73,11 @@
         foreach($days as $day)
         {
             
-            for($i = 8; $i <20; $i++)
-            {
-                $slot = array();
-                if($i< 10)
-                {
-                    $slot['time'] = '0' . $i . ':00:00';
-                }
-                else
-                {
-                    $slot['time'] = $i . ':00:00';
-                }
-                $slot['client'] = "";
-                $slot['volunteer'] = false;
-                
+            $slot = AddSlot($mySlots, "Morning",$day);
+            $slots[$day][] = $slot;
 
-                foreach($mySlots as $s)
-                {
-                    $startTime =strval($s['StartTime']);
-                    $time = strval($slot['time']);
-
-                    //echo $startTime . " = " . $time . " | ";
-                    if( $startTime == $time && $s['Day'] == $day)
-                    {
-                        $slot['volunteer'] = true;
-                        $name ="";
-                        if($s['FirstName'] != null
-                            && $s['LastName'] != null)
-                        {
-                            $name = $s['FirstName']. " " . $s['LastName'];
-                        } 
-
-                        $slot['client'] = $name;
-                    }
-                }
-                $slots[$day][] = $slot;
-            }
+            $slot = AddSlot($mySlots, "AfterNoon",$day);
+            $slots[$day][] = $slot;
         }
         echo json_encode($slots);
     }

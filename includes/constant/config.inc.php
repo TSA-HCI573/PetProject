@@ -169,7 +169,18 @@ function add_user($firstname, $lastname, $username, $password, $email, $address1
 	return $err;
 }
 
+function getUserRole($userid)
+{
+    global $db;
+    $result = mysql_query("select UserType from UserRole where UserId= $userid;") or die (mysql_error());
+    $roles = array();
+    while($row = mysql_fetch_row($result))
+    {
+         $roles[] = $row[0];
+    }
 
+    return $roles;
+}
 /*Function to secure pages and check users*/
 function secure_page()
 {
@@ -217,19 +228,16 @@ function logout($lm = NULL)
 	}
 
 	//If the user is 'partially' set for some reason, we'll want to unset the db session vars
-	if(isset($_SESSION['user_id']))
+	if(isset($_SESSION['UserId']))
 	{
-		global $db;
-		mysql_query("UPDATE ".USERS." SET ckey= '', ctime= '' WHERE id='".$_SESSION['user_id']."'") or die(mysql_error());
 		unset($_SESSION['user_id']);
 	}
 		
-	unset($_SESSION['user_name']);
-	unset($_SESSION['user_level']);
+	unset($_SESSION['FistName']);
+	unset($_SESSION['UserName']);
 	unset($_SESSION['HTTP_USER_AGENT']);
 	unset($_SESSION['stamp']);
 	unset($_SESSION['key']);
-	unset($_SESSION['fullname']);
 	unset($_SESSION['logged']);
 	session_unset();
 	session_destroy();

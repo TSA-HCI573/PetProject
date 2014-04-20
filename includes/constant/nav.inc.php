@@ -1,13 +1,14 @@
 
+<?php require_once 'config.inc.php'; ?>
 <div class="header">
 
 	<div class="imageleft">
-	<img src="images/dog_and_cat_green_bg.jpg">
+    <img src="<?php echo SITE_BASE . "/images/dog_and_cat_green_bg.jpg"?>">
 	</div>
 	
 	<div class="admin">
 		<ul>
-		<?php if(!isset($_SESSION['user_id'])) //checks out true if nobody is logged in
+		<?php if(!isset($_SESSION['UserId'])) //checks out true if nobody is logged in
 			{
 			?>
 				<!-- REGISTER link -->
@@ -22,11 +23,8 @@
 			{
 				?>
 				
-				<!-- SECURE HOME link -->
-				<li <?php if(strpos($_SERVER['SCRIPT_NAME'], 'users/index.php')) { ?>class="current"<?php } ?>><a href="<?php echo SITE_BASE; ?>/users/">Secure Home</a></li>
-				
 				<!-- USER PROFILE link -->
-				<li <?php if(basename($_SERVER['SCRIPT_NAME']) == 'profile.php') { ?>class="current"<?php } ?>><a href="<?php echo SITE_BASE; ?>/users/profile.php">User Profile</a></li>
+				<li <?php if(basename($_SERVER['SCRIPT_NAME']) == 'profile.php') { ?>class="current"<?php } ?>><a href="<?php echo SITE_BASE; ?>/users/profile.php">Update My Information</a></li>
 					
 				<?php
 				if(is_admin()) {
@@ -55,10 +53,8 @@
 			<!-- SITE HOME link -->
 			<li
 			<?php 
-			
 				//checks if the current page matches the string '/users/index.php'
-				//print_r($_SERVER);
-				if(!strpos($_SERVER['SCRIPT_NAME'], '/users/index.php') and basename($_SERVER['SCRIPT_NAME']) == 'index.php') { echo "class=\"current\""; }
+				if(basename($_SERVER['SCRIPT_NAME']) == 'index.php') { echo "class=\"current\""; }
 			?> >
 			
 			<a href="<?php echo SITE_BASE; ?>">Home</a>
@@ -70,46 +66,18 @@
 			<li
 			<?php 
 			
-				//checks if the current page matches the string '/users/index.php'
-				//print_r($_SERVER);
-				if(!strpos($_SERVER['SCRIPT_NAME'], '/users/index.php') and basename($_SERVER['SCRIPT_NAME']) == 'index.php') { echo "class=\"current\""; }
+				if(basename($_SERVER['SCRIPT_NAME']) == 'aboutus.php') { echo "class=\"current\""; }
 			?> >
 			
 			<a href="<?php echo SITE_BASE; ?>/aboutus.php">About Us</a>
 			</li>
 			
-			<!-- VOLUNTEER link -->
-			<li
-			<?php 
-			
-				//checks if the current page matches the string '/users/index.php'
-				//print_r($_SERVER);
-				if(!strpos($_SERVER['SCRIPT_NAME'], '/users/index.php') and basename($_SERVER['SCRIPT_NAME']) == 'index.php') { echo "class=\"current\""; }
-			?> >
-			
-			<a href="<?php echo SITE_BASE; ?>/volunteer.php">Volunteer Your Services</a>
-			</li>
-						
-			<!-- REQUEST PET ASSISTANCE link -->
-			<li
-			<?php 
-			
-				//checks if the current page matches the string '/users/index.php'
-				//print_r($_SERVER);
-				if(!strpos($_SERVER['SCRIPT_NAME'], '/users/index.php') and basename($_SERVER['SCRIPT_NAME']) == 'index.php') { echo "class=\"current\""; }
-			?> >
-			
-			<a href="<?php echo SITE_BASE; ?>/client.php">Request Pet Assistance</a>
-			</li>			
-					
-
+		
 			<!-- DONATE link -->
 			<li
 			<?php 
 			
-				//checks if the current page matches the string '/users/index.php'
-				//print_r($_SERVER);
-				if(!strpos($_SERVER['SCRIPT_NAME'], '/users/index.php') and basename($_SERVER['SCRIPT_NAME']) == 'index.php') { echo "class=\"current\""; }
+				if(basename($_SERVER['SCRIPT_NAME']) == 'donate.php') { echo "class=\"current\""; }
 			?> >
 			
 			<a href="<?php echo SITE_BASE; ?>/donate.php">Donate</a>
@@ -119,16 +87,66 @@
 				<!-- CONTACT US link -->
 			<li
 			<?php 
-			
-				//checks if the current page matches the string '/users/index.php'
-				//print_r($_SERVER);
-				if(!strpos($_SERVER['SCRIPT_NAME'], '/users/index.php') and basename($_SERVER['SCRIPT_NAME']) == 'index.php') { echo "class=\"current\""; }
+				if(basename($_SERVER['SCRIPT_NAME']) == 'contactus.php') { echo "class=\"current\""; }
 			?> >
 			
 			<a href="<?php echo SITE_BASE; ?>/contactus.php">Contact Us</a>
 			</li>
 			
-			
+            <?php
+           //determine if the user is logged in so we can display conditional 
+           //tabs 
+
+            if(isset($_SESSION) && isset($_SESSION['UserId']))
+            {
+                $userId = $_SESSION['UserId'];
+                $userRole = getUserRole($userId);
+            }
+            else
+            {
+                $userRole = array();
+            }
+
+            //VOLUNTEER link 
+            if(in_array("Volunteer", $userRole) || empty($userRole))
+            {
+			    echo "<li ";
+                if(basename($_SERVER['SCRIPT_NAME']) == 'volunteer.php') { echo "class=\"current\""; }
+            
+                echo" >";
+             
+                if(empty($userRole))
+                {
+                    echo "<a href='". SITE_BASE . "/volunteer.php'>Volunteer Your Services</a>";
+                }
+                else
+                {
+                    echo "<a href='". SITE_BASE . "/users/volunteer.php'>Volunteer Your Services</a>";
+                }
+                echo "</li>";
+            }
+
+			// REQUEST PET ASSISTANCE link
+            if(in_array("Client", $userRole) || empty($userRole))
+            {
+                echo "<li ";
+                
+                    if(basename($_SERVER['SCRIPT_NAME']) == 'client.php') { echo "class=\"current\""; }
+                echo " >";
+                if(empty($userRole))
+                {
+                    echo "<a href='" . SITE_BASE . "/client.php'>Request Pet Assistance</a>";
+                }
+                else
+                {
+                    echo "<a href='" . SITE_BASE . "/users/client.php'>Request Pet Assistance</a>";
+                }
+
+                echo"</li>"; 
+            }
+?>
+					
+
 
 			
 		</ul>

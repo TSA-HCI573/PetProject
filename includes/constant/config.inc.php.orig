@@ -1,8 +1,8 @@
 <?php
 
 ini_set('display_errors', 'On');
-//error_reporting(E_ALL | E_STRICT);
-error_reporting(E_ERROR);
+error_reporting(E_ALL | E_STRICT);
+//error_reporting(E_ERROR);
 
 define ("DB_HOST", "localhost"); // set database host
 define ("DB_USER", "hci573"); // set database user
@@ -244,6 +244,19 @@ function logout($lm = NULL)
 	}
 }
 
+function getUserRole($userid)
+{
+    global $db;
+    $result = mysql_query("select UserType from UserRole where UserId= $userid;";) or die (mysql_error());
+    if($row = mysql_fetch_row($result))
+    {
+        return $row[0];
+    }
+    else
+    {
+        return "New";
+    }
+}
 /* using the session data, this function checks if the person logged in has admin rights */
 function is_admin()
 {
@@ -339,8 +352,9 @@ function hash_pass($pass)
 	$hashed = sha1(md5($hashed));
 	return $hashed;
 }
-<<<<<<< HEAD
-=======
+
+
+
 
 //function which returns all stored entries wrapped up in HTML code
 function load_messages()
@@ -377,4 +391,3 @@ function load_messages()
     }
     return $build;
 }
->>>>>>> ad983e2168d9b39b506faca032c30a4c1092dba5

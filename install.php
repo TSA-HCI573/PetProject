@@ -96,8 +96,7 @@
 	VolunteerId bigint(20),
 	PetType varchar(45),
 	Day varchar(15),
-	StartTime time,
-	EndTime time,
+	Time varchar(9),
 	Completed boolean,
 	UserReview int,
     ClientReview int,
@@ -149,10 +148,20 @@
     if(isTableEmpty($con, "Users"))
     {
         add_user("user1", "user1", "user1", "pass", "user1@user1.com", "", "", "", "", "", "", "" );
+        add_user("user2", "user2", "user2", "pass", "user2@user2.com", "", "", "", "", "", "", "" );
     }
     if(isTableEmpty($con, "UserRole"))
     {
         $sql = "insert into UserRole (UserId,UserType) values(1, 'Volunteer')";
+        if($con->query($sql))
+        {
+            echo "Succesfully Populated UserRole";
+        }
+        else
+        {
+            echo $con->error;
+        }
+        $sql = "insert into UserRole (UserId,UserType) values(2, 'Client')";
         if($con->query($sql))
         {
             echo "Succesfully Populated UserRole";

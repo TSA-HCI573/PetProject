@@ -9,7 +9,7 @@ return_meta();
 <body>
 <div id="container">
 
-	<?php include '/user_nav.inc.php'; ?>
+	<?php include '../includes/constant/nav.inc.php'; ?>
 
 	<h1>Volunteer Page</h1>
 	    <a href="volunteer_times.php">Post Volunteer Posistions</a>
