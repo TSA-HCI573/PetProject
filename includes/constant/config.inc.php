@@ -15,6 +15,7 @@ define ("USER_ROLE", "UserRole");
 define ("USER_PETS", "UserPets");
 define ("MATCHUPS", "MatchUps");
 define ("REQUESTS", "Requests");
+define ("VOLUNTEERS", "Volunteers");
 
 
 //site base

@@ -1,48 +1,30 @@
 <?php
 
-include_once 'includes/constant/config.inc.php';
+include_once '../includes/constant/config.inc.php';
 session_start();
 return_meta();
 
 //Check for post data
 if($_POST and $_GET)
 {
-	if ($_GET['cmd'] == 'add'){
+	if ($_GET['cmd'] == 'update'){
 		echo "POST";
-		//Assign variables and sanitize POST data
+		//update pet owner information 
 		$startDate = mysql_real_escape_string($_POST['startDate']);
 		
 		$petType = mysql_real_escape_string($_POST['petType']);		
 				
-		$monday = mysql_real_escape_string($_POST['monday']);
-		$tuesday = mysql_real_escape_string($_POST['tuesday']);
-		$wednesday = mysql_real_escape_string($_POST['wednesday']);
-		$thursday = mysql_real_escape_string($_POST['thursday']);
-		$friday = mysql_real_escape_string($_POST['friday']);
-		$saturday = mysql_real_escape_string($_POST['saturday']);
-		$sunday = mysql_real_escape_string($_POST['sunday']);
-		$am = mysql_real_escape_string($_POST['am']);
-		$pm = mysql_real_escape_string($_POST['pm']);
-		
-
-		$dogwalking = mysql_real_escape_string($_POST['dogwalking']);
-		$grooming = mysql_real_escape_string($_POST['grooming']);
-		$administermeds = mysql_real_escape_string($_POST['administermeds']);
-		$deliverfood = mysql_real_escape_string($_POST['deliverfood']);
-		$transportation = mysql_real_escape_string($_POST['transportation']);
-		$fostercare = mysql_real_escape_string($_POST['fostercare']);
-		$other = mysql_real_escape_string($_POST['other']);
 		$comments = mysql_real_escape_string($_POST['comments']);
 
 		//Build insert sql statement
 		
- 		debug_to_console("INSERT INTO ".VOLUNTEERS."(UserId,  BeginDate, PetType, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, AM, PM,
+ 		debug_to_console("INSERT INTO ".REQUESTS."(UserId,  BeginDate, PetType, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, AM, PM,
 		dogwalking, grooming, administermeds, deliverfood, transport, fostercare, other, comments ) 
 		VALUES (1, '" . $startDate . "', '" .$petType . "', '" .$monday . "', '" . $tuesday. "', '" . $wednesday . "', '" . $thursday . "', '" . $friday . 
 		"', '" . $saturday . "', '" . $sunday . "', '" . $am . "', '" . $pm . "', '" . $dogwalking. "', '" . $grooming. "', '" . $administermeds. "', '" . 
 		$deliverfood. "', '" . $transportation. "', '" . $fostercare . "', '" .$other. "', '" . $comments."')");
 
-		mysql_query("INSERT INTO ".VOLUNTEERS."(UserId, BeginDate, PetType, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, AM, PM,
+		mysql_query("INSERT INTO ".REQUESTS."(UserId, BeginDate, PetType, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, AM, PM,
 		dogwalking, grooming, administermeds, deliverfood, transport, fostercare, other, comments ) 
 		VALUES (1, '" . $startDate . "', '" .$petType . "', '" .$monday . "', '" . $tuesday. "', '" . $wednesday . "', '" . $thursday . "', '" . $friday . 
 		"', '" . $saturday . "', '" . $sunday . "', '" . $am . "', '" . $pm . "', '" . $dogwalking. "', '" . $grooming. "', '" . $administermeds. "', '" . 
@@ -52,7 +34,6 @@ if($_POST and $_GET)
 		//End this portion of the script
 		exit();
 	}
-
 }
 
 function debug_to_console( $data ) {
@@ -67,7 +48,7 @@ function debug_to_console( $data ) {
 
 ?>
 <head>
-<title>Pet Owners Seeking Assistance</title>
+<title>Pet Owner Information</title>
 <link rel="stylesheet" type="text/css" media="all" href="includes/styles/styles.css" />
  <link rel="stylesheet" href="includes/js/jquery-ui.css">
 
@@ -77,7 +58,7 @@ function debug_to_console( $data ) {
 //Form processing function start
 $(function()
 {
-	$(".submit").click(function()
+	$(".update").click(function()
     {
         
 		//create three variables to store the data entered into the form
@@ -86,8 +67,8 @@ $(function()
 		
 		var petType  = $('#petType').val();
 		//day / times
-		var monday = $('#monday').prop('checked') ? 1:0;
-		var tuesday = $('#tuesday').prop('checked') ? 1:0;
+		var firstname = $('#monday').val();
+		var lastname = $('#lastname').val();
 		var wednesday = $('#wednesday').prop('checked') ? 1:0;
 		var thursday = $('#thursday').prop('checked') ? 1:0;
 		var friday = $('#friday').prop('checked') ? 1:0;
@@ -179,7 +160,28 @@ function resetForm(formid) {
 	
 		<div class="main">
 
-		<h1>Volunteer</h1>
+		<h1>Request Pet Assistance</h1>
+<!-- 
+		<p>This is the client/pet-owner <a href="link.htm">content</a> for the public site.</p>
+		<p>There will be some generic information on how the services work. There will be prominent links to the User home page and Registration.</p>
+ -->
+ 
+ <?php
+// 	get user info for current logged in user
+	$get_user_info_by_user = "SELECT * FROM ".USERS." WHERE id = " .$_SESSION['user_id'];
+	
+	echo $get_user_info_by_user;
+	
+	$getUserInfo = mysql_query($get_user_info_by_user) or die("Unable to retrieve user information!");
+	
+	$userInfo = mysql_fetch_row($getUserInfo);
+	
+	//echo $userInfo;
+	//echo $userInfo[0]; 
+	echo $userInfo[1];
+	?>
+	
+	<form enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="user_update_form">
 
 		<form method="post" name="form" id="form">
 			<table>
@@ -199,57 +201,6 @@ function resetForm(formid) {
     			</tr>
     			</table><br/>
 			
-   			 <table>
-   			 <tr><label>I'd like assistance on the following days:</label></tr>
-   			 <tr>
-			 	<td><input type="checkbox" id="monday" name="monday"">
-			 	    <label for="monday">Monday</label>
-			 	</td>
-			 	<td><input type="checkbox" id="tuesday" name="tuesday">
-			 		<label for="tuesday">Tuesday</label></td>
-			 	<td><input type="checkbox" id="wednesday" name="wednesday">
-			 		<label for="wednesday">Wednesday</label></td>
-			 	<td><input type="checkbox" id="thursday" name="thursday">
-			 		<label for="thursday">Thursday</label></td>
-			 	<td><input type="checkbox" id="friday" name="friday">
-			 		<label for="friday">Friday</label></td>
-			 </tr>
-			 <tr>
-			 	<td><input type="checkbox" id="saturday" name="saturday">
-			 		<label for="saturday">Saturday</label></td>
-				 <td><input type="checkbox" id="sunday" name="sunday">
-			 		<label for="sunday">Sunday</label></td></tr>
-   			</table><br/>
-   			<table>
-   			 <tr><label>My preferred time of day is:</label></tr>
-			 <tr>
-			 	<td><input type="checkbox" id="am" name="am">
-			 		<label for="am">AM</label></td>
-				 <td><input type="checkbox" id="pm" name="pm">
-			 		<label for="pm">PM</label></td></tr>
-			 </table><br/>
-   			 
-   	
-   			 <table>
-   			 <tr>Requested Services</tr>
-   			 <tr>
-			 	<td><input type="checkbox" id="dogwalking" name="dogwalking" value="True">
-			 	    <label for="dogwalking">Dog Walking</label>
-			 	</td>
-			 	<td><input type="checkbox" id="grooming" name="grooming" value="True">
-			 		<label for="grooming">Grooming</label></td>
-			 	<td><input type="checkbox" id="administermeds" name="administermeds" value="True">
-			 		<label for="administermeds">Administer Meds</label></td>
-			 </tr>
-			 <tr>
-				<td><input type="checkbox" id="transport" name="transport" value="True">
-			 		<label for="transport">Transportation</label></td>
-			 	<td ><input type="checkbox" id="deliverfood" name="deliverfood" value="True">
-			 		<label for="deliverfood">Deliver Food</label></td>
-			 	<td><input type="checkbox" id="fostercare" name="fostercare" value="True">
-			 		<label for="fostercare">Foster Care</label></td>
-			 </tr>
-			 </table>
 			 <table>
 			 <tr>
 			 	<td valign="top">
@@ -259,7 +210,50 @@ function resetForm(formid) {
 			 	</td>
 
 			</tr>
-			 </table><br/>
+			 </table>
+			 <table>
+			 	<tr>
+			 		<td><label>First Name:</label></td>
+			 		<td><input type="text" name="firstname" value="" class="required" value=<?php echo $userInfo[1]; ?>/><td>
+			 	</tr>
+			 	<tr>
+			 		<td><label>Last Name:</label></td>
+			 		<td><input type="text" name="lastname" value="" class="required" /><td>
+			 	</tr>
+<!-- 
+			 	<tr>
+			 		<td><label>User Name:</label></td>
+			 		<td><input type="text" name="username" value="" class="required" /> <td>
+			 	</tr>
+ -->			<tr>
+			 		<td><label>Email:</label></td>
+			 		<td><input type="text" name="email" value="" class="required email" /><td>
+			 	</tr>
+			 	<tr>
+			 		<td><label>Address 1:</label></td>
+			 		<td><input type="text" name="address1" value="" class="required" /><td>
+			 	</tr>
+			 	<tr>
+			 		<td><label>Address 2:</label></td>
+			 		<td><input type="text" name="address2" value="" class="required" /><td>
+			 	</tr>
+			 	<tr>
+			 		<td><label>City:</label></td>
+			 		<td><input type="text" name="city" value="" class="required" /> <td>
+			 	</tr>
+			 	<tr>
+			 		<td><label>State:</label></td>
+			 		<td><input type="text" name="state" value="" class="required" /><td>
+			 	</tr>
+			 	<tr>
+			 		<td><label>Zip:</label></td>
+			 		<td><input type="text" name="zipcode" value="" class="required" /><td>
+			 	</tr>
+			 	<tr>
+			 		<td><label>Bio:</label></td>
+			 		<td><input type="text" name="bio" value="" class="required" /> <td>
+			 	</tr>
+			 <br/>
    			 <table>
    			 <tr>Additional Comments:</tr>
    			 </table>
@@ -267,7 +261,7 @@ function resetForm(formid) {
    			 <textarea name="comments" id="comments" rows="5" style="width:73%" maxlength="300"></textarea>	
    			 </tr>
    			 </table>
-    		<p><button type="submit" class="submit" value="insert">Volunteer</button></p>
+    		<p><button type="submit" class="submit" value="insert">Request Pet Assistance</button></p>
 		</form>
 		
 		<p>

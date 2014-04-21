@@ -121,7 +121,7 @@
                 }
                 else
                 {
-                    echo "<a href='". SITE_BASE . "/users/volunteer.php'>Volunteer Your Services</a>";
+                    echo "<a href='". SITE_BASE . "/users/volunteer_form.php'>Volunteer Your Services</a>";
                 }
                 echo "</li>";
             }
@@ -135,11 +135,30 @@
                 echo " >";
                 if(empty($userRole))
                 {
-                    echo "<a href='" . SITE_BASE . "/client.php'>Request Pet Assistance</a>";
+                    echo "<a href='" . SITE_BASE . "/users/client_page.php'>Request Pet Assistance</a>";
                 }
                 else
                 {
-                    echo "<a href='" . SITE_BASE . "/users/client.php'>Request Pet Assistance</a>";
+                    echo "<a href='" . SITE_BASE . "/users/client_page.php'>Request Pet Assistance</a>";
+                }
+
+                echo"</li>"; 
+            }
+            
+            // My Info
+            if(in_array("Client", $userRole) || empty($userRole))
+            {
+                echo "<li ";
+                
+                    if(basename($_SERVER['SCRIPT_NAME']) == 'client_page.php') { echo "class=\"current\""; }
+                echo " >";
+                if(empty($userRole))
+                {
+//                     echo "<a href='" . SITE_BASE . "/client_page.php'>Request Pet Assistance</a>";
+                }
+                else
+                {
+                    echo "<a href='" . SITE_BASE . "/users/client_page.php'>Request Pet Assistance</a>";
                 }
 
                 echo"</li>"; 
