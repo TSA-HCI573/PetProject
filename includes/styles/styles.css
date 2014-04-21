@@ -43,6 +43,15 @@ h2 {
 	line-height:  1.5em;
 }
 
+ul {
+	list-style-type: square;
+}
+
+li {
+	list-style-type: square;
+	
+}
+
 .orangetext {
 	color: #dd6b05;
 }
@@ -334,8 +343,10 @@ textarea {
 /* MISC -- not sure if we are using or not */
 
 .success {
-	background: green;
-	color: #fff;
+	background: #ffffff;
+	border: 
+	color: #8cb217;
+	border: solid 2px #8cb217;
 	display: block;
 	margin: 20px;
 	padding: 10px;
@@ -345,18 +356,22 @@ textarea {
 	text-decoration: none;
 }
 .err {
-	background: red;
-	color: #000;
+	background: #ffffff;
+	color: #dd6b05;
+	border: solid 2px #dd6b05;
 	display: block;
 	margin: 20px;
 	padding: 10px;
 }
 	
-
 	
 	
 /*Specific to jquery.validate*/
 .error {
-	color: red;
-	padding-left: 10px;
+	background: #ffffff;
+	color: #dd6b05;
+	border: solid 2px #dd6b05;
+	display: block;
+	margin: 20px;
+	padding: 10px;
 }

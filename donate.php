@@ -19,14 +19,34 @@ return_meta();
 		<div class="main">
 
 		<h1>Donate</h1>
-		<p>This is the donation <a href="link.htm">content</a> for the public site.</p>
-		<p>There will be a list of the goods and services that are accepted. Money would just be a mailed check.</p>
+		<p>Pet Project would not function without the generous support of people like you who understand the impact of pets on their guardian’s lives.</p>
+
+		<p>Every animal lover can support those in need on just about any level:</p>
+
+		<ul><li>Donate money at any level to help provide food, medicine, and supplies.</li>
+		<li>Donate services such as veterinary care, grooming, and training.</li>
+		<li>Donate your time to walk or exercise a pet.</li>
+		<li>Donate your services as a driver to take the pet to veterinary appointments.</li>
+		<li>Donate special skills, such as being able to administer insulin.</li>
+		</ul>
+</p>
 
 		</div>
 		
 		<div class="sidebar">
 		
-		<p>For sidebar content, a list of the most needed items might be good.</p>
+		<h3>Monetary donations</h3>
+		
+		<p>Please send checks to:</p>
+		
+		<p>Pet Project<br>
+		111 N. 22nd Street<br>
+		Des Moines, IA 50309<br>
+		
+		<h3>Other donations</h3>
+		<p>If you have other types of donations:</p>
+		<p>Call</p> 
+	
 		
 					
 		</div>
