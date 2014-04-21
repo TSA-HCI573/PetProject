@@ -17,7 +17,6 @@ define ("MATCHUPS", "MatchUps");
 define ("REQUESTS", "Requests");
 define ("VOLUNTEERS", "Volunteers");
 
-
 //site base
 define ("SITE_BASE", "http://".$_SERVER['HTTP_HOST']."/PetProject");
 define ("SITE_ROOT", $_SERVER['DOCUMENT_ROOT']."/PetProject");
