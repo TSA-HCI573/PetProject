@@ -8,7 +8,7 @@
         secure_page();
     ?>
 
-       <title>Request Assistance</title>
+       <title>Post Volunteer Availability</title>
         <style>
             #selected
             {

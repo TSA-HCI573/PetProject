@@ -1,8 +1,8 @@
 <?php
 
     include 'constant/config.inc.php';
-    error_reporting(E_ALL | E_STRICT);
-    //error_reporting(E_ERROR);
+    //error_reporting(E_ALL | E_STRICT);
+    error_reporting(E_ERROR);
     
 
     function AddSlot($mySlots, $time, $day)
@@ -76,7 +76,7 @@
             $slot = AddSlot($mySlots, "Morning",$day);
             $slots[$day][] = $slot;
 
-            $slot = AddSlot($mySlots, "AfterNoon",$day);
+            $slot = AddSlot($mySlots, "Afternoon",$day);
             $slots[$day][] = $slot;
         }
         echo json_encode($slots);
