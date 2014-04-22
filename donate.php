@@ -17,9 +17,11 @@ return_meta();
 	<div class="content">
 	
 		<div class="main">
-
+		
+		<img class="alignright" src="images/cat_lap_duo_350.jpg">
+		
 		<h1>Donate</h1>
-		<p>Pet Project would not function without the generous support of people like you who understand the impact of pets on their guardian’s lives.</p>
+		<p>Pet Project could not function without the generous support of people like you who understand the impact of pets on their guardian’s lives.</p>
 
 		<p>Every animal lover can support those in need on just about any level:</p>
 

@@ -117,7 +117,7 @@
              
                 if(empty($userRole))
                 {
-                    echo "<a href='". SITE_BASE . "/volunteer.php'>Volunteer Your Services</a>";
+                    echo "<a href='". SITE_BASE . "/volunteer.php'>Volunteers</a>";
                 }
                 else
                 {
@@ -135,7 +135,7 @@
                 echo " >";
                 if(empty($userRole))
                 {
-                    echo "<a href='" . SITE_BASE . "/client.php'>Request Pet Assistance</a>";
+                    echo "<a href='" . SITE_BASE . "/client.php'>Pet Owners</a>";
                 }
                 else
                 {

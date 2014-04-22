@@ -6,7 +6,7 @@ return_meta();
 ?>
 <html>
 <head>
-<title>Request Assistance</title>
+<title>Pet Owners</title>
 </head>
 <body>
 <div id="container">
@@ -18,8 +18,8 @@ return_meta();
 	<div class="content">
 	
 		<div class="main">
-
-		<h1>Request Assistance</h1>
+		<img class="alignright" src="images/stripes_puppy_duo_350.jpg">
+		<h1>Pet Owners</h1>
 		<p>Once you register and login you will be able to request assistance with our easy to use form.</p>
 
 		</div>

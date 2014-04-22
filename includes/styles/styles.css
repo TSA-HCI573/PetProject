@@ -3,6 +3,8 @@ body {
 	padding: 0px auto;
 	font-size: 1em;
 	color: #333333;
+	background-color: #daca85;
+	/*background-color: #dcb23e;*/
 	
 }
 pre {
@@ -29,8 +31,8 @@ p {
 }
 
 h1 {
-	font-size: 1.3em;
-	color: #447772; 
+	font-size: 1.4em;
+	color: #dd6b05; 
 	background: #fff;
 	margin: 15px 0px 10px 0px;
 	border-bottom: none;
@@ -39,6 +41,13 @@ h1 {
 h2 {
 	font-size: 1.1em;
 	color: #447772; 
+	background: #ffffff;
+	line-height:  1.5em;
+}
+
+h3 {
+	font-size: 1em;
+	color: #dd6b05;
 	background: #ffffff;
 	line-height:  1.5em;
 }
@@ -116,8 +125,7 @@ text-decoration:underline;
 	width:300px;
 }
 
-.admin {
-	list-style-type: none;
+.admin ul {
 	font-size: .9em;
 	font-weight: bold;
 	float: right;
@@ -127,8 +135,9 @@ text-decoration:underline;
 	margin: 0px;
 }
 
-.nav ul, li {
+.admin li {
 	list-style-type: none;
+	background:#8cb217;
 }
 
 .admin a {
@@ -179,7 +188,7 @@ text-decoration:underline;
 	background: #538681;
 }
 
-/* CONTENT holds the 2 columns for most pages: main and sidebar */
+/* CONTENT holds the 2 columns for most pages: main and sidebar and 3 columns for the home page: mainhome, leftbarhome, and rightbarhome*/
 
 .content {
 	display: table;
@@ -192,6 +201,7 @@ text-decoration:underline;
 	float: none;
 	padding: 0px;
 	vertical-align: top;
+	
 }
 	
 .main {
@@ -199,7 +209,7 @@ text-decoration:underline;
 	background-color: #ffffff;
 	display: table-cell;
 	vertical-align:top;
-	padding: 2%;
+	padding: 2% 2% 6% 4%;
 
 }
 	
@@ -207,13 +217,15 @@ text-decoration:underline;
 	width: 21%;
 	display: table-cell;
 	vertical-align: top;
-	background-color: #dcb23e;
+	/*background-color: #dcb23e;*/
+	border-left: 2px solid #538681;
 	padding: 2%;
+	background-color: #ffffff;
 	
 }
 
 .sidebar p {
-	background-color: #dcb23e;
+	/*background-color: #dcb23e;*/
 	
 }
 
@@ -247,20 +259,31 @@ text-decoration:underline;
 	width: 21%;
 	display: table-cell;
 	vertical-align: top;
-	background-color: #dcb23e;
+	/* background-color: #dcb23e; */
+	border-left: 2px solid #538681;
 	padding: 2%;
+	background-color: #ffffff;
 }
 
+/*
 .rightbarhome p  {
-	color: #000000;
-	background: #dcb23e;
+		background: #dcb23e; 
 	
 }
-
-.rightbarhome h2  {
-
-	background: #dcb23e;
+*/
+.rightbarhome h3 {
+	color: #dcb23e;
+	/*background: #dcb23e; */
 }	
+
+/*PHOTOS*/
+
+.alignright {
+	float:right;
+	padding: 1% 0% 0% 0%;
+	margin: 2% 0% 2% 2%;
+}
+
 
 /* FOOTER */
 
@@ -344,7 +367,6 @@ textarea {
 
 .success {
 	background: #ffffff;
-	border: 
 	color: #8cb217;
 	border: solid 2px #8cb217;
 	display: block;

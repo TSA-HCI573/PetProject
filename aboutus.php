@@ -16,15 +16,18 @@ return_meta();
 	<div class="content">
 	
 		<div class="main">
-
+		
+		<img class="alignright" src="images/siamese_cat_duo_350.jpg">
+		
 		<h1>About Us</h1>
 		<p>Pet Project is a non-profit organization that provides resources and assistance that helps the elderly and disabled care for their pets and, ultimately, keep their beloved companions.</p>
 
 		<p>Pet Project volunteers can:</p>
 
 		<ul><li>Walk or exercise pets</li>
-		<li>Provide basic grooming, such as brushing or nail clipping</li>
+		<li>Perform basic grooming, such as brushing or nail clipping</li>
 		<li>Provide transportation to vet visits</li>
+		<li>Provide temporary foster care</li>
 		</ul>
 
 		<p>With help from donors we can provide:</p>
@@ -36,13 +39,13 @@ return_meta();
 
 		<h2>Which pet owners can participate in Pet Project?</h2>
 		
-		<p>Those eligible for Pet Project resources and services must fall into at least one of the  following groups and meet the income eligibility guideline:</p>
+		<p>Those eligible for Pet Project resources and services must fall into at least one of the  following groups AND meet the income eligibility guideline:</p>
 		
 		<ul><li>Senior citizen aged 65 years or older</li>
 		<li>Disabled or critically ill person who is physically unable to work</li>
 		</ul>
 
-		<H2>Income eligiility requirement</h2>
+		<H2>Income eligibility requirement</h2>
 		
 		<p>Pet owner participant income must be less than $25,000 per year.</p>
 
