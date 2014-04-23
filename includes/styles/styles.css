@@ -228,7 +228,7 @@ text-decoration:underline;
 }
 
 .sidebar p {
-	/*background-color: #dcb23e;*/
+	font-size: .8em; 
 	
 }
 
@@ -295,6 +295,13 @@ text-decoration:underline;
 	border-width: 100%;
 	clear:both;
 		}
+	
+#footer p {
+	font-size: .7em; 
+	margin:auto;
+	padding: 0px px 0px 40px;
+	width: 100%;
+}
 
 
 /* FORM styles  */
