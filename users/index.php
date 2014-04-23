@@ -3,7 +3,7 @@
 include '../includes/constant/config.inc.php';
 secure_page();
 
-return_meta("Welcome to the secured user area " .$_SESSION['fullname'] . "!");
+return_meta("Welcome to the secured user area " .$_SESSION['firstname'] . "!");
 ?>
 <html>
 <head>
@@ -14,7 +14,7 @@ return_meta("Welcome to the secured user area " .$_SESSION['fullname'] . "!");
 	<?php include '/user_nav.inc.php';
 	?>
 
-	<h1>Your name is <?php echo $_SESSION['fullname']; ?>!</h1>
+	<h1>Your name is <?php echo $_SESSION['firstname']; ?>!</h1>
 
 	<p>Your user id is <?php echo $_SESSION['user_id']; ?></p>
 
@@ -22,7 +22,8 @@ return_meta("Welcome to the secured user area " .$_SESSION['fullname'] . "!");
 
 	<pre><?php print_r($_SESSION); ?></pre>
 
-	<?php
+	<!-- 
+<?php
 	$s = mysql_query("SELECT * FROM ".USER_DETAILS." WHERE detail_user_id = '".$_SESSION['user_id']."'") or die(mysql_error());
 	if(mysql_num_rows($s) != 0)
 	{
@@ -38,6 +39,7 @@ return_meta("Welcome to the secured user area " .$_SESSION['fullname'] . "!");
 		echo "<p>No details found.</p>";
 	}
 	?>
+ -->
 
 <p>This is the page where the user will see their information and their status:</p>
 <ul>

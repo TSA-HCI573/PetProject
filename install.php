@@ -57,6 +57,10 @@ State varchar(2),
 ZipCode varchar(7),
 Bio mediumtext,
 ProfileImagePath varchar(200),
+ckey varchar(200),
+ctime varchar(200),
+num_logins int(11),
+last_login timestamp,	
 primary key (Id))";
     if($con->query($sql) === FALSE)
     {

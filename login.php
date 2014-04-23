@@ -65,7 +65,7 @@ if(isset($_POST['login']))
 				//mysql_query("UPDATE ".USERS." SET ctime = '$stamp', ckey = '$ckey', num_logins = num_logins+1, last_login = now() WHERE id='$id'") or die(mysql_error());
 
 				//Assign session variables to information specific to user
-				$_SESSION['UserId'] = $id;
+				$_SESSION['user_id'] = $id;
 				$_SESSION['FirstName'] = $name;
 				$_SESSION['UserName'] = $username;
 				$_SESSION['stamp'] = $stamp;

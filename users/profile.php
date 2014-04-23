@@ -2,6 +2,8 @@
 /*Secured user only page*/
 include '../includes/constant/config.inc.php';
 secure_page();
+session_start();
+
 return_meta("Edit your profile " .$_SESSION['fullname'] . "!");
 $msg = NULL;
 
@@ -50,7 +52,7 @@ if(isset($_POST['update']))
 	{
 		echo '<div class="success">'.$msg.'</div>';
 	}
-
+	echo "user_id:  " .$_SESSION['user_id'];
 	$in = mysql_query("SELECT *, AES_DECRYPT(usr_email, '$salt') AS email FROM ".USERS." WHERE id = '".$_SESSION['user_id']."'") or die("Unable to get your info!");
 	while($r = mysql_fetch_array($in))
 	{
