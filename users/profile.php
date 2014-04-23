@@ -13,6 +13,9 @@ return_meta("Edit your profile " .$_SESSION['fullname'] . "!");
 =======
 return_meta("Edit your profile " .$_SESSION['FirstName'] . "!");
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
 $msg = NULL;
 
@@ -47,6 +50,7 @@ $msg = "Profile updated successfully!";
 <div id="container">
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php require '../includes/constant/nav.inc.php'; ?>
 <div id="headerplaced"></div>
 <div class="content">
@@ -59,6 +63,8 @@ $msg = "Profile updated successfully!";
 <!-- 
 <p>Form that:</p>
 =======
+=======
+>>>>>>> FETCH_HEAD
 	<?php require '../includes/constant/nav.inc.php'; ?>
 	
 	<h1>Keep your information updated!</h1>
