@@ -2,24 +2,10 @@
 /*Secured user only page*/
 require_once '../includes/constant/config.inc.php';
 secure_page();
-<<<<<<< Updated upstream
 session_start();
 return_meta();
 
 
-<<<<<<< HEAD
-=======
-return_meta("Edit your profile " .$_SESSION['fullname'] . "!");
-=======
-return_meta("Edit your profile " .$_SESSION['FirstName'] . "!");
->>>>>>> Stashed changes
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> FETCH_HEAD
-=======
->>>>>>> FETCH_HEAD
-=======
->>>>>>> FETCH_HEAD
 $msg = NULL;
 
 if(isset($_POST['update']))
@@ -52,9 +38,6 @@ $msg = "Profile updated successfully!";
 <body>
 <div id="container">
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 <?php require '../includes/constant/nav.inc.php'; ?>
 <div id="headerplaced"></div>
 <div class="content">
@@ -66,24 +49,10 @@ $msg = "Profile updated successfully!";
 
 <!-- 
 <p>Form that:</p>
-=======
-=======
->>>>>>> FETCH_HEAD
-=======
->>>>>>> FETCH_HEAD
-	<?php require '../includes/constant/nav.inc.php'; ?>
-	
-	<h1>Keep your information updated!</h1>
-
-	<h2><?php echo $_SESSION['FirstName']; ?>!  Making sure your profile information is updated ensures that the most pet-owners in need get connected with the best resources. Make sure to keep your profile up-to-date at all times!</h2>
-	
-	<p>Form that:</p>
->>>>>>> FETCH_HEAD
 <ul><li>Displays users' information </li>
 <li>Allows users to update the information</li>
 <li>Updates the database when they submit</li>
 </ul>
-<<<<<<< HEAD
  -->
 
 
@@ -174,66 +143,8 @@ while($r = mysql_fetch_array($in))
 </div>
 </div>
 <div id="footer">
-<?php include 'includes/constant/footer.inc.php'; ?>
+<?php include '../includes/constant/footer.inc.php'; ?>
 </div>
-=======
-	
-
-
-	<?php
-	if(isset($msg))
-	{
-		echo '<div class="success">'.$msg.'</div>';
-	}
-<<<<<<< Updated upstream
-	echo "user_id:  " .$_SESSION['user_id'];
-	$in = mysql_query("SELECT *, AES_DECRYPT(usr_email, '$salt') AS email FROM ".USERS." WHERE id = '".$_SESSION['user_id']."'") or die("Unable to get your info!");
-=======
-    $sql = "SELECT * FROM ".USERS." WHERE Id = ".$_SESSION['UserId'];
-	$in = mysql_query($sql) or die("Unable to get your info!");
->>>>>>> Stashed changes
-	while($r = mysql_fetch_array($in))
-	{
-	?>
-
-	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="profile_form">
-	<table cellspacing="5" cellpadding="5" border="0">
-	<tr>
-	<td>First Name</td>
-	<td><input type="text" name="FirstName" value="<?php echo $r['FirstName']; ?>" /></td>
-	</tr>
-    <tr>
-	<td>Last Name</td>
-	<td><input type="text" name="LastName" value="<?php echo $r['LastName']; ?>" /></td>
-	</tr>
-    <tr>
-	<td>Username</td>
-	<td><input type="text" name="UserName" value="<?php echo $r['UserName']; ?>" /></td>
-	</tr>
-	<tr>
-	<td>Email</td>
-	<td><input type="text" name="Email" value="<?php echo $r['Email']; ?>" /></td>
-	</tr>
-	<tr>
-	<td>New Password</td>
-	<td><input type="text" name="newpass" /></td>
-	</tr>
-	<tr>
-	<td>Login Information:</td>
-	<td>Last login: <?php echo $r['last_login']; ?>, total number of logins: <?php echo $r['num_logins']; ?></td>
-	</tr>
-	<tr>
-	<td colspan="2" align="center">
-		<input type="submit" name="update" value="Update Profile" />
-	</td>
-	</tr>
-	</table>
-	</form>
-
-	<?php
-	}
-	?>
->>>>>>> FETCH_HEAD
 </div>
 </body>
 </html>
