@@ -92,7 +92,26 @@
 			
 			<a href="<?php echo SITE_BASE; ?>/contactus.php">Contact Us</a>
 			</li>
+            <!-- Public Volunteer Link-->
+            <li
+			<?php 
+				if(basename($_SERVER['SCRIPT_NAME']) == 'volunteer.php') { echo "class=\"current\""; }
+			?> >
 			
+			<a href="<?php echo SITE_BASE; ?>/volunteer.php">Volunteer</a>
+			</li>
+
+            <!-- Private Volunteer Link-->
+            <li
+			<?php 
+				if(basename($_SERVER['SCRIPT_NAME']) == 'client.php') { echo "class=\"current\""; }
+			?> >
+			
+			<a href="<?php echo SITE_BASE; ?>/client.php">Pet Owners</a>
+			</li>
+
+
+
             <?php
            //determine if the user is logged in so we can display conditional 
            //tabs 
@@ -108,21 +127,13 @@
             }
 
             //VOLUNTEER link 
-            if(in_array("Volunteer", $userRole) || empty($userRole))
+            if(in_array("Volunteer", $userRole))
             {
 			    echo "<li ";
                 if(basename($_SERVER['SCRIPT_NAME']) == 'volunteer.php') { echo "class=\"current\""; }
             
                 echo" >";
-             
-                if(empty($userRole))
-                {
-                    echo "<a href='". SITE_BASE . "/volunteer.php'>Volunteers</a>";
-                }
-                else
-                {
-                    echo "<a href='". SITE_BASE . "/users/volunteer.php'>Volunteer Your Services</a>";
-                }
+                echo "<a href='". SITE_BASE . "/users/volunteers.php'>Volunteer Your Services</a>";
                 echo "</li>";
             }
 
@@ -130,18 +141,10 @@
             if(in_array("Client", $userRole) || empty($userRole))
             {
                 echo "<li ";
-                
-                    if(basename($_SERVER['SCRIPT_NAME']) == 'client.php') { echo "class=\"current\""; }
-                echo " >";
-                if(empty($userRole))
-                {
-                    echo "<a href='" . SITE_BASE . "/client.php'>Pet Owners</a>";
-                }
-                else
-                {
-                    echo "<a href='" . SITE_BASE . "/users/client.php'>Request Pet Assistance</a>";
-                }
+                if(basename($_SERVER['SCRIPT_NAME']) == 'client.php') { echo "class=\"current\""; }
 
+                echo " >";
+                echo "<a href='" . SITE_BASE . "/users/clients.php'>Request Pet Assistance</a>";
                 echo"</li>"; 
             }
 ?>

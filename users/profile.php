@@ -1,10 +1,14 @@
 <?php
 /*Secured user only page*/
-include '../includes/constant/config.inc.php';
+require_once '../includes/constant/config.inc.php';
 secure_page();
+<<<<<<< Updated upstream
 session_start();
 
 return_meta("Edit your profile " .$_SESSION['fullname'] . "!");
+=======
+return_meta("Edit your profile " .$_SESSION['FirstName'] . "!");
+>>>>>>> Stashed changes
 $msg = NULL;
 
 if(isset($_POST['update']))
@@ -33,11 +37,11 @@ if(isset($_POST['update']))
 <body>
 <div id="container">
 
-	<?php include '/user_nav.inc.php'; ?>
+	<?php require '../includes/constant/nav.inc.php'; ?>
 	
 	<h1>Keep your information updated!</h1>
 
-	<h2><?php echo $_SESSION['fullname']; ?>!  Making sure your profile information is updated ensures that the most pet-owners in need get connected with the best resources. Make sure to keep your profile up-to-date at all times!</h2>
+	<h2><?php echo $_SESSION['FirstName']; ?>!  Making sure your profile information is updated ensures that the most pet-owners in need get connected with the best resources. Make sure to keep your profile up-to-date at all times!</h2>
 	
 	<p>Form that:</p>
 <ul><li>Displays users' information </li>
@@ -52,8 +56,13 @@ if(isset($_POST['update']))
 	{
 		echo '<div class="success">'.$msg.'</div>';
 	}
+<<<<<<< Updated upstream
 	echo "user_id:  " .$_SESSION['user_id'];
 	$in = mysql_query("SELECT *, AES_DECRYPT(usr_email, '$salt') AS email FROM ".USERS." WHERE id = '".$_SESSION['user_id']."'") or die("Unable to get your info!");
+=======
+    $sql = "SELECT * FROM ".USERS." WHERE Id = ".$_SESSION['UserId'];
+	$in = mysql_query($sql) or die("Unable to get your info!");
+>>>>>>> Stashed changes
 	while($r = mysql_fetch_array($in))
 	{
 	?>
@@ -61,16 +70,20 @@ if(isset($_POST['update']))
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="profile_form">
 	<table cellspacing="5" cellpadding="5" border="0">
 	<tr>
-	<td>Name</td>
-	<td><input type="text" name="fullname" value="<?php echo $r['full_name']; ?>" /></td>
+	<td>First Name</td>
+	<td><input type="text" name="FirstName" value="<?php echo $r['FirstName']; ?>" /></td>
 	</tr>
-	<tr>
+    <tr>
+	<td>Last Name</td>
+	<td><input type="text" name="LastName" value="<?php echo $r['LastName']; ?>" /></td>
+	</tr>
+    <tr>
 	<td>Username</td>
-	<td><input type="text" name="username" value="<?php echo $r['user_name']; ?>" /></td>
+	<td><input type="text" name="UserName" value="<?php echo $r['UserName']; ?>" /></td>
 	</tr>
 	<tr>
 	<td>Email</td>
-	<td><input type="text" name="email" value="<?php echo $r['email']; ?>" /></td>
+	<td><input type="text" name="Email" value="<?php echo $r['Email']; ?>" /></td>
 	</tr>
 	<tr>
 	<td>New Password</td>

@@ -65,7 +65,7 @@ if(isset($_POST['login']))
 				//mysql_query("UPDATE ".USERS." SET ctime = '$stamp', ckey = '$ckey', num_logins = num_logins+1, last_login = now() WHERE id='$id'") or die(mysql_error());
 
 				//Assign session variables to information specific to user
-				$_SESSION['user_id'] = $id;
+				$_SESSION['UserId'] = $id;
 				$_SESSION['FirstName'] = $name;
 				$_SESSION['UserName'] = $username;
 				$_SESSION['stamp'] = $stamp;
@@ -81,15 +81,15 @@ if(isset($_POST['login']))
 				//redirect to a new location
                 if($role === "Client")
                 {
-                    header("Location: " . SITE_BASE . "/users/client.php");
+                    header("Location: " . SITE_BASE . "/users/clients.php");
                 }
                 else if($role ==="Volunteer")
                 {
-                    header("Location: " . SITE_BASE."/users/volunteer.php");
+                    header("Location: " . SITE_BASE."/users/volunteers.php");
                 }
                 else
                 {
-                    header("Location: ".SITE_BASE."/users");
+                    header("Location: ".SITE_BASE."/users/profile.php");
                 }
 
 			} //end passwords matched
