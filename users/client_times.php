@@ -10,13 +10,16 @@
         table
         {
             border-collapse:collapse;
-            border:1px solid #FF0000;
+            border:1px solid #AAAAAA;
         }
 
         table td
         {
-            border:0.1em solid #000000;
+            border:0.1em solid #AAAAAA;
             min-width:10em;
+            background:white;
+            color:#dd6b05;
+
         }
         
         table tr
@@ -26,8 +29,24 @@
 
         table th
         {
-            border:0.1em solid #000000;
+            border:0.1em solid #AAAAAA;
             width 10em;
+            background:white;
+            color:#dd6b05;
+        }
+
+        .volunteer
+        {
+            background:#dd6b05;
+            color:white;
+            border-radius:0.2em;
+            margin: 0.3em;
+        }
+
+        .slot
+        {
+            background:#BFE54B;
+            color:black;
         }
 
     </style>
@@ -59,14 +78,14 @@
                 var slot = slots[i];
                 if(slot.Day == day && slot.Time == time)
                 {
-                    slotsBoxHtml += "<input type='checkbox' value='" + day + "," +time + "," + slot.VolunteerId +"' ";                    if(slot.ClientId ==userid)
+                    slotsBoxHtml += "<div class='volunteer'><input type='checkbox' value='" + day + "," +time + "," + slot.VolunteerId +"' ";                    if(slot.ClientId ==userid)
                     {
                         slotsBoxHtml += "checked ";
                     }
                     slotsBoxHtml += " >"; 
 
                     slotsBoxHtml += slot.FirstName + " " + slot.LastName; 
-                    slotsBoxHtml += "</input> <br />";
+                    slotsBoxHtml += "</input></div> <br />";
                 }
             } 
             return slotsBoxHtml;
@@ -94,7 +113,7 @@
                 }
                 else
                 {
-                    tableHtml += "<td>";
+                    tableHtml += "<td class='slot'>";
                     tableHtml += buildSlotBoxes(slots,days[i],time,userid);
                     tableHtml += "</td>" ;
                 }

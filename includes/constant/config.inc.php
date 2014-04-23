@@ -1,8 +1,8 @@
 <?php
 
 ini_set('display_errors', 'On');
-error_reporting(E_ALL | E_STRICT);
-//error_reporting(E_ERROR);
+//error_reporting(E_ALL | E_STRICT);
+error_reporting(E_ERROR);
 
 define ("DB_HOST", "localhost"); // set database host
 define ("DB_USER", "hci573"); // set database user

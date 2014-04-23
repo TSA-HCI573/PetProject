@@ -17,29 +17,35 @@
             table
             {
                 border-collapse:collapse;
-                border:1px solid #FF0000;
+                border:1px solid #AAAAAA;
             }
 
             table td
             {
-                border:0.1em solid #000000;
+                border:0.1em solid #AAAAAA;
+                color:#dd6b05;
                 width:10em;
+                background:white
             }
             
             table tr
             {
-                height:8em;
+                height:10em;
             }
 
             table th
             {
-                border:0.1em solid #000000;
+                border:0.1em solid #AAAAAA;
+                color:#dd6b05;
+                background:white;
                 width 10em;
             }
 
             .slot
             {
-
+                opacity: 0.5;
+                background:#BFE54B;
+                color:black;
             }
             .hover
             {
@@ -49,9 +55,18 @@
                 visibility:hidden;
                 height: 0px;
             }
+            .client
+            {
+                background:#dd6b05;
+                color:white;
+                border-radius:0.2em;
+                margin: 0.3em;
+            }
             .selected
             {
-                background-color:green;
+                color: white;
+                background:#8CB217;
+                opacity: 1.0;
             }
             .hiddenDay
             {
@@ -61,6 +76,8 @@
         </style>
 
         <script src="<?php echo JS?>/jquery-1.10.2.js"></script>
+        <!--<script src="<?php echo JS?>/jquery-ui-1.7.2.custom.min.js"></script>-->
+        <script src="<?php echo JS?>/jquery.approach.min.js"></script>
         <script>
 
                                 
@@ -80,7 +97,7 @@
                     result += " class ='slot' >";
                     result +=" <p class='hover'>Click here post availability for this time</p>";
                 }
-                result += "<p>" + day[index].client + "</p>";
+                result += "<p class='client'>" + day[index].client + "</p>";
                 result += "<p class='hiddenTime'>"+day[index].time +"</p>";
                 result += "<p class='hiddenDay'>"+dayName+"</td>";
                 return result;
@@ -129,49 +146,36 @@
                         $("#scheduleTable").append(buildRow(days,i));
                     });
                     
-                    $(".hover").hide();
-                    $(".slot").hover(
-                        function() 
-                        {
-                           $(this).children(".hover").show(100);
-                        },
-                        function()
-                        {
-                           $(this).children(".hover").hide(100);
-                        }
-                    );
-                    $(".selected").hover(
-                        function() 
-                        {
-                           $(this).children(".hover").show(100);
-                        },
-                        function()
-                        {
-                           $(this).children(".hover").hide(100);
-                        }
-                    );
+                    $(".slot").approach(
+                    {
+                            "opacity": 1.0 
+                    }, 200);                    
+                    $(".selected").approach(
+                    {
+                        "opacity": 0.8 
+                    }, 200);                    
                     $(".selected").click(function()
+                    {
+                        var volunteerAPI = "<?php echo SITE_BASE .'/includes/UpdateVolunteerSlot.php' ?>";
+                        var time = $(this).children(".hiddenTime").text();
+                        var day = $(this).children(".hiddenDay").text();
+                        var user = "<?php echo $_SESSION['UserId'] ?>";
+                        $.post(volunteerAPI , { userid: user, time: time, day: day } ).done(function()
                         {
-                            var volunteerAPI = "<?php echo SITE_BASE .'/includes/UpdateVolunteerSlot.php' ?>";
-                            var time = $(this).children(".hiddenTime").text();
-                            var day = $(this).children(".hiddenDay").text();
-                            var user = "<?php echo $_SESSION['UserId'] ?>";
-                            $.post(volunteerAPI , { userid: user, time: time, day: day } ).done(function()
-                            {
-                                getSlots();
-                            });
+                            getSlots();
                         });
-                        $(".slot").click(function()
+                    });
+                    $(".slot").click(function()
+                    {
+                        var clientAPI = "<?php echo SITE_BASE .'/includes/UpdateVolunteerSlot.php' ?>";
+                        var time = $(this).children(".hiddenTime").text();
+                        var day = $(this).children(".hiddenDay").text();
+                        var user = "<?php echo $_SESSION['UserId'] ?>";
+                        $.post(clientAPI , { userid: user, time: time, day: day } ).done(function()
                         {
-                            var clientAPI = "<?php echo SITE_BASE .'/includes/UpdateVolunteerSlot.php' ?>";
-                            var time = $(this).children(".hiddenTime").text();
-                            var day = $(this).children(".hiddenDay").text();
-                            var user = "<?php echo $_SESSION['UserId'] ?>";
-                            $.post(clientAPI , { userid: user, time: time, day: day } ).done(function()
-                            {
-                                getSlots();
-                            });
+                            getSlots();
                         });
+                    });
 
                 });
             }
