@@ -58,7 +58,10 @@ ul {
 
 li {
 	list-style-type: square;
-	
+}
+
+ol li {
+	list-style-type: decimal;
 }
 
 .orangetext {
@@ -185,7 +188,7 @@ text-decoration:underline;
 	color: #8cb217;
 }
 .nav ul li.current, li.current a {
-	background: #538681;
+	background: #dd6b05;
 }
 
 /* CONTENT holds the 2 columns for most pages: main and sidebar and 3 columns for the home page: mainhome, leftbarhome, and rightbarhome*/
