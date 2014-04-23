@@ -138,7 +138,7 @@
             }
 
 			// REQUEST PET ASSISTANCE link
-            if(in_array("Client", $userRole) || empty($userRole))
+            if(in_array("Client", $userRole))
             {
                 echo "<li ";
                 if(basename($_SERVER['SCRIPT_NAME']) == 'client.php') { echo "class=\"current\""; }
