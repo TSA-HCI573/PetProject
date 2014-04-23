@@ -17,7 +17,7 @@ if(!empty($_POST['newpass']))
 $update .= ", usr_pwd = '".hash_pass(filter($_POST['newpass']))."'";
 }
 
-$update .= " WHERE id = '".$_SESSION['user_id']."'";
+$update .= " WHERE id = '".$_SESSION['UserId']."'";
 
 $run_update = mysql_query($update) or die(mysql_error());
 
@@ -66,7 +66,7 @@ echo '<div class="success">'.$msg.'</div>';
 // echo "user_id:  " .$_SESSION['user_id'];
 
 
-$sql = "SELECT *, AES_DECRYPT(email, '$salt') AS decryptedEmail FROM ".USERS." WHERE Id = ".$_SESSION['user_id'];
+$sql = "SELECT *, AES_DECRYPT(email, '$salt') AS decryptedEmail FROM ".USERS." WHERE Id = ".$_SESSION['UserId'];
 
 $in = mysql_query($sql) or die("Unable to get your info!");
 
