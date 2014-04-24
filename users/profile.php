@@ -27,10 +27,10 @@ $update = "UPDATE ".USERS." SET firstname = '".filter($_POST['firstname']).
 // $update .= ", usr_pwd = '".hash_pass(filter($_POST['newpass']))."'";
 // }
 
-$update .= " WHERE id = '".$_SESSION['user_id']."'";
-// echo $update;
+$update .= " WHERE id = ".$_SESSION['UserId'];
+echo $update;
 $run_update = mysql_query($update) or die(mysql_error());
-
+echo $run_update;
 if($run_update)
 {
 $msg = "Profile updated successfully!";
@@ -57,15 +57,6 @@ $msg = "Profile updated successfully!";
 <h2>  
 <!-- <?php echo $_SESSION['FirstName']; ?>!  -->
 Please keep your profile information updated to ensure that the most pet-owners in need get connected with the best resources. </h2>
-
-<!-- 
-<p>Form that:</p>
-<ul><li>Displays users' information </li>
-<li>Allows users to update the information</li>
-<li>Updates the database when they submit</li>
-</ul>
- -->
-
 
 
 <?php
