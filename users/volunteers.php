@@ -26,16 +26,8 @@ $comments = mysql_real_escape_string($_POST['comments']);
 
 //Build insert sql statement
 
-  debug_to_console("INSERT INTO ".VOLUNTEERS."(UserId, BeginDate, PetType, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, AM, PM,
-dogwalking, grooming, administermeds, deliverfood, transport, fostercare, other, comments )
-VALUES (1, '" . $startDate . "', '" .$petType . "', '" .$monday . "', '" . $tuesday. "', '" . $wednesday . "', '" . $thursday . "', '" . $friday .
-"', '" . $saturday . "', '" . $sunday . "', '" . $am . "', '" . $pm . "', '" . $dogwalking. "', '" . $grooming. "', '" . $administermeds. "', '" .
-$deliverfood. "', '" . $transportation. "', '" . $fostercare . "', '" .$other. "', '" . $comments."')");
-
-mysql_query("INSERT INTO ".VOLUNTEERS."(UserId, BeginDate, PetType, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, AM, PM,
-dogwalking, grooming, administermeds, deliverfood, transport, fostercare, other, comments )
-VALUES (1, '" . $startDate . "', '" .$petType . "', '" .$monday . "', '" . $tuesday. "', '" . $wednesday . "', '" . $thursday . "', '" . $friday .
-"', '" . $saturday . "', '" . $sunday . "', '" . $am . "', '" . $pm . "', '" . $dogwalking. "', '" . $grooming. "', '" . $administermeds. "', '" .
+mysql_query("INSERT INTO ".VOLUNTEERS."(UserId, BeginDate, PetType,dogwalking, grooming, administermeds, deliverfood, transport, fostercare, other, comments )
+VALUES (1, '" . $startDate . "', '" .$petType . "', '" . $dogwalking. "', '" . $grooming. "', '" . $administermeds. "', '" .
 $deliverfood. "', '" . $transportation. "', '" . $fostercare . "', '" .$other. "', '" . $comments."')") or die(mysql_error());
   // echo insertRequest;
 

@@ -36,16 +36,10 @@ if($_POST and $_GET)
 
 		//Build insert sql statement
 		
- 		debug_to_console("INSERT INTO ".REQUESTS."(UserId,  BeginDate, PetType, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, AM, PM,
+ 		
+		mysql_query("INSERT INTO ".REQUESTS."(UserId, BeginDate, PetType,
 		dogwalking, grooming, administermeds, deliverfood, transport, fostercare, other, comments ) 
-		VALUES (1, '" . $startDate . "', '" .$petType . "', '" .$monday . "', '" . $tuesday. "', '" . $wednesday . "', '" . $thursday . "', '" . $friday . 
-		"', '" . $saturday . "', '" . $sunday . "', '" . $am . "', '" . $pm . "', '" . $dogwalking. "', '" . $grooming. "', '" . $administermeds. "', '" . 
-		$deliverfood. "', '" . $transportation. "', '" . $fostercare . "', '" .$other. "', '" . $comments."')");
-
-		mysql_query("INSERT INTO ".REQUESTS."(UserId, BeginDate, PetType, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday, AM, PM,
-		dogwalking, grooming, administermeds, deliverfood, transport, fostercare, other, comments ) 
-		VALUES (1, '" . $startDate . "', '" .$petType . "', '" .$monday . "', '" . $tuesday. "', '" . $wednesday . "', '" . $thursday . "', '" . $friday . 
-		"', '" . $saturday . "', '" . $sunday . "', '" . $am . "', '" . $pm . "', '" . $dogwalking. "', '" . $grooming. "', '" . $administermeds. "', '" . 
+		VALUES (1, '" . $startDate . "', '" .$petType . "', '" . $dogwalking. "', '" . $grooming. "', '" . $administermeds. "', '" . 
 		$deliverfood. "', '" . $transportation. "', '" . $fostercare . "', '" .$other. "', '" . $comments."')") or die(mysql_error());
  	//	 echo insertRequest;
 	 
