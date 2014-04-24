@@ -1,8 +1,9 @@
 <?php
 
 include_once '../includes/constant/config.inc.php';
-session_start();
-return_meta();
+//session_start();
+//return_meta();
+secure_page();
 
 //Check for post data
 if($_POST and $_GET)
@@ -13,17 +14,6 @@ echo "POST";
 $startDate = mysql_real_escape_string($_POST['startDate']);
 
 $petType = mysql_real_escape_string($_POST['petType']);	
-
-$monday = mysql_real_escape_string($_POST['monday']);
-$tuesday = mysql_real_escape_string($_POST['tuesday']);
-$wednesday = mysql_real_escape_string($_POST['wednesday']);
-$thursday = mysql_real_escape_string($_POST['thursday']);
-$friday = mysql_real_escape_string($_POST['friday']);
-$saturday = mysql_real_escape_string($_POST['saturday']);
-$sunday = mysql_real_escape_string($_POST['sunday']);
-$am = mysql_real_escape_string($_POST['am']);
-$pm = mysql_real_escape_string($_POST['pm']);
-
 
 $dogwalking = mysql_real_escape_string($_POST['dogwalking']);
 $grooming = mysql_real_escape_string($_POST['grooming']);
@@ -68,93 +58,89 @@ function debug_to_console( $data ) {
 ?>
 <head>
 <title>Pet Owners Seeking Assistance</title>
-<link rel="stylesheet" type="text/css" media="all" href="includes/styles/styles.css" />
-<link rel="stylesheet" href="includes/js/jquery-ui.css">
+<link rel="stylesheet" type="text/css" media="all" href="../includes/styles/styles.css" />
+<link rel="stylesheet" href="../includes/js/jquery-ui.css">
+<link rel="stylesheet" href="../includes/styles/volunteer.css">
 
-<script src="includes/js/jquery-1.10.2.js"></script>
-<script src="includes/js/jquery-ui-1.10.4.js"></script>
+<script src="<?php echo JS?>/jquery-1.10.2.js"></script>
+<script src="<?php echo JS?>/jquery-ui-1.10.4.js"></script>
+<script src="<?php echo JS?>/jquery.approach.min.js"></script>
 <script>
-//Form processing function start
-$(function()
-{
-$(".submit").click(function()
-{
-//create three variables to store the data entered into the form
-var startDate = $('#datepicker').val();
-var petType = $('#petType').val();
-//day / times
-var monday = $('#monday').prop('checked') ? 1:0;
-var tuesday = $('#tuesday').prop('checked') ? 1:0;
-var wednesday = $('#wednesday').prop('checked') ? 1:0;
-var thursday = $('#thursday').prop('checked') ? 1:0;
-var friday = $('#friday').prop('checked') ? 1:0;
-var saturday = $('#saturday').prop('checked') ? 1:0;
-var sunday = $('#sunday').prop('checked') ? 1:0;
-var am = $('#am').prop('checked') ? 1:0;
-var pm = $('#pm').prop('checked') ? 1:0;
-//requested services
+    //Form processing function start
+    $(function()
+    {
+    $(".submit").click(function()
+    {
+    //create three variables to store the data entered into the form
+    var startDate = $('#datepicker').val();
+    var petType = $('#petType').val();
+    //day / times
+    //requested services
 
-var dogwalking = $('#dogwalking').prop('checked') ? 1:0;
-var grooming = $('#grooming').prop('checked') ? 1:0;
-var administermeds = $('#administermeds').prop('checked') ? 1:0;
-var deliverfood = $('#deliverfood').prop('checked') ? 1:0;
-var transportation = $('#transport').prop('checked') ? 1:0;
-var fostercare = $('#fostercare').prop('checked') ? 1:0;
-var other =$("#other").val();
-//additional comments
-var comments =$("#comments").val();
-//Check for empty values
-if(!monday && !tuesday && !wednesday && !thursday && !friday && !saturday && !sunday)
-{
-//here, we change the html content of all divs with class="error" and show them
-//there should be only 1 such div but the code would affect multiple if they were present in the page
-$('.error').fadeIn(400).show().html('Please select preferred days/times.');
-}
-else
-{
-//construct the data string ]
-var datastring = "monday=" + monday + "&tuesday=" + tuesday + "&wednesday=" + wednesday + "&thursday=" + thursday + "&friday=" + friday + "&saturday=" + saturday
-+ "&sunday=" + sunday + "&am=" + am + "&pm=" + pm + "&dogwalking=" + dogwalking + "&grooming=" + grooming + "&administermeds=" + administermeds
-+ "&deliverfood=" + deliverfood + "&transportation=" + transportation + "&fostercare=" + fostercare + "&other=" + other + "&comments=" + comments
-+ "&startDate=" + startDate +"&petType=" + petType;
-/*
-Make the AJAX request. The request is made to $_SERVER['PHP_SELF'], i.e., clients_form.php
-The request is handled by checking for $_POST data -- see line 6
-After the $_POST data is processed, we use the exit() function because we don't need to actually
-show the page as the request is made in the background
-*/
-$.ajax(
-{
-type: "POST",
-url: "<?php echo $_SERVER['PHP_SELF']; ?>?cmd=add",
-data: datastring,
-success: function()
-{
-$('.success').fadeIn(2000).show().html('Pet Assistance Requested. ').fadeOut(6000); //Show, then hide success msg
-resetForm('form');
-$('.error').fadeOut(2000).hide(); //If showing error, fade out
-}
-}
-);
-}
-//return false to prevent reloading page
-return false;
-});
-});
+    var dogwalking = $('#dogwalking').prop('checked') ? 1:0;
+    var grooming = $('#grooming').prop('checked') ? 1:0;
+    var administermeds = $('#administermeds').prop('checked') ? 1:0;
+    var deliverfood = $('#deliverfood').prop('checked') ? 1:0;
+    var transportation = $('#transport').prop('checked') ? 1:0;
+    var fostercare = $('#fostercare').prop('checked') ? 1:0;
+    var other =$("#other").val();
+    //additional comments
+    var comments =$("#comments").val();
+    //Check for empty values
+    if(!monday && !tuesday && !wednesday && !thursday && !friday && !saturday && !sunday)
+    {
+    //here, we change the html content of all divs with class="error" and show them
+    //there should be only 1 such div but the code would affect multiple if they were present in the page
+    $('.error').fadeIn(400).show().html('Please select preferred days/times.');
+    }
+    else
+    {
+    //construct the data string ]
+    var datastring = "&dogwalking=" + dogwalking + "&grooming=" + grooming + "&administermeds=" + administermeds
+    + "&deliverfood=" + deliverfood + "&transportation=" + transportation + "&fostercare=" + fostercare + "&other=" + other + "&comments=" + comments
+    + "&startDate=" + startDate +"&petType=" + petType;
+    /*
+    Make the AJAX request. The request is made to $_SERVER['PHP_SELF'], i.e., clients_form.php
+    The request is handled by checking for $_POST data -- see line 6
+    After the $_POST data is processed, we use the exit() function because we don't need to actually
+    show the page as the request is made in the background
+    */
+    $.ajax(
+    {
+    type: "POST",
+    url: "<?php echo $_SERVER['PHP_SELF']; ?>?cmd=add",
+    data: datastring,
+    success: function()
+    {
+    $('.success').fadeIn(2000).show().html('Pet Assistance Requested. ').fadeOut(6000); //Show, then hide success msg
+    resetForm('form');
+    $('.error').fadeOut(2000).hide(); //If showing error, fade out
+    }
+    }
+    );
+    }
+    //return false to prevent reloading page
+    return false;
+    });
+    });
 
-//what should happen when we refresh?
-//hint: find the element with id #loadmsgs, fade it in, show it, and use the load function to load get_msg.php
-function refresh_content(){
-}
+    //what should happen when we refresh?
+    //hint: find the element with id #loadmsgs, fade it in, show it, and use the load function to load get_msg.php
+    function refresh_content(){
+    }
 
-$(function() {
-$( "#datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
-});
+    $(function() {
+    $( "#datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
+    });
 
-function resetForm(formid) {
-$(':input','#'+formid) .not(':button, :submit, :reset, :hidden') .val('') .removeAttr('checked') .removeAttr('selected');
-}
+    function resetForm(formid) {
+    $(':input','#'+formid) .not(':button, :submit, :reset, :hidden') .val('') .removeAttr('checked') .removeAttr('selected');
+    }
+
+
 </script>
+<?php include "volunteerJS.php"?>
+
 </head>
 <body>
 <div id="container">
@@ -165,7 +151,9 @@ $(':input','#'+formid) .not(':button, :submit, :reset, :hidden') .val('') .remov
 <div class="main">
 
 <h1>Volunteer</h1>
-<a href="volunteer_times.php">Schedule Volunteer Opportunities</a>
+<table id='scheduleTable'>
+</table>
+
 <form method="post" name="form" id="form">
 <table>
 <tr><td>Start Date: </td>
@@ -182,35 +170,6 @@ $(':input','#'+formid) .not(':button, :submit, :reset, :hidden') .val('') .remov
 <option VALUE="Other"> Other </option>
 </select> </td>
 </tr>
-</table><br/>
-<table>
-<tr><label>I'd like assistance on the following days:</label></tr>
-<tr>
-<td><input type="checkbox" id="monday" name="monday"">
-<label for="monday">Monday</label>
-</td>
-<td><input type="checkbox" id="tuesday" name="tuesday">
-<label for="tuesday">Tuesday</label></td>
-<td><input type="checkbox" id="wednesday" name="wednesday">
-<label for="wednesday">Wednesday</label></td>
-<td><input type="checkbox" id="thursday" name="thursday">
-<label for="thursday">Thursday</label></td>
-<td><input type="checkbox" id="friday" name="friday">
-<label for="friday">Friday</label></td>
-</tr>
-<tr>
-<td><input type="checkbox" id="saturday" name="saturday">
-<label for="saturday">Saturday</label></td>
-<td><input type="checkbox" id="sunday" name="sunday">
-<label for="sunday">Sunday</label></td></tr>
-</table><br/>
-<table>
-<tr><label>My preferred time of day is:</label></tr>
-<tr>
-<td><input type="checkbox" id="am" name="am">
-<label for="am">AM</label></td>
-<td><input type="checkbox" id="pm" name="pm">
-<label for="pm">PM</label></td></tr>
 </table><br/>
 <table>
 <tr>Requested Services</tr>
@@ -255,10 +214,6 @@ $(':input','#'+formid) .not(':button, :submit, :reset, :hidden') .val('') .remov
 <span class="success" style="display:none;"></span>
 <span class="error" style="display:none;">Uh Oh! Something went wrong, we are unable to submit request at this time.</span>
 </p>
-</div>
-<div class="sidebar">
-<a href="volunteer_times.php">Schedule Volunteer Opportunities</a>
-<p>Here is sidebar content such as tips, brag facts, resources and links, upcoming events</p>
 </div>
 </div>
 <div id="footer">

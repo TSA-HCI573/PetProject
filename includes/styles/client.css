@@ -1,0 +1,45 @@
+#scheduleTable
+{
+    border-collapse:collapse;
+    margin-left: -2.3em ;
+    margin-bottom: 2em;
+
+}
+
+#scheduleTable td
+{
+    border:0.1em solid white;
+    min-width:5em;
+    color:#dd6b05;
+
+}
+
+#scheduleTable tr
+{
+    height:8em;
+}
+
+#scheduleTable th
+{
+    border:0.1em solid white;
+    width 5em;
+    background:white;
+    color:#dd6b05;
+}
+
+.volunteer
+{
+    background:#dd6b05;
+    color:white;
+    border-radius:0.2em;
+    margin: 0.3em;
+}
+
+#scheduleTable .slot
+{
+    background:#BFE54B;
+    color:black;
+    border:0.1em solid #AAAAAA;
+}
+
+

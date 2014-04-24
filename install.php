@@ -69,19 +69,7 @@ primary key (Id))";
         return;
     }
 
-    $sql= "create table if not exists UserPets(
-Id bigint(20) not null auto_increment,
-UserId bigint(20),
-PetType varchar(100),
-primary key (Id))";
-
-    if($con->query($sql) === FALSE)
-    {
-        echo "<br/>Error creating userpets table <br/>" . $con->error;
-
-        return;
-    }
-    
+   
     $sql= "create table if not exists UserRole(
 Id bigint(20) not null auto_increment,
 UserId bigint(20),
@@ -113,7 +101,6 @@ primary key (Id))";
 Id bigint(20) not null auto_increment,
 ClientId bigint(20),
 VolunteerId bigint(20),
-PetType varchar(45),
 Day varchar(15),
 Time varchar(9),
 Completed boolean,
@@ -133,15 +120,6 @@ primary key(Id));";
 Id bigint(20) not null auto_increment,
 UserId bigint(20),
 BeginDate Date,
-Monday boolean,
-Tuesday boolean,
-Wednesday boolean,
-Thursday boolean,
-Friday boolean,
-Saturday boolean,
-Sunday boolean,
-AM boolean,
-PM boolean,
 PetType varchar(100),
 DogWalking boolean,
 Grooming boolean,
@@ -163,15 +141,6 @@ primary key (Id))";
 Id bigint(20) not null auto_increment,
 UserId bigint(20),
 BeginDate Date,
-Monday boolean,
-Tuesday boolean,
-Wednesday boolean,
-Thursday boolean,
-Friday boolean,
-Saturday boolean,
-Sunday boolean,
-AM boolean,
-PM boolean,
 PetType varchar(100),
 DogWalking boolean,
 Grooming boolean,
