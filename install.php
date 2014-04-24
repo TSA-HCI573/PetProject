@@ -48,6 +48,7 @@ FirstName varchar(100),
 LastName varchar(100),
 Email varchar(100),
 Password varchar(100),
+UserType int(11),
 md5_id varchar(200),
 UserName varchar(100),
 Address1 varchar(100),
@@ -90,10 +91,24 @@ primary key (Id))";
 
     if($con->query($sql) === FALSE)
     {
-        echo "<br/> Error creating userpets table <br/>" . $con->error;
+        echo "<br/> Error creating userRole table <br/>" . $con->error;
 
         return;
     }
+    
+        $sql= "create table if not exists cd_UserRoles(
+Id bigint(20) not null auto_increment,
+UserType varchar(9),
+primary key (Id))";
+
+    if($con->query($sql) === FALSE)
+    {
+        echo "<br/> Error creating cd_userRoles table <br/>" . $con->error;
+
+        return;
+    }
+    
+    
     $sql ="create table if not exists MatchUps(
 Id bigint(20) not null auto_increment,
 ClientId bigint(20),
@@ -181,8 +196,8 @@ primary key (Id))";
     
     if(isTableEmpty($con, "Users"))
     {
-        add_user("user1", "user1", "user1", "pass", "user1@user1.com", "", "", "", "", "", "", "" );
-        add_user("user2", "user2", "user2", "pass", "user2@user2.com", "", "", "", "", "", "", "" );
+        add_user("user1", "user1", "user1", "pass", "user1@user1.com");
+        add_user("user2", "user2", "user2", "pass", "user2@user2.com");
     }
     if(isTableEmpty($con, "UserRole"))
     {
@@ -204,6 +219,27 @@ primary key (Id))";
         {
             echo $con->error;
         }
+        
+    	$sql = "insert into cd_UserRoles (UserType) values('Volunteer')";
+        if($con->query($sql))
+        {
+            echo "Succesfully Populated cd_UserRole";
+        }
+        else
+        {
+            echo $con->error;
+        }
+        
+        $sql = "insert into cd_UserRoles (UserType) values('Client')";
+        if($con->query($sql))
+        {
+            echo "Succesfully Populated cd_UserRole";
+        }
+        else
+        {
+            echo $con->error;
+        }
+
 
     }
     

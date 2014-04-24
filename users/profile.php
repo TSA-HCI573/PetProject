@@ -13,6 +13,7 @@ if(isset($_POST['update']))
 $update = "UPDATE ".USERS." SET firstname = '".filter($_POST['firstname']).
 "', lastname = '".filter($_POST['lastname']).
 "', username = '".filter($_POST['username']).
+"', usertype = '".filter($_POST['usertype']).
 "', email = AES_ENCRYPT('".filter($_POST['email'])."', '$salt') ".
 ", address1 = '".filter($_POST['address1']).
 "', address2 = '".filter($_POST['address2']).
@@ -118,6 +119,21 @@ while($r = mysql_fetch_array($in))
 <td>About Me</td>
 <td><input type="text" name="bio" rows="5" maxlength="300" value="<?php echo $r['Bio']; ?>" /></td>
 
+</tr>
+<tr>
+<td><label>User Type</label></td>
+<td>
+<select name="usertype" id="usertype" value="<?php echo $r['userrole']; ?>"/>
+<!-- <option VALUE"" "selected"></option> -->
+<option value=""  <?php if($r['userType'] == "") {echo "selected";} ?>></option>
+<option value="1" <?php if($r['userType'] == "1") {echo "selected";}?>>Volunteer</option>
+<option value="2" <?php if($r['userType'] == "2") {echo "selected";}?>>Need Pet Assistance</option>
+<!-- 
+
+<option VALUE="1"> Volunteer </option>
+<option VALUE="2"> Needing Pet Assistance </option>
+ -->
+</select> </td>
 </tr>
 <!-- 
 <tr>
