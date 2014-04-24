@@ -44,8 +44,7 @@ global $password_store_key;
 
 
 /* Function that adds a new user to our system */
-function add_user($firstname, $lastname, $username, $password, $email, $address1, $address2, $city,
-    $state, $zipcode, $bio, $profileImagePath )
+function add_user($firstname, $lastname, $username, $password, $email)
 {
 	
 	//declaring $salt and $link as global allows the function to access the values stored in these variables
@@ -95,11 +94,9 @@ function add_user($firstname, $lastname, $username, $password, $email, $address1
 		//the function hash_pass is defined in config.inc.php
 		$password = hash_pass($password);
 		
-        $q1 = mysql_query("INSERT INTO ".USERS." (FirstName, LastName, Email, Password, UserName,
-            Address1, Address2, City, State, ZipCode, Bio, ProfileImagePath) 
-            VALUES ('$firstname',  '$lastname', AES_ENCRYPT('$email', '$salt'), '$password', '$username',
-                '$address1', '$address2', '$city',  '$state', '$zipcode', '$bio', 
-                '$profileImagePath')", $link) or die("Unable to insert data".mysql_error($link));
+        $q1 = mysql_query("INSERT INTO ".USERS." (FirstName, LastName, Email, Password, UserName) 
+            VALUES ('$firstname',  '$lastname', AES_ENCRYPT('$email', '$salt'), '$password', '$username')", 
+            $link) or die("Unable to insert data".mysql_error($link));
 
 
 		
