@@ -10,12 +10,7 @@ $lastname = NULL;
 $username = NULL;
 $password = NULL;
 $email = NULL;
-$address1 = NULL;
-$address2 = NULL;
-$city = NULL;
-$state = NULL;
-$zipcode = NULL;
-$bio = NULL;
+
 
 $msg = NULL;
 $err = array();
@@ -28,19 +23,11 @@ if(isset($_POST['add']))
 	$username = filter($_POST['username']);
 	$password = filter($_POST['password']);
 	$email = filter($_POST['email']);
-	$address1 = filter($_POST['address1']);
-	$address2 = filter($_POST['address2']);
-	$city = filter($_POST['city']);
-	$state = filter($_POST['state']);
-	$zipcode = filter($_POST['zipcode']);
-	$bio = filter($_POST['bio']);
-	 $profileImagePath ="blankfornow";
-	//$user_ip = $_SERVER['REMOTE_ADDR'];
-	//$activation_code = rand(1000,9999);
+
 	
 //echo $firstname . " " . $lastname. " " .  $username. " " .  $password. " " .  $email . " " .  $address1. " " .  $address2. " " .  $city. " " .  $state. " " .  $zipcode. " " .  $bio. " " .  $profileImagePath;
 	//define in config.inc.php
-	$err = add_user($firstname, $lastname, $username, $password, $email, $address1, $address2, $city, $state, $zipcode, $bio, $profileImagePath );
+	$err = add_user($firstname, $lastname, $username, $password, $email);
 
 	//if there are no errors, set $msg to "Registration Successfull" - later on, it is displayed on the page
 	if ( count($err) == 0){
@@ -54,14 +41,27 @@ if(isset($_POST['add']))
 
 return_meta($meta_title);
 ?>
+<html>
+<head>
+<title>Edit Your Information</title>
+<link rel="stylesheet" type="text/css" media="all" href="../includes/styles/styles.css" />
 <script>
 </script>
 </head>
+
+<!-- 
+<head>
+<script>
+</script>
+</head>
+ -->
 <body>
 <div id="container">
 
 	<?php include 'includes/constant/nav.inc.php'; ?>
-
+	<div id="headerplaced"></div>
+	<div class="content">
+	<div class="main">
 	<?php
 	//Show message if isset
 	if(isset($msg))
@@ -94,22 +94,25 @@ return_meta($meta_title);
 			<!-- back in HTML mode -->
 			
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="register_form">
-			
-			<p>First Name: <input type="text" name="firstname" value="" class="required" /><br/>
-			Last Name:   <input type="text" name="lastname" value="" class="required" /> <br/>
-			User Name:  <input type="text" name="username" value="" class="required" /> <br/>
-			Password:     <input type="password" name="password" value="" class="required" /> <br/>
-			Email:      <input type="text" name="email" value="" class="required email" /><br/>
-			Adress 1:   <input type="text" name="address1" value="" class="required" /> <br/>
-			Adress 2:   <input type="text" name="address2" value="" class="required" /><br/>
-			city:       <input type="text" name="city" value="" class="required" /> <br/>
-			State:      <input type="text" name="state" value="" class="required" /> <br/>
-			Zip:        <input type="text" name="zipcode" value="" class="required" /> <br/>
-			bio:        <input type="text" name="bio" value="" class="required" /> <br/>
 
+			<table cellspacing="5" cellpadding="5" border="0">
+			<tr><td>First Name </td> 
+			<td> <input type="text" name="firstname" value="" class="required" /></td></tr>
+			<tr><td>Last Name </td>
+			<td><input type="text" name="lastname" value="" class="required" /></td></tr>
+			<tr><td>User Name </td> 
+			<td><input type="text" name="username" value="" class="required" /></td></tr>
+			<tr><td>Password </td><td> <input type="password" name="password" value="" class="required" /></td></tr>
+			<tr><td>Email</td><td><input type="text" name="email" value="" class="required email" /></td></tr>
 
-			<input type="submit" name="add" value="Register!" /></p>
+			<tr>
+			<td colspan="2" align="right">
+				<input type="submit" name="add" value="Register!" />
+			</td>
+			</tr>
+			</table>
 			</form>
+			
 			
 <p>Above is the registration form from HW4 (not completed). Will our users register separately from filling out the volunteer or client form? If so, how will they get to the appropriate forms? If not, how do do they choose volunteer or client, fill out the proper form area, and become registered as a client or a volunteer?</p>
 			
@@ -118,7 +121,8 @@ return_meta($meta_title);
 			//finally, we enter PHP mode again to close the curly bracket that is after 'else' 
 		}
 		?>
-
+</div>
+</div>
 </div>
 </body>
 </html>
