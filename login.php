@@ -169,7 +169,7 @@ return_meta("Log in to your account");
 		
 		<div class="sidebar">
 		
-		<p>Here is sidebar content such as tips, brag facts, resources and links, upcoming events</p>
+		<p>Be sure to always keep your personal information updated so the best use can be made of volunteer resources!</p>
 		
 					
 		</div>
