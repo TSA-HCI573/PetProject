@@ -29,9 +29,9 @@ $update = "UPDATE ".USERS." SET firstname = '".filter($_POST['firstname']).
 // }
 
 $update .= " WHERE id = ".$_SESSION['UserId'];
-echo $update;
+//echo $update;
 $run_update = mysql_query($update) or die(mysql_error());
-echo $run_update;
+//echo $run_update;
 if($run_update)
 {
 $msg = "Profile updated successfully!";
@@ -75,6 +75,13 @@ $in = mysql_query($sql) or die("Unable to get your info!");
 
 while($r = mysql_fetch_array($in))
 {
+
+// 	if ($r['UserType'] == '1'){
+// 		echo "Volunteer";}
+// 	elseif  ($r['UserType'] == '2'){
+// 		echo "Client";}
+// 	else{
+// 		echo $r['UserType'];}
 ?>
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="profile_form">
@@ -124,10 +131,9 @@ while($r = mysql_fetch_array($in))
 <td><label>User Type</label></td>
 <td>
 <select name="usertype" id="usertype" value="<?php echo $r['userrole']; ?>"/>
-<!-- <option VALUE"" "selected"></option> -->
-<option value=""  <?php if($r['userType'] == "") {echo "selected";} ?>></option>
-<option value="1" <?php if($r['userType'] == "1") {echo "selected";}?>>Volunteer</option>
-<option value="2" <?php if($r['userType'] == "2") {echo "selected";}?>>Need Pet Assistance</option>
+<option value=""  <?php if($r['UserType'] == "") {echo selected;} ?>></option>
+<option value="1" <? if ($r['UserType'] == 1) { echo "selected"; } ?>>Volunteer</option>
+<option value="2" <?php if($r['UserType'] == 2) {echo selected;}?>>Need Pet Assistance</option>
 <!-- 
 
 <option VALUE="1"> Volunteer </option>
