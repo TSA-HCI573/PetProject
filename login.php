@@ -119,7 +119,13 @@ return_meta("Log in to your account");
 	<?php include 'includes/constant/nav.inc.php'; ?>
 	</div>
 	
-	<?php
+	
+	<div class="content">
+		
+	
+		<div class="main">
+
+		<?php
 	//Show message if isset
 	if(isset($msg) || !empty($_GET['msg']))
 	{
@@ -141,11 +147,7 @@ return_meta("Log in to your account");
 	}
 			
 	?>
-	
-	<div class="content">
-	
-		<div class="main">
-
+		
 		<h1>Login</h1>
 		
 		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="login_form">
