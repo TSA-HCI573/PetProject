@@ -4,7 +4,6 @@ body {
 	font-size: 1em;
 	color: #333333;
 	background-color: #daca85;
-	/*background-color: #dcb23e;*/
 	
 }
 pre {
@@ -191,6 +190,11 @@ text-decoration:underline;
 	background: #dd6b05; 
 }
 
+.nav ul li.current2, li.current2 a {
+	color: #dd6b05;
+	background: #daca85;
+}
+
 /* CONTENT holds the 2 columns for most pages: main and sidebar and 3 columns for the home page: mainhome, leftbarhome, and rightbarhome*/
 
 .content {
@@ -220,7 +224,6 @@ text-decoration:underline;
 	width: 21%;
 	display: table-cell;
 	vertical-align: top;
-	/*background-color: #dcb23e;*/
 	border-left: 2px solid #538681;
 	padding: 2%;
 	background-color: #ffffff;
@@ -228,6 +231,11 @@ text-decoration:underline;
 }
 
 .sidebar p {
+	font-size: .8em; 
+	
+}
+
+.sidebar ol {
 	font-size: .8em; 
 	
 }

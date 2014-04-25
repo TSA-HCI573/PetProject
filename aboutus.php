@@ -53,7 +53,15 @@ return_meta();
 		
 		<div class="sidebar">
 		
-		<p>Here is sidebar content such as tips, brag facts, resources and links, upcoming events</p>
+		<h3>Office hours</h3>
+		<p>Monday: 9:00 AM to 1:00 PM<br>
+		Tuesday: 9:00 AM to 4:00 PM <br>
+		Wednesday: Noon to 4:00 PM<br>
+		Thursday: 9:00 AM to 4:00 PM<br>
+		Friday: 9:00 AM to 4:00 PM<br>
+		Saturday: 9:00 AM to 1:00 PM<br>
+		Sunday: Closed <br>
+		</p>
 		
 					
 		</div>
