@@ -29,9 +29,9 @@ $update = "UPDATE ".USERS." SET firstname = '".filter($_POST['firstname']).
 // }
 
 $update .= " WHERE id = ".$_SESSION['UserId'];
-echo $update;
+//echo $update;
 $run_update = mysql_query($update) or die(mysql_error());
-echo $run_update;
+//echo $run_update;
 if($run_update)
 {
 $msg = "Profile updated successfully!";
