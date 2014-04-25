@@ -1,53 +1,8 @@
 <?php
 
 include_once '../includes/constant/config.inc.php';
-//session_start();
-//return_meta();
-secure_page();
+secure_page(); ?>
 
-//Check for post data
-if($_POST and $_GET)
-{
-if ($_GET['cmd'] == 'add'){
-echo "POST";
-//Assign variables and sanitize POST data
-$startDate = mysql_real_escape_string($_POST['startDate']);
-
-$petType = mysql_real_escape_string($_POST['petType']);	
-
-$dogwalking = mysql_real_escape_string($_POST['dogwalking']);
-$grooming = mysql_real_escape_string($_POST['grooming']);
-$administermeds = mysql_real_escape_string($_POST['administermeds']);
-$deliverfood = mysql_real_escape_string($_POST['deliverfood']);
-$transportation = mysql_real_escape_string($_POST['transportation']);
-$fostercare = mysql_real_escape_string($_POST['fostercare']);
-$other = mysql_real_escape_string($_POST['other']);
-$comments = mysql_real_escape_string($_POST['comments']);
-
-//Build insert sql statement
-
-mysql_query("INSERT INTO ".VOLUNTEERS."(UserId, BeginDate, PetType,dogwalking, grooming, administermeds, deliverfood, transport, fostercare, other, comments )
-VALUES (1, '" . $startDate . "', '" .$petType . "', '" . $dogwalking. "', '" . $grooming. "', '" . $administermeds. "', '" .
-$deliverfood. "', '" . $transportation. "', '" . $fostercare . "', '" .$other. "', '" . $comments."')") or die(mysql_error());
-  // echo insertRequest;
-
-//End this portion of the script
-exit();
-}
-
-}
-
-function debug_to_console( $data ) {
-
-    if ( is_array( $data ) )
-        $output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
-    else
-        $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
-
-    echo $output;
-}
-
-?>
 <head>
 <title>Pet Owners Seeking Assistance</title>
 <link rel="stylesheet" type="text/css" media="all" href="../includes/styles/styles.css" />
@@ -61,68 +16,77 @@ function debug_to_console( $data ) {
     //Form processing function start
     $(function()
     {
-    $(".submit").click(function()
-    {
-    //create three variables to store the data entered into the form
-    var startDate = $('#datepicker').val();
-    var petType = $('#petType').val();
-    //day / times
-    //requested services
+        $(".submit").click(function()
+        {
+            //create three variables to store the data entered into the form
+            var startDate = $('#datepicker').val();
+            var petType = $('#petType').val();
+            //day / times
+            //requested services
 
-    var dogwalking = $('#dogwalking').prop('checked') ? 1:0;
-    var grooming = $('#grooming').prop('checked') ? 1:0;
-    var administermeds = $('#administermeds').prop('checked') ? 1:0;
-    var deliverfood = $('#deliverfood').prop('checked') ? 1:0;
-    var transportation = $('#transport').prop('checked') ? 1:0;
-    var fostercare = $('#fostercare').prop('checked') ? 1:0;
-    var other =$("#other").val();
-    //additional comments
-    var comments =$("#comments").val();
-    //Check for empty values
-    if(!monday && !tuesday && !wednesday && !thursday && !friday && !saturday && !sunday)
-    {
-    //here, we change the html content of all divs with class="error" and show them
-    //there should be only 1 such div but the code would affect multiple if they were present in the page
-    $('.error').fadeIn(400).show().html('Please select preferred days/times.');
-    }
-    else
-    {
-    //construct the data string ]
-    var datastring = "&dogwalking=" + dogwalking + "&grooming=" + grooming + "&administermeds=" + administermeds
-    + "&deliverfood=" + deliverfood + "&transportation=" + transportation + "&fostercare=" + fostercare + "&other=" + other + "&comments=" + comments
-    + "&startDate=" + startDate +"&petType=" + petType;
-    /*
-    Make the AJAX request. The request is made to $_SERVER['PHP_SELF'], i.e., clients_form.php
-    The request is handled by checking for $_POST data -- see line 6
-    After the $_POST data is processed, we use the exit() function because we don't need to actually
-    show the page as the request is made in the background
-    */
-    $.ajax(
-    {
-    type: "POST",
-    url: "<?php echo $_SERVER['PHP_SELF']; ?>?cmd=add",
-    data: datastring,
-    success: function()
-    {
-    $('.success').fadeIn(2000).show().html('Pet Assistance Requested. ').fadeOut(6000); //Show, then hide success msg
-    resetForm('form');
-    $('.error').fadeOut(2000).hide(); //If showing error, fade out
-    }
-    }
-    );
-    }
-    //return false to prevent reloading page
-    return false;
+            var dogwalking = $('#dogwalking').prop('checked') ? 1:0;
+            var grooming = $('#grooming').prop('checked') ? 1:0;
+            var administermeds = $('#administermeds').prop('checked') ? 1:0;
+            var deliverfood = $('#deliverfood').prop('checked') ? 1:0;
+            var transportation = $('#transport').prop('checked') ? 1:0;
+            var fostercare = $('#fostercare').prop('checked') ? 1:0;
+            var other =$("#other").val();
+            //additional comments
+            var comments =$("#comments").val();
+            //construct the data string ]
+            var datastring = "&dogwalking=" + dogwalking + "&grooming=" + grooming + 
+                "&administermeds=" + administermeds + "&deliverfood=" + deliverfood + 
+                "&transportation=" + transportation + "&fostercare=" + fostercare + 
+                "&other=" + other + "&comments=" + comments + "&startDate=" + startDate 
+                + "&petType=" + petType;
+            /*
+            Make the AJAX request. The request is made to $_SERVER['PHP_SELF'], i.e., clients_form.php
+            The request is handled by checking for $_POST data -- see line 6
+            After the $_POST data is processed, we use the exit() function because we don't need to actually
+            show the page as the request is made in the background
+            */
+            $.ajax(
+            {
+                type: "POST",
+                url: "<?php echo SITE_BASE . "/includes/VolunteerInfo.php" ?>",
+                data: datastring,
+                success: function()
+                {
+                    //Show, then hide success msg
+                    $('.success').fadeIn(2000).show().html('Pet Assistance Requested. ').fadeOut(6000); 
+                    resetForm('form');
+                    getVolunteerInfo();
+                    $('.error').fadeOut(2000).hide(); //If showing error, fade out
+                }
+            });
+            //return false to prevent reloading page
+            return false;
+        });
     });
-    });
-
-    //what should happen when we refresh?
-    //hint: find the element with id #loadmsgs, fade it in, show it, and use the load function to load get_msg.php
-    function refresh_content(){
+    
+    function getVolunteerInfo()
+    {
+        var volunteerAPI = 
+            $.getJSON("<?php echo SITE_BASE . "/includes/VolunteerInfo.php" ?>").done(function(info)
+        {
+            $('#datepicker').val(info.BeginDate);
+            $('#petType').val(info.PetType);
+            $('#dogwalking').prop('checked',info.DogWalking !=0);
+            $('#grooming').prop('checked', info.Grooming != 0);
+            $('#administermeds').prop('checked', info.AdministerMeds != 0);
+            $('#transport').prop('checked', info.Transport != 0);
+            $('#deliverfood').prop('checked', info.DeliverFood != 0);
+            $('#fostercare').prop('checked', info.FosterCare != 0);
+            $('#other').val(info.Other);
+            $('#comments').val(info.Comments);
+        });
     }
 
-    $(function() {
-    $( "#datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
+
+    $(function() 
+    {
+        $( "#datepicker" ).datepicker({dateFormat: 'yy-mm-dd'});
+        getVolunteerInfo();
     });
 
     function resetForm(formid) {
