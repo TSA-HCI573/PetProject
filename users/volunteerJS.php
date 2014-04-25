@@ -20,7 +20,7 @@
 
         if(!!(day[index].client))
         {
-            result += "<p class='clientBlock'>" + day[index].client + "</p>";
+            result += "<p class='clientBlock' title='" + day[index].client + "<br>" + day[index].address +"' >" + day[index].client + "</p>";
         }
         result += "<p class='hiddenTime'>"+day[index].time +"</p>";
         result += "<p class='hiddenDay'>"+dayName+"</td>";
@@ -100,7 +100,13 @@
                     getSlots();
                 });
             });
-
+            $(document).tooltip(
+            {
+                content: function() 
+                {
+                    return $(this).attr('title');
+                }
+            });
         });
     }
     $(document).ready(function()

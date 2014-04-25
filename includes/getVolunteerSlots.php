@@ -16,8 +16,6 @@
         foreach($mySlots as $s)
         {
             $dbTime =$s['Time'];
-
-            //echo $startTime . " = " . $time . " | ";
             if( $dbTime == $time && $s['Day'] == $day)
             {
                 $slot['volunteer'] = true;
@@ -27,7 +25,33 @@
                 {
                     $name = $s['FirstName']. " " . $s['LastName'];
                 } 
+                $address = "";
 
+                if($s['Address1'] != null)
+                {
+                    $address .= $s['Address1'] . "<br>";
+                }
+
+                if($s['Address2'] != null)
+                {
+                    $address .= $s['Address2'] . "<br>";
+                }
+
+                if($s['City'] != null)
+                {
+                    $address .= $s['City'] . "<br>";
+                }
+
+                if($s['State'] != null)
+                {
+                    $address .= $s['State'] . "<br>";
+                }
+
+                if($s['ZipCode'] != null)
+                {
+                    $address .= $s['ZipCode'] . "<br>";
+                }
+                $slot['address'] = $address;
                 $slot['client'] = $name;
             }
         }
@@ -45,10 +69,29 @@
                 m.Time, 
                 m.Day,
                 u.FirstName, 
-                u.LastName 
+                u.LastName,
+                u.Address1,
+                u.Address2,
+                u.City,
+                u.State,
+                u.ZipCode,
+                u.Bio,
+                r.BeginDate,
+                r.PetType,
+                r.DogWalking,
+                r.Grooming,
+                r.AdministerMeds,
+                r.DeliverFood,
+                r.Transport,
+                r.FosterCare,
+                r.Other,
+                r.Comments 
             from 
                 MatchUps m left outer join Users u on 
-                m.ClientId = u.Id 
+                    m.ClientId = u.Id 
+                left outer join Requests r on 
+                    m.ClientId = r.UserId
+                    
             where 
                 VolunteerId = $userId;";
         $con = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME); 
