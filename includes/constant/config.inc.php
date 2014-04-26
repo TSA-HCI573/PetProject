@@ -55,23 +55,23 @@ function add_user($firstname, $lastname, $username, $password, $email)
 	$err = array();
 	
 	//here we validate that the user submited all fields
-	if(empty($firstname) || strlen($firstname) < 4)
+	if(empty($firstname) || strlen($firstname) < 1)
 	{
 		$err[] = "You must enter your first name";
 	}
 	
-	if(empty($lastname) || strlen($lastname) < 4)
+	if(empty($lastname) || strlen($lastname) < 1)
 	{
 		$err[] = "You must enter your last name";
 	}
 	
 	
-	if(empty($username) || strlen($username) < 4)
+	if(empty($username) || strlen($username) < 1)
 	{
 		$err[] = "You must enter a username";
 	}
 	
-	if(empty($password) || strlen($password) < 4)
+	if(empty($password) || strlen($password) < 1)
 	{
 		$err[] = "You must enter a password";
 	}

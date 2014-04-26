@@ -15,11 +15,11 @@ if(isset($_POST['login']))
 	$username = filter($_POST['user']);
 	$pass2 = filter($_POST['pass']);
 
-	if(empty($username) || strlen($username) < 4)
+	if(empty($username) || strlen($username) < 1)
 	{
 		$err[] = "You must enter a username";
 	}
-	if(empty($pass2) || strlen($pass2) < 4)
+	if(empty($pass2) || strlen($pass2) < 1)
 	{
 		$err[] = "You seem to have forgotten your password.";
 	}
