@@ -24,7 +24,7 @@
 				?>
 				
 				<!-- USER PROFILE link -->
-				<li <?php if(basename($_SERVER['SCRIPT_NAME']) == 'profile.php') { ?>class="current"<?php } ?>><a href="<?php echo SITE_BASE; ?>/users/profile.php">Update My Information</a></li>
+				<li <?php if(basename($_SERVER['SCRIPT_NAME']) == 'profile.php') { ?>class="current"<?php } ?>><a href="<?php echo SITE_BASE; ?>/users/profile.php">Update My Profile</a></li>
 					
 				<?php
 				if(is_admin()) {
