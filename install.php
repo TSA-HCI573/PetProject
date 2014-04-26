@@ -177,6 +177,16 @@ primary key (Id))";
         echo "<br/> Error creating requests table <br/>". $con->error;
         return;
     }
+     
+$sql="CREATE UNIQUE INDEX index_Requests_UserId ON Requests (userId)";
+	
+        if($con->query($sql) === FALSE)
+    {
+        echo "<br/> Error creating index on Requests table <br/>" . $con->error;
+
+        return;
+    }
+    
     
           //create volunteers table
     $sql ="create table if not exists Volunteers (
