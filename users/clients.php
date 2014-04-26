@@ -62,13 +62,13 @@ function debug_to_console( $data ) {
 ?>
 <head>
 <title>Pet Owners Seeking Assistance</title>
-<link rel="stylesheet" type="text/css" media="all" href="..includes/styles/styles.css" />
-<link rel="stylesheet" href="../includes/js/jquery-ui.css">
-<link rel="stylesheet" href="../includes/styles/client.css">
 
 
 <script src="../includes/js/jquery-1.10.2.js"></script>
 <script src="../includes/js/jquery-ui-1.10.4.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="../includes/styles/styles.css" />
+<link rel="stylesheet" href="../includes/js/jquery-ui.css">
+<link rel="stylesheet" href="../includes/styles/client.css">
 <script>
 //Form processing function start
 $(function()

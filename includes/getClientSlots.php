@@ -14,7 +14,7 @@
 
         $slot['Address'] = buildAddress($s);
         $slot['Services'] = buildServices($s);
-        $slot['StartDate'] =['BeginDate'];
+        $slot['StartDate'] =$s['BeginDate'];
 
         return $slot;
     }

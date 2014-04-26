@@ -25,12 +25,33 @@ function buildSlotBoxes(slots, day, time, userid)
         var slot = slots[i];
         if(slot.Day == day && slot.Time == time)
         {
-            slotsBoxHtml += "<div class='volunteer'><input type='checkbox' value='" + day + "," +time + "," + slot.VolunteerId +"' ";                    if(slot.ClientId ==userid)
+            slotsBoxHtml += "<div class=\"volunteer\" ";
+            //Begin Tooltip;
+            slotsBoxHtml += " title=\"";
+            slotsBoxHtml += "<span class='tooltip1'> <p class='tooltipName'>"
+            + slot.FirstName + " " + slot.LastName + "</p>" + slot.Address +
+            "</span> <span class='tooltip2'> Needs: <br />";  
+
+            for(var j=0; j < slot.Services.length; j++)
+            {
+                var s = slot.Services[j];
+                slotsBoxHtml += "<span class='serviceBlock'>" + s + "</span>";
+            }
+            slotsBoxHtml += "<br /> <br /> Starting On: <br />"
+                + slot.StartDate +"</span>";
+
+                
+            slotsBoxHtml +="\">"; 
+            //End Tooltip
+
+            slotsBoxHtml += "<input type=\"checkbox\" value=\"" + 
+                day + "," +time + "," + slot.VolunteerId +"\" ";                    
+            if(slot.ClientId ==userid)
             {
                 slotsBoxHtml += "checked ";
             }
-            slotsBoxHtml += " >"; 
-
+            slotsBoxHtml += ">";
+            
             slotsBoxHtml += slot.FirstName + " " + slot.LastName; 
             slotsBoxHtml += "</input></div> <br />";
         }
@@ -109,6 +130,15 @@ function applyJQuery()
             getSlots();
         });
     }); 
+
+    $(document).tooltip(
+    {
+        content: function() 
+        {
+            return $(this).attr('title');
+        }
+    });
+
 }
 $(document).ready(function()
 {

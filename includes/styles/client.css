@@ -41,5 +41,10 @@
     color:black;
     border:0.1em solid #AAAAAA;
 }
+.ui-tooltip
+{
+    background:white;
+    width 10em;
+}
 
 

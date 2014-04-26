@@ -415,3 +415,41 @@ textarea {
 	margin: 20px;
 	padding: 10px;
 }
+
+.tooltip1
+{
+   float: left;
+   width: 50%;
+   background:white;
+   box-sizing: border-box;
+   /*border:0.1em solid #AAAAAA;*/
+   display:inline;
+}
+.tooltipName
+{
+    font-size: 1em;
+    font-weight:bold;
+}
+
+.tooltip2
+{
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    display:inline;
+}
+
+.serviceBlock
+{
+    background:#dd6b05;
+    color:white;
+    padding: 0.2em;
+    border-radius: .2em;
+}
+
+.ui-tooltip
+{
+    background:white;
+    width 10em;
+}
+
