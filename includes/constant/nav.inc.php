@@ -133,7 +133,7 @@
             if(in_array("Volunteer", $userRole))
             {
 			    echo "<li ";
-                if(basename($_SERVER['SCRIPT_NAME']) == 'volunteer.php') { echo "class=\"current2\""; }
+                if(basename($_SERVER['SCRIPT_NAME']) == 'volunteers.php') { echo "class=\"current\""; }
             
                 echo" >";
                 echo "<a href='". SITE_BASE . "/users/volunteers.php'>Volunteer My Services</a>";
@@ -144,7 +144,7 @@
             if(in_array("Client", $userRole))
             {
                 echo "<li ";
-                if(basename($_SERVER['SCRIPT_NAME']) == 'client.php') { echo "class=\"current2\""; }
+                if(basename($_SERVER['SCRIPT_NAME']) == 'clients.php') { echo "class=\"current\""; }
 
                 echo " >";
                 echo "<a href='" . SITE_BASE . "/users/clients.php'>Request Pet Assistance</a>";

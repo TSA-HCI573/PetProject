@@ -20,8 +20,20 @@
 
         if(!!(day[index].client))
         {
-            result += "<p class='clientBlock' title='" + day[index].client + "<br>" + day[index].address +"' >" + day[index].client + "</p>";
+            result += "<p class=\"clientBlock\" title=\"<span class='tooltip1'> <p class='tooltipName'>"
+                + day[index].client + "</p>" + day[index].address +
+                "</span> <span class='tooltip2'> Needs: ";  
+
+            for(var i=0; i < day[index].services.length; i++)
+            {
+                var s = day[index].services[i];
+                result += "<span class='serviceBlock'>" + s + "</span>";
+            }
+
+            result += "<br /> <br /> Starting On: <br />"
+                +day[index].startDate +"</span>\" >" + day[index].client + "</p>";
         }
+
         result += "<p class='hiddenTime'>"+day[index].time +"</p>";
         result += "<p class='hiddenDay'>"+dayName+"</td>";
         return result;
