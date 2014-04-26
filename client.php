@@ -43,12 +43,14 @@ return_meta();
 		<div class="sidebar">
 		<h3>Get started!</h3>
 		<p>To get started with your request, you need to: 
-		<ol><li>Go to <a href="<?php echo SITE_BASE; ?>/register.php">register</a> and complete the form.</li>
-		<li>Select the Pet Owner option.</li> 
-		<li>Fill out all of your information on the Pet Owner form.</li>
-		<li>Use the <a href="x">Match Tool</a> to view possible volunteers and select one.</li>
+		<ol><li><a href="<?php echo SITE_BASE; ?>/register.php">Register</a> on this site.</li>
+		<li>Log in using the Login link.</li> 
+		<li>Fill out all of your information on your profile.</li>
+		<li>Use the <a href="x">Match Tool</a> to provide the details of your request and find a volunteer.</li>
 		</ol>
-		<p>If you need help, you can call Pet Project and we will assist you with the form.</p>
+		<h3>Need help?</h3>
+		<p>If you need help, you can call Pet Project at 515-111-2222 and we will assist you with the form.</p>
+		<h3>Paper form</h3>
 		<p>If you know someone that would like to register who doesn't have a computer, they can print out the paper <a href="x">Pet Owner Form</a> and mail it to Pet Project.</p> 
 		
 					
