@@ -92,7 +92,7 @@ return_meta($meta_title);
 		else { //if isset($msg) returns false, then we are here -- now we just show the form as before
 		?>
 			<!-- back in HTML mode -->
-			
+			<h1>Registration</h1>
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="register_form">
 
 			<table cellspacing="5" cellpadding="5" border="0">
@@ -113,16 +113,20 @@ return_meta($meta_title);
 			</table>
 			</form>
 			
-			
-<p>Above is the registration form from HW4 (not completed). Will our users register separately from filling out the volunteer or client form? If so, how will they get to the appropriate forms? If not, how do do they choose volunteer or client, fill out the proper form area, and become registered as a client or a volunteer?</p>
-			
-			
+				
 		<?php 
 			//finally, we enter PHP mode again to close the curly bracket that is after 'else' 
 		}
 		?>
 </div>
+<div class="sidebar">
+         <h3>Next Step: Create your profile</h3>
+        <p>After you register, there will be a link to login. There you will add more details about who you are and you'll indicate if you're a pet owner looking for help or a volunteer.</p>                      
+        </div>
 </div>
+<div id="footer">
+    <?php include 'includes/constant/footer.inc.php'; ?>
+    </div>
 </div>
 </body>
 </html>
