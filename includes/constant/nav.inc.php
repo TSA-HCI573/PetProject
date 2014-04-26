@@ -3,7 +3,7 @@
 <div class="header">
 
 	<div class="imageleft">
-    <img src="<?php echo SITE_BASE . "/images/dog_and_cat_green_bg.jpg"?>">
+    <img src="<?php echo SITE_BASE . "/images/petproject_logo.jpg"?>">
 	</div>
 	
 	<div class="admin">
