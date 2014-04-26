@@ -30,7 +30,7 @@ function buildSlotBoxes(slots, day, time, userid)
             slotsBoxHtml += " title=\"";
             slotsBoxHtml += "<span class='tooltip1'> <p class='tooltipName'>"
             + slot.FirstName + " " + slot.LastName + "</p>" + slot.Address +
-            "</span> <span class='tooltip2'> Needs: <br />";  
+            "</span> <span class='tooltip2'> Provides: <br />";  
 
             for(var j=0; j < slot.Services.length; j++)
             {
