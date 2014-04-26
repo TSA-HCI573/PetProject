@@ -16,11 +16,16 @@
         }
         return true;
     }
+    
     echo "php started <br/>";
+    
+    //see if I can establish a connection to the database
     $con = new mysqli("localhost", "hci573","hci573","petproject");
-
+    
+	
     if( $con->connect_errno)
     {
+    	echo "db doesn't exist, create it";
         //If Database doesn't exist try to create it
         $con = new mysqli("localhost", "hci573","hci573");
         if($con->connect_errno)
@@ -38,7 +43,44 @@
                 return;
             }
         }
-    }
+   	 }
+   	 else //no error so drop the database
+   	 {
+   	 	$sql="drop database petproject";
+            if($con->query($sql)=== FALSE)
+            { //Couldn't drop databasei, exit
+                echo "<br/>Error dropping sql database: " . $con->error;
+                return;
+            }
+            else //dropped it now recreate it
+            {
+           		 $con = new mysqli("localhost", "hci573","hci573");
+                if($con->connect_errno)
+        		{
+         		   //Couldn't connect so we can't create nuthin, exit
+         		   echo "Failed to Connect to mysql: " . mysqli_connect_error($con);
+           		 return;
+        		}
+        		else// We could connect so lets try to create
+        		{
+            		$sql="create database petproject";
+            		if($con->query($sql)=== FALSE)
+            		{ //Couldn't create databasei, exit
+                	echo "<br/>Error creating sql database: " . $con->error;
+                	return;
+           			 }
+        		}
+            
+            }
+   	 }
+    
+    $con = new mysqli("localhost", "hci573","hci573","petproject");
+        if( $con->connect_errno)
+        {
+        	echo "Failed to get connection to new petproject db";
+        	return;
+        }
+        
     //If we are here we should be connected to a database
     echo " database creation successful ";
     //create users table
@@ -48,7 +90,6 @@ FirstName varchar(100),
 LastName varchar(100),
 Email varchar(100),
 Password varchar(100),
-UserType int(11),
 md5_id varchar(200),
 UserName varchar(100),
 Address1 varchar(100),
@@ -84,17 +125,18 @@ primary key (Id))";
         return;
     }
     
-        $sql= "create table if not exists cd_UserRoles(
-Id bigint(20) not null auto_increment,
-UserType varchar(9),
-primary key (Id))";
-
-    if($con->query($sql) === FALSE)
+ 
+ $sql="CREATE UNIQUE INDEX index_UserId
+	ON UserRole (userId)";
+	
+        if($con->query($sql) === FALSE)
     {
-        echo "<br/> Error creating cd_userRoles table <br/>" . $con->error;
+        echo "<br/> Error creating index on UserRole table <br/>" . $con->error;
 
         return;
     }
+    
+    
     
     
     $sql ="create table if not exists MatchUps(
@@ -157,7 +199,7 @@ primary key (Id))";
         return;
     }
     
-    echo "<br/>Database Creation Sucessful<br/> ";
+
 
 
     require 'includes/constant/config.inc.php';
@@ -173,7 +215,7 @@ primary key (Id))";
         $sql = "insert into UserRole (UserId,UserType) values(1, 'Volunteer')";
         if($con->query($sql))
         {
-            echo "Succesfully Populated UserRole";
+            echo "<br/>Succesfully Populated UserRole";
         }
         else
         {
@@ -182,27 +224,7 @@ primary key (Id))";
         $sql = "insert into UserRole (UserId,UserType) values(2, 'Client')";
         if($con->query($sql))
         {
-            echo "Succesfully Populated UserRole";
-        }
-        else
-        {
-            echo $con->error;
-        }
-        
-    	$sql = "insert into cd_UserRoles (UserType) values('Volunteer')";
-        if($con->query($sql))
-        {
-            echo "Succesfully Populated cd_UserRole";
-        }
-        else
-        {
-            echo $con->error;
-        }
-        
-        $sql = "insert into cd_UserRoles (UserType) values('Client')";
-        if($con->query($sql))
-        {
-            echo "Succesfully Populated cd_UserRole";
+            echo "<br/>Succesfully Populated UserRole";
         }
         else
         {

@@ -10,29 +10,30 @@ $msg = NULL;
 
 if(isset($_POST['update']))
 {
+//update for users table
 $update = "UPDATE ".USERS." SET firstname = '".filter($_POST['firstname']).
 "', lastname = '".filter($_POST['lastname']).
 "', username = '".filter($_POST['username']).
-"', usertype = '".filter($_POST['usertype']).
 "', email = AES_ENCRYPT('".filter($_POST['email'])."', '$salt') ".
 ", address1 = '".filter($_POST['address1']).
 "', address2 = '".filter($_POST['address2']).
 "', city = '".filter($_POST['city']).
 "', state = '".filter($_POST['state']).
 "', zipcode = '".filter($_POST['zip']).
-"', bio = '".filter($_POST['bio'])."'";
+"', bio = '".filter($_POST['bio'])."'".
+" WHERE id = ".$_SESSION['UserId'];
 
+//update/insert for userrole table
+$userRoleUpdate = "REPLACE INTO ".USERROLE." (UserId, UserType) VALUES(".$_SESSION['UserId'].
+", '".filter($_POST['usertype'])."')";
 
-// if(!empty($_POST['newpass']))
-// {
-// $update .= ", usr_pwd = '".hash_pass(filter($_POST['newpass']))."'";
-// }
-
-$update .= " WHERE id = ".$_SESSION['UserId'];
-//echo $update;
 $run_update = mysql_query($update) or die(mysql_error());
-//echo $run_update;
-if($run_update)
+
+$run_user_role_update = mysql_query($userRoleUpdate) or die(mysql_error());
+
+echo $userRoleUpdate;
+
+if($run_update && $run_user_role_update)
 {
 $msg = "Profile updated successfully!";
 }
@@ -69,19 +70,13 @@ echo '<div class="success">'.$msg.'</div>';
 // echo "user_id:  " .$_SESSION['user_id'];
 
 
-$sql = "SELECT *, AES_DECRYPT(email, '$salt') AS decryptedEmail FROM ".USERS." WHERE Id = ".$_SESSION['UserId'];
+$sql = "SELECT ". USERS. ".*, " . USER_ROLE . ".UserType, AES_DECRYPT(".USERS.".email, '$salt') AS decryptedEmail FROM ".USERS." left join " . USER_ROLE . " on " .
+USERS . ".id = ".USER_ROLE . ".userId  WHERE ". USERS. ".Id = ".$_SESSION['UserId'];
 
 $in = mysql_query($sql) or die("Unable to get your info!");
 
 while($r = mysql_fetch_array($in))
 {
-
-// 	if ($r['UserType'] == '1'){
-// 		echo "Volunteer";}
-// 	elseif  ($r['UserType'] == '2'){
-// 		echo "Client";}
-// 	else{
-// 		echo $r['UserType'];}
 ?>
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="profile_form">
@@ -132,8 +127,8 @@ while($r = mysql_fetch_array($in))
 <td>
 <select name="usertype" id="usertype" value="<?php echo $r['userrole']; ?>"/>
 <option value=""  <?php if($r['UserType'] == "") {echo selected;} ?>></option>
-<option value="1" <? if ($r['UserType'] == 1) { echo "selected"; } ?>>Volunteer</option>
-<option value="2" <?php if($r['UserType'] == 2) {echo selected;}?>>Need Pet Assistance</option>
+<option value="Volunteer" <? if ($r['UserType'] == 'Volunteer') { echo "selected"; } ?>>Volunteer</option>
+<option value="Client" <?php if($r['UserType'] == 'Client') {echo selected;}?>>Need Pet Assistance</option>
 <!-- 
 
 <option VALUE="1"> Volunteer </option>
