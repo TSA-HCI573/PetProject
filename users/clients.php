@@ -107,9 +107,11 @@ secure_page(); ?>
 <div class="main">
 
 <h1>Request Pet Assistance</h1>
+<h2>Times/days available</h2>
+<p>Click on grid to select an available volunteer.</p>
 <table id='scheduleTable'>
 </table>
-
+<h2>Preferences and requirements </h2>
 <form method="post" name="form" id="form">
 <table>
 <tr><td>Start Date: </td>
