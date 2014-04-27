@@ -21,7 +21,7 @@
         if(!!(day[index].firstName))
         {
             result += "<p class=\"clientBlock\" title=\"<span class='tooltip1'> <p class='tooltipName'>"
-                + day[index].client + "</p>" + day[index].address +
+                + day[index].firstName + day[index].lastName + "</p>" + day[index].address +
                 "</span> <span class='tooltip2'> Needs: ";  
 
             for(var i=0; i < day[index].services.length; i++)
