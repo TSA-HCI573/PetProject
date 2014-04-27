@@ -20,8 +20,9 @@
 
         if(!!(day[index].firstName))
         {
-            result += "<p class=\"clientBlock\" title=\"<span class='tooltip1'> <p class='tooltipName'>"
-                + day[index].firstName + day[index].lastName + "</p>" + day[index].address +
+            result += "<p class=\"clientBlock\" title=\"<span class='tooltip1'> <span class='tooltipName'>"
+                + day[index].firstName + " " + day[index].lastName + "</span> <br />" + 
+                 day[index].address + "<br /> <strong> Owns a " + day[index].petType + "</strong> <br />" +
                 "</span> <span class='tooltip2'> Needs: ";  
 
             for(var i=0; i < day[index].services.length; i++)
@@ -30,8 +31,9 @@
                 result += "<div class='serviceBlock'>" + s + "</div>";
             }
 
-            result += "<br /> <br /> Starting On: <br />"
-                +day[index].startDate +"</span>\" >" + day[index].firstName +"<br /> " + day[index].lastName + "</p>";
+            result += "<br /> Starting On: <br />"
+                +day[index].startDate + "</span>" 
+                + "\" >" + day[index].firstName +"<br /> " + day[index].lastName + "</p>";
         }
 
         result += "<p class='hiddenTime'>"+day[index].time +"</p>";

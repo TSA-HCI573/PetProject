@@ -36,6 +36,7 @@
                 $slot['address'] = buildAddress($s);
                 $slot['services'] = buildServices($s);
                 $slot['startDate'] = $s['BeginDate'];
+                $slot['petType'] = $s['PetType'];
             }
         }
         return $slot;

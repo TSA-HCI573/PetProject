@@ -37,7 +37,8 @@ function buildSlotBoxes(slots, day, time, userid)
                 var s = slot.Services[j];
                 slotsBoxHtml += "<div class='serviceBlock'>" + s + "</div>";
             }
-            slotsBoxHtml += "<br /> <br /> Starting On: <br />"
+            slotsBoxHtml +="<strong>For a " + slot.PetType + "</strong>"; 
+            slotsBoxHtml += "<br /><br /> Starting On: <br />"
                 + slot.StartDate +"</span>";
 
                 

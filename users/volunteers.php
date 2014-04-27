@@ -53,7 +53,7 @@ secure_page(); ?>
                 success: function()
                 {
                     //Show, then hide success msg
-                    $('.success').fadeIn(2000).show().html('Pet Assistance Requested. ').fadeOut(6000); 
+                    $('.success').fadeIn(2000).show().html('Volunteer Info Updated. ').fadeOut(6000); 
                     resetForm('form');
                     getVolunteerInfo();
                     $('.error').fadeOut(2000).hide(); //If showing error, fade out

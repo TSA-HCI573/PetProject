@@ -15,6 +15,7 @@
         $slot['Address'] = buildAddress($s);
         $slot['Services'] = buildServices($s);
         $slot['StartDate'] =$s['BeginDate'];
+        $slot['PetType'] = $s['PetType'];
 
         return $slot;
     }
@@ -22,7 +23,7 @@
     function GetAvailableSlots($userId)
     { 
         $sql =
-            "select 
+            "select distinct 
                 m.Time, 
                 m.Day,
                 m.ClientId,
