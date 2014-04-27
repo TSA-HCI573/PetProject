@@ -31,8 +31,10 @@
 {
     background:#dd6b05;
     color:white;
-    border-radius:0.2em;
+    border-radius:0.5em;
     margin: 0.3em;
+    padding: 0.3em;
+    text-align: right;
 }
 
 #scheduleTable .slot

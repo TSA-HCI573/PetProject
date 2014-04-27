@@ -18,7 +18,7 @@
             result +=" <p class='cellText'>Click here to<br />post availability <br /> for this time</p>";
         }
 
-        if(!!(day[index].client))
+        if(!!(day[index].firstName))
         {
             result += "<p class=\"clientBlock\" title=\"<span class='tooltip1'> <p class='tooltipName'>"
                 + day[index].client + "</p>" + day[index].address +
@@ -27,11 +27,11 @@
             for(var i=0; i < day[index].services.length; i++)
             {
                 var s = day[index].services[i];
-                result += "<span class='serviceBlock'>" + s + "</span>";
+                result += "<div class='serviceBlock'>" + s + "</div>";
             }
 
             result += "<br /> <br /> Starting On: <br />"
-                +day[index].startDate +"</span>\" >" + day[index].client + "</p>";
+                +day[index].startDate +"</span>\" >" + day[index].firstName +"<br /> " + day[index].lastName + "</p>";
         }
 
         result += "<p class='hiddenTime'>"+day[index].time +"</p>";

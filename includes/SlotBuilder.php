@@ -54,7 +54,10 @@
         {
             $services[] = "Foster Care";
         }
-
+        if($s['Transport'] ==1)
+        {
+            $services[] = "Transportation";
+        }
         if($s['Other'] != "")
         {
             $services[] = $s['Other'];

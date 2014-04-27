@@ -11,9 +11,9 @@
     {
         $slot = array();
         $slot['time'] = $time; 
-        $slot['client'] = "";
         $slot['volunteer'] = false;
-        
+        $slot['lastName'] = "";
+        $slot['firstName'] = "";
 
         foreach($mySlots as $s)
         {
@@ -22,14 +22,18 @@
             {
                 $slot['volunteer'] = true;
                 $name ="";
-                if($s['FirstName'] != null
-                    && $s['LastName'] != null)
+                
+                if($s['FirstName'] != null)
                 {
-                    $name = $s['FirstName']. " " . $s['LastName'];
+                    $slot['firstName'] = $s['FirstName'];
+                }
+                if($s['LastName'] != null)
+                {
+                    $slot['lastName'] = $s['LastName'];
                 }
 
+
                 $slot['address'] = buildAddress($s);
-                $slot['client'] = $name;
                 $slot['services'] = buildServices($s);
                 $slot['startDate'] = $s['BeginDate'];
             }

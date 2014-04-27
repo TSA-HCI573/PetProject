@@ -35,7 +35,7 @@ function buildSlotBoxes(slots, day, time, userid)
             for(var j=0; j < slot.Services.length; j++)
             {
                 var s = slot.Services[j];
-                slotsBoxHtml += "<span class='serviceBlock'>" + s + "</span>";
+                slotsBoxHtml += "<div class='serviceBlock'>" + s + "</div>";
             }
             slotsBoxHtml += "<br /> <br /> Starting On: <br />"
                 + slot.StartDate +"</span>";
@@ -52,7 +52,7 @@ function buildSlotBoxes(slots, day, time, userid)
             }
             slotsBoxHtml += ">";
             
-            slotsBoxHtml += slot.FirstName + " " + slot.LastName; 
+            slotsBoxHtml += slot.FirstName + " <br /> " + slot.LastName; 
             slotsBoxHtml += "</input></div> <br />";
         }
     } 

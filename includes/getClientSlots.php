@@ -47,13 +47,12 @@
             from 
                 MatchUps m left outer join Users u on 
                     m.VolunteerId = u.Id 
-            left outer join Requests r on 
+                left outer join Volunteers r on 
                     m.VolunteerId = r.UserId
 
             where 
                 ClientId = $userId or
                 ClientId is null;";
-
 
         $con = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME); 
 
@@ -80,8 +79,7 @@
     }
 
     
-    //$userid = $_POST['userid'];
-    $userid= 2;
+    $userid = $_GET['userid'];
     GetAvailableSlots($userid);
 
 ?>

@@ -24,7 +24,7 @@ $update = "UPDATE ".USERS." SET firstname = '".filter($_POST['firstname']).
 " WHERE id = ".$_SESSION['UserId'];
 
 //update/insert for userrole table
-$userRoleUpdate = "REPLACE INTO ".USERROLE." (UserId, UserType) VALUES(".$_SESSION['UserId'].
+$userRoleUpdate = "REPLACE INTO ".USER_ROLE." (UserId, UserType) VALUES(".$_SESSION['UserId'].
 ", '".filter($_POST['usertype'])."')";
 
 $run_update = mysql_query($update) or die(mysql_error());
