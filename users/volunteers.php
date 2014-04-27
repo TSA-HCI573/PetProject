@@ -4,7 +4,7 @@ include_once '../includes/constant/config.inc.php';
 secure_page(); ?>
 
 <head>
-<title>Pet Owners Seeking Assistance</title>
+<title>Volunteer My Services</title>
 <link rel="stylesheet" type="text/css" media="all" href="../includes/styles/styles.css" />
 <link rel="stylesheet" href="../includes/js/jquery-ui.css">
 <link rel="stylesheet" href="../includes/styles/volunteer.css">
@@ -107,9 +107,11 @@ secure_page(); ?>
 <div class="main">
 
 <h1>Volunteer</h1>
+<h2>Times/days available</h2>
+<p>Click on grid to show the days and times you're available.</p>
 <table id='scheduleTable'>
 </table>
-
+<h2>Preferences and requirements </h2>
 <form method="post" name="form" id="form">
 <table>
 <tr><td>Start Date: </td>
