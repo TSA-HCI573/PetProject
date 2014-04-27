@@ -56,9 +56,7 @@ $msg = "Profile updated successfully!";
 <div class="main">
 
 
-<h2>  
-<!-- <?php echo $_SESSION['FirstName']; ?>!  -->
-Please keep your profile information updated to ensure that the most pet-owners in need get connected with the best resources. </h2>
+
 
 
 <?php
@@ -78,32 +76,47 @@ $in = mysql_query($sql) or die("Unable to get your info!");
 while($r = mysql_fetch_array($in))
 {
 ?>
-
+<h1>My Profile</h1>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="profile_form">
 <table cellspacing="5" cellpadding="5" border="0">
 <tr>
+<td colspan="2"><label>Are you a pet owner needing help or a volunteer wanting to help?</label></td></tr>
+<tr>
+<td/>
+<td>
+<select name="usertype" id="usertype" value="<?php echo $r['userrole']; ?>"/>
+<option value=""  <?php if($r['UserType'] == "") {echo selected;} ?>></option>
+<option value="Volunteer" <? if ($r['UserType'] == 'Volunteer') { echo "selected"; } ?>>Volunteer</option>
+<option value="Client" <?php if($r['UserType'] == 'Client') {echo selected;}?>>Need Pet Assistance</option>
+</select> </td>
+</tr>
+<tr>
 <td>First Name</td>
-<td><input type="text" name="firstname" value="<?php echo $r['FirstName']; ?>" /></td>
+<td><input type="text" size = "35" name="firstname" value="<?php echo $r['FirstName']; ?>" /></td>
 </tr>
    <tr>
 <td>Last Name</td>
-<td><input type="text" name="lastname" value="<?php echo $r['LastName']; ?>" /></td>
+<td><input type="text" size = "35" name="lastname" value="<?php echo $r['LastName']; ?>" /></td>
 </tr>
    <tr>
 <td>Username</td>
-<td><input type="text" name="username" value="<?php echo $r['UserName']; ?>" /></td>
+<td><input type="text" size = "35" name="username" value="<?php echo $r['UserName']; ?>" /></td>
+</tr>
+<tr>
+<td>Email</td>
+<td><input type="text" size = "35" name="email" value="<?php echo $r['decryptedEmail']; ?>" /></td>
 </tr>
 <tr>
 <td>Address 1</td>
-<td><input type="text" name="address1" value="<?php echo $r['Address1']; ?>" /></td>
+<td><input type="text" size = "35" name="address1" value="<?php echo $r['Address1']; ?>" /></td>
 </tr>
 <tr>
 <td>Address 2</td>
-<td><input type="text" name="address2" value="<?php echo $r['Address2']; ?>" /></td>
+<td><input type="text" size = "35" name="address2" value="<?php echo $r['Address2']; ?>" /></td>
 </tr>
 <tr>
 <td>City</td>
-<td><input type="text" name="city" value="<?php echo $r['City']; ?>" /></td>
+<td><input type="text" size = "35" name="city" value="<?php echo $r['City']; ?>" /></td>
 </tr>
 <tr>
 <td>State</td>
@@ -113,36 +126,13 @@ while($r = mysql_fetch_array($in))
 <td>Zip</td>
 <td><input type="text" name="zip" value="<?php echo $r['ZipCode']; ?>" /></td>
 </tr>
-<tr>
-<td>Email</td>
-<td><input type="text" name="email" value="<?php echo $r['decryptedEmail']; ?>" /></td>
-</tr>
+
 <tr>
 <td>About Me</td>
-<td><input type="text" name="bio" rows="5" maxlength="300" value="<?php echo $r['Bio']; ?>" /></td>
+<td><textarea rows="5" cols="35" name="bio"><?php echo $r['Bio']; ?></textarea></td>
+<!-- <td><type="text" name="bio" rows="5" maxlength="300" value="<?php echo $r['Bio']; ?>" /></td> -->
 
 </tr>
-<tr>
-<td><label>User Type</label></td>
-<td>
-<select name="usertype" id="usertype" value="<?php echo $r['userrole']; ?>"/>
-<option value=""  <?php if($r['UserType'] == "") {echo selected;} ?>></option>
-<option value="Volunteer" <? if ($r['UserType'] == 'Volunteer') { echo "selected"; } ?>>Volunteer</option>
-<option value="Client" <?php if($r['UserType'] == 'Client') {echo selected;}?>>Need Pet Assistance</option>
-<!-- 
-
-<option VALUE="1"> Volunteer </option>
-<option VALUE="2"> Needing Pet Assistance </option>
- -->
-</select> </td>
-</tr>
-<!-- 
-<tr>
-<td>New Password</td>
-<td><input type="text" name="newpass" /></td>
-</tr>
- -->
-
 <td colspan="2" align="center">
 <input type="submit" name="update" value="Update Profile" />
 </td>
@@ -155,7 +145,8 @@ while($r = mysql_fetch_array($in))
 ?>
 </div>
 <div class="sidebar">
-<p>Here is sidebar content such as tips, brag facts, resources and links, upcoming events</p>
+<h3>Keep your information current!</h3>
+<p>Please keep your profile information updated to ensure that the most pet-owners in need get connected with the best resources. </p>
 </div>
 </div>
 <div id="footer">
