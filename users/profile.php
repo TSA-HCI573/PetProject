@@ -31,12 +31,20 @@ $run_update = mysql_query($update) or die(mysql_error());
 
 $run_user_role_update = mysql_query($userRoleUpdate) or die(mysql_error());
 
-echo $userRoleUpdate;
-
 if($run_update && $run_user_role_update)
 {
-$msg = "Profile updated successfully!";
+    $msg = "Profile updated successfully!";
+
+    if( filter($_POST['usertype']) == "Volunteer")
+    {
+        header("Location: " . SITE_BASE . "/users/volunteers.php");
+    }
+    else if (filter($_POST['usertype']) == "Client")
+    {
+        header("Location: " . SITE_BASE . "/users/clients.php");
+    }
 }
+
 
 }
 ?>
@@ -86,7 +94,7 @@ while($r = mysql_fetch_array($in))
 <td>
 <select name="usertype" id="usertype" value="<?php echo $r['userrole']; ?>"/>
 <option value=""  <?php if($r['UserType'] == "") {echo selected;} ?>></option>
-<option value="Volunteer" <? if ($r['UserType'] == 'Volunteer') { echo "selected"; } ?>>Volunteer</option>
+<option value="Volunteer" <? if ($r['UserType'] == 'Volunteer') { echo "selected"; } ?>Volunteer</option>
 <option value="Client" <?php if($r['UserType'] == 'Client') {echo selected;}?>>Need Pet Assistance</option>
 </select> </td>
 </tr>
