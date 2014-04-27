@@ -5,19 +5,17 @@
 #scheduleTable
 {
     border-collapse:collapse;
-    margin-left: -1.3em ;
     margin-bottom: 2em;
 }
 
 #scheduleTable td
 {
-    width: 2em;
 }
 
 .labelColumn
 {
     border:0.1em white;
-    color:#dd6b05;
+    color:#447772;
     background:white;
     width: 2em;
     font-weight:bold;
@@ -31,9 +29,8 @@
 #scheduleTable th
 {
     border:0.1em solid white;
-    color:#dd6b05;
+    color:#447772;
     background:white;
-    width 2em;
 }
 
 .slot
@@ -42,6 +39,7 @@
     background:#BFE54B;
     color:black;
     border:0.1em solid #AAAAAA;
+    width: 6.5em;
 }
 .cellText
 {

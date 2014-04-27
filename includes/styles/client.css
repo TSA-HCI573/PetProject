@@ -1,7 +1,7 @@
 #scheduleTable
 {
     border-collapse:collapse;
-    margin-left: -2.3em ;
+    /*margin-left: -2.3em ;*/
     margin-bottom: 2em;
 
 }
@@ -9,9 +9,15 @@
 #scheduleTable td
 {
     border:0.1em solid white;
-    min-width:5em;
-    color:#dd6b05;
+}
 
+.labelColumn
+{
+    border:0.1em white;
+    color:#447772;
+    background:white;
+    width: 1em;
+    font-weight:bold;
 }
 
 #scheduleTable tr
@@ -24,7 +30,7 @@
     border:0.1em solid white;
     width 5em;
     background:white;
-    color:#dd6b05;
+    color:#447772;
 }
 
 .volunteer
@@ -39,9 +45,10 @@
 
 #scheduleTable .slot
 {
-    background:#BFE54B;
-    color:black;
-    border:0.1em solid #AAAAAA;
+    background: #BFE54B;
+    color: black;
+    border: 0.1em solid #AAAAAA;
+    width: 6.5em;
 }
 .ui-tooltip
 {

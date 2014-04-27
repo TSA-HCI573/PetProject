@@ -70,7 +70,7 @@ function buildRow(time, days, slots, userid)
     }
     else
     {
-        tableHtml += "<td>"+time+"</td>";
+        tableHtml += "<td class='labelColumn'>"+time+"</td>";
     }
     
     var length = days.length;
