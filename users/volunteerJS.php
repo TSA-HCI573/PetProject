@@ -86,7 +86,7 @@
             
             $(".slot").approach(
             {
-                    "opacity": 1.0 
+                "opacity": 1.0,
             }, 200);                    
             $(".selectedSlot").approach(
             {

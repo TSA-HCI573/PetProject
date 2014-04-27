@@ -98,8 +98,8 @@ function buildTable(slots, userid)
         "Friday", "Saturday");
     $('#scheduleTable').html("");
     buildRow("Header", days, slots, userid);
-    buildRow("Morning", days, slots, userid);
-    buildRow("Afternoon", days, slots, userid);
+    buildRow("AM", days, slots, userid);
+    buildRow("PM", days, slots, userid);
 
 }
 

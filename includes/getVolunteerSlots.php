@@ -100,10 +100,10 @@
         foreach($days as $day)
         {
             
-            $slot = AddSlot($mySlots, "Morning",$day);
+            $slot = AddSlot($mySlots, "AM",$day);
             $slots[$day][] = $slot;
 
-            $slot = AddSlot($mySlots, "Afternoon",$day);
+            $slot = AddSlot($mySlots, "PM",$day);
             $slots[$day][] = $slot;
         }
         echo json_encode($slots);
