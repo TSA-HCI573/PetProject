@@ -175,7 +175,7 @@ secure_page(); ?>
 </div>
 </div>
 <div id="footer">
-<?php include 'includes/constant/footer.inc.php'; ?>
+<?php include '../includes/constant/footer.inc.php'; ?>
 </div>
 </div>
 </body>

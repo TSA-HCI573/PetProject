@@ -130,7 +130,7 @@ secure_page(); ?>
 </tr>
 </table><br/>
 <table>
-<tr>Requested Services</tr>
+<tr>Services Provided</tr>
 <tr>
 <td><input type="checkbox" id="dogwalking" name="dogwalking" value="True">
 <label for="dogwalking">Dog Walking</label>
@@ -175,7 +175,7 @@ secure_page(); ?>
 </div>
 </div>
 <div id="footer">
-<?php include 'includes/constant/footer.inc.php'; ?>
+<?php include '../includes/constant/footer.inc.php'; ?>
 </div>
 </div>
 </body>
