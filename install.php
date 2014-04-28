@@ -88,7 +88,7 @@
 Id bigint(20) not null auto_increment,
 FirstName varchar(100),
 LastName varchar(100),
-Email varchar(100),
+Email varbinary(100),
 Password varchar(100),
 md5_id varchar(200),
 UserName varchar(100),
