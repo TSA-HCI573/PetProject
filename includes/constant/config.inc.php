@@ -166,6 +166,13 @@ function add_user($firstname, $lastname, $username, $password, $email)
 	return $err;
 }
 
+function updateUserRole($userid, $usertype)
+{
+    $sql = "REPLACE INTO ".USER_ROLE." (UserId, UserType) VALUES('$userid', '$usertype');"; 
+
+    return mysql_query($sql) or die(mysql_error());
+}
+
 function getUserRole($userid)
 {
     global $db;

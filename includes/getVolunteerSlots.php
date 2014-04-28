@@ -54,6 +54,7 @@
                 m.Day,
                 u.FirstName, 
                 u.LastName,
+                AES_DECRYPT(u.Email, '$salt') AS Email,
                 u.Address1,
                 u.Address2,
                 u.City,

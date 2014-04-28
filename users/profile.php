@@ -10,40 +10,37 @@ $msg = NULL;
 
 if(isset($_POST['update']))
 {
-//update for users table
-$update = "UPDATE ".USERS." SET firstname = '".filter($_POST['firstname']).
-"', lastname = '".filter($_POST['lastname']).
-"', username = '".filter($_POST['username']).
-"', email = AES_ENCRYPT('".filter($_POST['email'])."', '$salt') ".
-", address1 = '".filter($_POST['address1']).
-"', address2 = '".filter($_POST['address2']).
-"', city = '".filter($_POST['city']).
-"', state = '".filter($_POST['state']).
-"', zipcode = '".filter($_POST['zip']).
-"', bio = '".filter($_POST['bio'])."'".
-" WHERE id = ".$_SESSION['UserId'];
+    //update for users table
+    $update = "UPDATE ".USERS." SET firstname = '".filter($_POST['firstname']).
+    "', lastname = '".filter($_POST['lastname']).
+    "', username = '".filter($_POST['username']).
+    "', email = AES_ENCRYPT('".filter($_POST['email'])."', '$salt') ".
+    ", address1 = '".filter($_POST['address1']).
+    "', address2 = '".filter($_POST['address2']).
+    "', city = '".filter($_POST['city']).
+    "', state = '".filter($_POST['state']).
+    "', zipcode = '".filter($_POST['zip']).
+    "', bio = '".filter($_POST['bio'])."'".
+    " WHERE id = ".$_SESSION['UserId'];
 
-//update/insert for userrole table
-$userRoleUpdate = "REPLACE INTO ".USER_ROLE." (UserId, UserType) VALUES(".$_SESSION['UserId'].
-", '".filter($_POST['usertype'])."')";
+    //update/insert for userrole table
+    $run_update = mysql_query($update) or die(mysql_error());
 
-$run_update = mysql_query($update) or die(mysql_error());
+    $run_user_role_update = updateUserRole($_SESSION['UserId'], filter($_POST['usertype']));
 
-$run_user_role_update = mysql_query($userRoleUpdate) or die(mysql_error());
-
-if($run_update && $run_user_role_update)
-{
-    $msg = "Profile updated successfully!";
-
-    if( filter($_POST['usertype']) == "Volunteer")
+    if($run_update && $run_user_role_update)
     {
-        header("Location: " . SITE_BASE . "/users/volunteers.php");
+        $msg = "Profile updated successfully!";
+
+        if( filter($_POST['usertype']) == "Volunteer")
+        {
+            header("Location: " . SITE_BASE . "/users/volunteers.php");
+        }
+        else if (filter($_POST['usertype']) == "Client")
+        {
+            header("Location: " . SITE_BASE . "/users/clients.php");
+        }
     }
-    else if (filter($_POST['usertype']) == "Client")
-    {
-        header("Location: " . SITE_BASE . "/users/clients.php");
-    }
-}
 
 
 }
@@ -94,7 +91,7 @@ while($r = mysql_fetch_array($in))
 <td>
 <select name="usertype" id="usertype" value="<?php echo $r['userrole']; ?>"/>
 <option value=""  <?php if($r['UserType'] == "") {echo selected;} ?>></option>
-<option value="Volunteer" <? if ($r['UserType'] == 'Volunteer') { echo "selected"; } ?>Volunteer</option>
+<option value="Volunteer" <?php if ($r['UserType'] == 'Volunteer') { echo selected; } ?>>Volunteer</option>
 <option value="Client" <?php if($r['UserType'] == 'Client') {echo selected;}?>>Need Pet Assistance</option>
 </select> </td>
 </tr>
