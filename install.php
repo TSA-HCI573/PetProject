@@ -16,7 +16,59 @@
         }
         return true;
     }
+
+    function updateUserDetails($con, $firstName, $address, $city, $state, $zip, $bio)
+    {
+        $sql = "update Users 
+                set 
+                    FirstName = '$firstName', 
+                    Address1='$address', 
+                    City='$city', 
+                    State = '$state',
+                    ZipCode = '$zip',
+                    Bio = '$bio'
+                where 
+                    FirstName = '$firstName';";
+
+        if($con->query($sql) === FALSE)
+        {
+            echo "<br/> Error updating user info <br/>" . $con->error;
+            return;
+        }
+    }
+
+    function updateMatchUpTable($con, $volunteer, $client, $day, $time)
+    {
+        $sql = "insert into MatchUps(ClientId, VolunteerId, Day, Time)
+            values($client,$volunteer,'$day', '$time');";
+        //echo "<br />$sql <br />";
+
+        if($con->query($sql) === FALSE)
+        {
+            echo "<br/> Error updating MatchUps <br/>" . $con->error;
+            return;
+        }
+    }
+
+    function updateVolunteerAndRequest($con, $table, $userid, $beginDate, $petType, $dw, $g, 
+        $a, $df, $t, $fc, $other)
+    {
+        $sql = "
+            insert into $table(
+                UserId, BeginDate, PetType, DogWalking, Grooming, AdministerMeds, DeliverFood,
+                Transport, FosterCare, Other)
+            values(
+                $userid, Date('$beginDate'), '$petType', $dw, $g, $a, $df, $t, $fc, '$other');";
+
+        if($con->query($sql) === FALSE)
+        {
+            echo "<br/> Error updating Volunteers <br/>" . $con->error;
+            return;
+        }
+    }
+
     
+
     echo "php started <br/>";
     
     //see if I can establish a connection to the database
@@ -217,31 +269,54 @@ primary key (Id))";
     
     if(isTableEmpty($con, "Users"))
     {
-        add_user("user1", "user1", "user1", "pass", "user1@user1.com");
-        add_user("user2", "user2", "user2", "pass", "user2@user2.com");
+        add_user("Anne", "Hatheway", "user1", "pass", "anne.hatheway@notreal.com");
+        updateUserDetails($con, "Anne", "213 E Shawnee Ave", "Des Moines",
+            "IA", "50313", "I am great with Dogs and I have 5yrs experience" );
+        add_user("John", "Smith", "user2", "pass", "john.smith@notreal.com");
+        updateUserDetails($con, "John", "1318 Main St", "Norwalk",
+            "IA", "50211", "I am a paraplegic Vet. with a Cockatiel" );
+        add_user("Heinrich", "Dudiekerbaumer", "user3", "pass", "heinrich.d@notreal.com");
+        updateUserDetails($con, "Heinrich", "1301 Beckley St.", "Ames",
+            "IA", "50010", "I am a new volunteer and excited to start helping!" );
+        add_user("Luis", "Verde", "user4", "pass", "luis.verde@notreal.com");
+        updateUserDetails($con, "Luis", "203 Story St.", "Slater",
+            "IA", "50244", "I am a retired school teacher that loves animals" );
+        add_user("Julie", "O\'Brian", "user5", "pass", "july.obrian@notreal.com");
+        updateUserDetails($con, "Julie", "16532 Buena Vista Dr.", "Clive",
+            "IA", "50324", "I am a second year student at DMACC." );
+
     }
+
     if(isTableEmpty($con, "UserRole"))
     {
-        $sql = "insert into UserRole (UserId,UserType) values(1, 'Volunteer')";
-        if($con->query($sql))
-        {
-            echo "<br/>Succesfully Populated UserRole";
-        }
-        else
-        {
-            echo $con->error;
-        }
-        $sql = "insert into UserRole (UserId,UserType) values(2, 'Client')";
-        if($con->query($sql))
-        {
-            echo "<br/>Succesfully Populated UserRole";
-        }
-        else
-        {
-            echo $con->error;
-        }
+        updateUserRole(1, "Volunteer");
+        updateUserRole(2, "Client");
+        updateUserRole(3, "Volunteer");
+        updateUserRole(4, "Client");
+        updateUserRole(5, "Volunteer");
+    }
 
+    if(isTableEmpty($con, "Volunteers"))
+    {
+        updateVolunteerAndRequest($con, "Volunteers", 1, "2014-5-2", "Dog", 1, 0, 0, 0, 1, 1, "Jogging"); 
+        updateVolunteerAndRequest($con, "Volunteers", 3, "2014-5-4", "Cat", 0, 1, 0, 0, 1, 1, ""); 
+        updateVolunteerAndRequest($con, "Volunteers", 3, "2014-5-3", "Cat", 0, 1, 0, 0, 1, 1, "Litterbox Cleaning"); 
+    }
+    if(isTableEmpty($con, "Requsets"))
+    {
+        updateVolunteerAndRequest($con, "Requests", 2, "2014-5-2", "Bird", 0, 0, 0, 0, 1, 1, "Cage Cleaning"); 
+        updateVolunteerAndRequest($con, "Requests", 4, "2014-5-4", "Dog", 1, 0, 0, 0, 1, 1, ""); 
+    }
 
+    if(isTableEmpty($con, "MatchUps"))
+    {
+        echo "Begin Update Matchups!!";
+        updateMatchUpTable($con, 1, 2, "Monday", "AM");
+        updateMatchUpTable($con, 1, 'null', "Tuesday", "PM");
+        updateMatchUpTable($con, 3, 'null', "Saturday", "AM");
+        updateMatchUpTable($con, 3, 4, "Thursday", "AM");
+        updateMatchUpTable($con, 5, 'null', "Saturday", "AM");
+        updateMatchUpTable($con, 5, 4, "Saturday", "AM");
     }
     
     $con->close();

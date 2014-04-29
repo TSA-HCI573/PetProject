@@ -98,8 +98,6 @@ function add_user($firstname, $lastname, $username, $password, $email)
             VALUES ('$firstname',  '$lastname', AES_ENCRYPT('$email', '$salt'), '$password', '$username')", 
             $link) or die("Unable to insert data".mysql_error($link));
 
-
-		
 		//Generate rough hash based on user id from above insertion statement
 		$user_id = mysql_insert_id($link); //get the id of the last inserted item
 		$md5_id = md5($user_id);
