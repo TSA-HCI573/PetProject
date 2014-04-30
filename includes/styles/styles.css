@@ -3,7 +3,9 @@ body {
 	padding: 0px auto;
 	font-size: 1em;
 	color: #333333;
-	background-color: #daca85;
+	/*background-color: #daca85;*/
+    /*background: linear-gradient(to right, white , #BB9 , white);*/
+    height:100%;
 	
 }
 pre {
@@ -11,6 +13,11 @@ pre {
 	padding: 10px;
 	background: #222; 
 	color: #fff;
+}
+
+html
+{
+    height:100%;
 }
 
 /* BODY CONTENT -- The basic styles you will use for text content */
@@ -26,7 +33,7 @@ p {
 	line-height: 1.7em;
 	margin-left: 0px;
 	margin-right: 0px;
-	padding-bottom: 15px;  
+	padding-bottom: 30px;  
 }
 
 h1 {
@@ -106,7 +113,10 @@ text-decoration:underline;
 	margin: 0px auto;
 	padding: 0px auto;
 	width: 1024px;
-	
+    background:white;
+    min-height:100%;
+    position:relative;
+    box-shadow: 0px 0px 100px #CDCDCD;
 }
 
 /* HEADER and NAVIGATION */
@@ -202,12 +212,15 @@ text-decoration:underline;
 	clear: both;
 	width: 100%;
 	margin: 16px 0px 0px 0px;
+    overflow:auto;
+    padding-bottom:75px;
+    height:100%;
 }		
 	
 .main, .sidebar {
 	float: none;
 	padding: 0px;
-	vertical-align: top;
+	/*vertical-align: top;*/
 	
 }
 	
@@ -223,10 +236,12 @@ text-decoration:underline;
 .sidebar {
 	width: 21%;
 	display: table-cell;
-	vertical-align: top;
+	/*vertical-align: top;*/
 	border-left: 2px solid #538681;
 	padding: 2%;
 	background-color: #ffffff;
+    height: calc(100% - 210px);
+    position:absolute;
 	
 }
 
@@ -302,6 +317,11 @@ text-decoration:underline;
 	border-top: 2px solid #538681;
 	border-width: 100%;
 	clear:both;
+    height:75px;
+    position:absolute;
+    bottom:0;
+    width:1024px;
+    margin-top: -20px;
 		}
 	
 #footer p {

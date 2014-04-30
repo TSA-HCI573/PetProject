@@ -95,7 +95,6 @@ $sql = "SELECT ". USERS. ".*, " . USER_ROLE . ".UserType, AES_DECRYPT(".USERS.".
 USERS . ".id = ".USER_ROLE . ".userId  WHERE ". USERS. ".Id = ".$_SESSION['UserId'];
 
 $in = mysql_query($sql) or die("Unable to get your info!");
-
 while($r = mysql_fetch_array($in))
 {
 ?>
