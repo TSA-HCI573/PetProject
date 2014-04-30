@@ -51,7 +51,7 @@ return_meta();
 		<h3>Need help?</h3>
 		<p>If you need help, you can call Pet Project at 515-111-2222 and we will assist you with the form.</p>
 		<h3>Paper form</h3>
-		<p>If you know someone that would like to register who doesn't have a computer, they can print out the paper <a href="x">Pet Owner Form</a> and mail it to Pet Project.</p> 
+		<p>If you know someone that would like to register who doesn't have a computer, they can print out the paper Pet Owner Form and mail it to Pet Project.</p> 
 		
 					
 		</div>
