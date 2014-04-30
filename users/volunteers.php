@@ -21,6 +21,14 @@ secure_page(); ?>
             //create three variables to store the data entered into the form
             var startDate = $('#datepicker').val();
             var petType = $('#petType').val();
+
+            if(startDate == "" || petType == "")
+            {
+                $('.error').fadeIn(2000).show().html(
+                    'Please choose a start date and pet type to continue').fadeOut(6000); 
+                return false;
+            }
+
             //day / times
             //requested services
 
@@ -111,6 +119,8 @@ secure_page(); ?>
 <p>Click on grid to show the days and times you're available.</p>
 <table id='scheduleTable'>
 </table>
+<span class="success" style="display:none;"></span>
+<span class="error" style="display:none;"></span>
 <h2>Preferences and requirements </h2>
 <form method="post" name="form" id="form">
 <table>
@@ -169,8 +179,6 @@ secure_page(); ?>
 <p><button type="submit" class="submit" value="insert">Volunteer</button></p>
 </form>
 <p>
-<span class="success" style="display:none;"></span>
-<span class="error" style="display:none;">Uh Oh! Something went wrong, we are unable to submit request at this time.</span>
 </p>
 </div>
 </div>

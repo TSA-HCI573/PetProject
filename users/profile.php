@@ -10,38 +10,52 @@ $msg = NULL;
 
 if(isset($_POST['update']))
 {
-    //update for users table
-    $update = "UPDATE ".USERS." SET firstname = '".filter($_POST['firstname']).
-    "', lastname = '".filter($_POST['lastname']).
-    "', username = '".filter($_POST['username']).
-    "', email = AES_ENCRYPT('".filter($_POST['email'])."', '$salt') ".
-    ", address1 = '".filter($_POST['address1']).
-    "', address2 = '".filter($_POST['address2']).
-    "', city = '".filter($_POST['city']).
-    "', state = '".filter($_POST['state']).
-    "', zipcode = '".filter($_POST['zip']).
-    "', bio = '".filter($_POST['bio'])."'".
-    " WHERE id = ".$_SESSION['UserId'];
-
-    //update/insert for userrole table
-    $run_update = mysql_query($update) or die(mysql_error());
-
-    $run_user_role_update = updateUserRole($_SESSION['UserId'], filter($_POST['usertype']));
-
-    if($run_update && $run_user_role_update)
+    if($_POST['lastname'] == null ||
+        $_POST['firstname'] == null ||
+        $_POST['username'] == null ||
+        $_POST['email'] == null ||
+        $_POST['address1'] == null ||
+        $_POST['city'] == null ||
+        $_POST['state'] == null ||
+        $_POST['zip'] == null )
     {
-        $msg = "Profile updated successfully!";
-
-        if( filter($_POST['usertype']) == "Volunteer")
-        {
-            header("Location: " . SITE_BASE . "/users/volunteers.php");
-        }
-        else if (filter($_POST['usertype']) == "Client")
-        {
-            header("Location: " . SITE_BASE . "/users/clients.php");
-        }
+        $errorMsg = "Please make sure your contact information is complete to continue";
     }
 
+    else
+    {
+        //update for users table
+        $update = "UPDATE ".USERS." SET firstname = '".filter($_POST['firstname']).
+        "', lastname = '".filter($_POST['lastname']).
+        "', username = '".filter($_POST['username']).
+        "', email = AES_ENCRYPT('".filter($_POST['email'])."', '$salt') ".
+        ", address1 = '".filter($_POST['address1']).
+        "', address2 = '".filter($_POST['address2']).
+        "', city = '".filter($_POST['city']).
+        "', state = '".filter($_POST['state']).
+        "', zipcode = '".filter($_POST['zip']).
+        "', bio = '".filter($_POST['bio'])."'".
+        " WHERE id = ".$_SESSION['UserId'];
+
+        //update/insert for userrole table
+        $run_update = mysql_query($update) or die(mysql_error());
+
+        $run_user_role_update = updateUserRole($_SESSION['UserId'], filter($_POST['usertype']));
+
+        if($run_update && $run_user_role_update)
+        {
+            $msg = "Profile updated successfully!";
+
+            if( filter($_POST['usertype']) == "Volunteer")
+            {
+                header("Location: " . SITE_BASE . "/users/volunteers.php");
+            }
+            else if (filter($_POST['usertype']) == "Client")
+            {
+                header("Location: " . SITE_BASE . "/users/clients.php");
+            }
+        }
+    }
 
 }
 ?>
@@ -68,6 +82,10 @@ if(isset($_POST['update']))
 if(isset($msg))
 {
 echo '<div class="success">'.$msg.'</div>';
+}
+if(isset($errorMsg))
+{
+    echo "<div class='error'>$errorMsg</div>";
 }
 
 // echo "user_id:  " .$_SESSION['user_id'];
