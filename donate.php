@@ -46,8 +46,8 @@ return_meta();
 		Des Moines, IA 50309<br>
 		
 		<h3>Other donations</h3>
-		<p>If you have other types of donations:</p>
-		<p>Call</p> 
+		<p>If you have other types of donations call:</p>
+		<p>515-111-2222</p> 
 	
 		
 					

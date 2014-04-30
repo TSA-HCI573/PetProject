@@ -257,6 +257,11 @@ text-decoration:underline;
 	padding: 2%;
 }
 
+.leftbarhome p {
+	font-size: .8em; 
+	
+}
+
 .mainhome {
 	width: 50%;
 	background-color: #ffffff;
@@ -279,6 +284,11 @@ text-decoration:underline;
 .rightbarhome h3 {
 	color: #f88c2b;
 }	
+
+.rightbarhome p {
+	font-size: .8em; 
+	
+}
 
 /*PHOTOS*/
 
