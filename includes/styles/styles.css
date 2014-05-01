@@ -186,7 +186,7 @@ text-decoration:underline;
 .nav ul li {
 	list-style-type: none;
 	display: inline-block;
-	padding: 10px 20px 5px 35px;
+	padding: 10px 25px 7px 25px;
 	text-align: center;
 }
 .nav ul li a {
@@ -272,6 +272,11 @@ text-decoration:underline;
 	padding: 2%;
 }
 
+.leftbarhome p {
+	font-size: .8em; 
+	
+}
+
 .mainhome {
 	width: 50%;
 	background-color: #ffffff;
@@ -285,22 +290,20 @@ text-decoration:underline;
 	width: 21%;
 	display: table-cell;
 	vertical-align: top;
-	/* background-color: #dcb23e; */
 	border-left: 2px solid #538681;
 	padding: 2%;
 	background-color: #ffffff;
 }
 
-/*
-.rightbarhome p  {
-		background: #dcb23e; 
+
+.rightbarhome h3 {
+	color: #f88c2b;
+}	
+
+.rightbarhome p {
+	font-size: .8em; 
 	
 }
-*/
-.rightbarhome h3 {
-	color: #dcb23e;
-	/*background: #dcb23e; */
-}	
 
 /*PHOTOS*/
 
@@ -329,6 +332,7 @@ text-decoration:underline;
 	margin:auto;
 	padding: 0px px 0px 10px;
 	width: 100%;
+
 }
 
 
@@ -374,7 +378,7 @@ input[type="button"]:hover {
 	border: 2px solid #f6a35a;
 	cursor: pointer;
 	font-weight: bold;
-	background: #dcb23e;
+	background: #f88c2b;
 	color: #ffffff;
 }
 

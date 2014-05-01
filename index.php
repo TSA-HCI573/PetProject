@@ -19,9 +19,13 @@ return_meta();
 
         <h2>What would you like to do? </h2>
 		
-		<button class="submit">Volunteer </button>
-		<br><br>
-		<button class="submit">Get Pet Assistance </button>
+		<h3>Volunteer </h3>
+		<p><a href="volunteer.php">Learn about volunteering</a></br>
+		<a href="users/volunteers.php">Check your schedule</a></p>
+		
+		<h3>Get Pet Assistance </h3>
+		<p><a href="client.php">Learn about assistance available</a></br>
+		<a href="users/clients.php">See your assistance schedule</a></p>
 		
 		<p class="note"><strong>Register first!</strong> When volunteering or requesting assistance for the first time, you will be first directed to register on the Pet Project website. </p>
 						
