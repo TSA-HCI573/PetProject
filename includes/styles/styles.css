@@ -3,7 +3,7 @@ body {
 	padding: 0px auto;
 	font-size: 1em;
 	color: #333333;
-    background-color:#F5F5F5;
+    background-color:#F3F3F3;
 	/*background-color: #daca85;*/
     /*background: linear-gradient(to right, white , #BB9 , white);*/
     height:100%;
@@ -117,7 +117,7 @@ text-decoration:underline;
     background:white;
     min-height:100%;
     position:relative;
-    box-shadow: 0px 0px 10px #D2D2D2;
+    box-shadow: 1px 1px 2px 5px #DFDFDF;
 }
 
 /* HEADER and NAVIGATION */
