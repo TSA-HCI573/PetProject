@@ -115,7 +115,7 @@ secure_page(); ?>
 
 <h1>Volunteer</h1>
 <h2>Times/days available</h2>
-<p>Click on grid to show the days and times you're available.</p>
+<p>Click on the boxes for morning (AM) or evening (PM) for each day of the week to show the days and times you're available. Highlighted boxes show what you've volunteered for.</p>
 <table id='scheduleTable'>
 </table>
 <span class="success" style="display:none;"></span>
