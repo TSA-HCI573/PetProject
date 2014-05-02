@@ -122,11 +122,11 @@ secure_page(); ?>
 <h2>Preferences and requirements </h2>
 <form method="post" name="form" id="form">
 <table>
-<tr><td><label>Start Date</label> </td>
+<tr><td><label class="required">Start Date *</label> </td>
 <td><input type="text" id="datepicker" name="datepicker" ></td>
 </tr>
 <tr>
-<td><label>Pet Type</label></td>
+<td><label class="required">Pet Type *</label></td>
 <td>
 <select name="petType" id="petType">
 <option VALUE"" selected="selected"></option>
