@@ -26,9 +26,6 @@ if(isset($_POST['add']))
 
     if($password == filter($_POST['password2']))
     {
-         echo $email;
-        //echo $firstname . " " . $lastname. " " .  $username. " " .  $password. " " .  $email . " " .  $address1. " " .  $address2. " " .  $city. " " .  $state. " " .  $zipcode. " " .  $bio. " " .  $profileImagePath;
-        //define in config.inc.php
         $err = add_user($firstname, $lastname, $username, $password, $email);
 
         //if there are no errors, set $msg to "Registration Successfull" - later on, it is displayed on the page
