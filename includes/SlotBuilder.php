@@ -31,6 +31,18 @@
         return $address;
     }
 
+    function cleanNulls($s)
+    {
+        foreach($s as $key => $value)
+        {
+            if($value == null)
+            {
+                $s[$key] = "";
+            }
+        }
+        return $s;
+    }
+
     function buildServices($s)
     {
         $services = array();
@@ -65,6 +77,8 @@
 
         return $services;
     }
+
+
 
 ?>
 

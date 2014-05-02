@@ -300,7 +300,7 @@ primary key (Id))";
     {
         updateVolunteerAndRequest($con, "Volunteers", 1, "2014-5-2", "Dog", 1, 0, 0, 0, 1, 1, "Jogging"); 
         updateVolunteerAndRequest($con, "Volunteers", 3, "2014-5-4", "Cat", 0, 1, 0, 0, 1, 1, ""); 
-        updateVolunteerAndRequest($con, "Volunteers", 3, "2014-5-3", "Cat", 0, 1, 0, 0, 1, 1, "Litterbox Cleaning"); 
+        updateVolunteerAndRequest($con, "Volunteers", 5, "2014-5-3", "Cat", 0, 1, 0, 0, 1, 1, "Litterbox Cleaning"); 
     }
     if(isTableEmpty($con, "Requsets"))
     {

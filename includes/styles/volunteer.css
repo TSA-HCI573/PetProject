@@ -4,8 +4,9 @@
 }
 #scheduleTable
 {
-    border-collapse:collapse;
+    /*border-collapse:collapse;*/
     margin-bottom: 2em;
+    border-spacing:0.3em;
 }
 
 #scheduleTable td
@@ -38,7 +39,6 @@
     opacity: 0.5;
     background:#BFE54B;
     color:black;
-    border:0.1em solid #AAAAAA;
     width: 6.5em;
 }
 .cellText
@@ -63,7 +63,6 @@
     color: white;
     background:#8CB217;
     opacity: 1.0;
-    border:0.1em solid #AAAAAA;
 }
 .hiddenDay
 {

@@ -45,9 +45,9 @@
 
 #scheduleTable .slot
 {
-    background: #BFE54B;
+    background: #8cb217;
     color: black;
-    border: 0.1em solid #AAAAAA;
+    border: 0.3em solid white;
     width: 6.5em;
 }
 .ui-tooltip

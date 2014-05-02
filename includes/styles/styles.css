@@ -390,8 +390,8 @@ textarea {
 /* MISC -- not sure if we are using or not */
 
 .success {
-	background: #ffffff;
-	color: #7d9f15;
+	color: #ffffff;
+	background: #7d9f15;
 	border: solid 2px #7d9f15;
 	display: block;
 	margin: 20px;
@@ -402,8 +402,8 @@ textarea {
 	text-decoration: none;
 }
 .err {
-	background: #ffffff;
-	color: #dd6b05;
+	color: #ffffff;
+	background: #dd6b05;
 	border: solid 2px #dd6b05;
 	display: block;
 	margin: 20px;
@@ -414,8 +414,8 @@ textarea {
 	
 /*Specific to jquery.validate*/
 .error {
-	background: #ffffff;
-	color: #dd6b05;
+	color: #ffffff;
+	background: #dd6b05;
 	border: solid 2px #dd6b05;
 	display: block;
 	margin: 20px;

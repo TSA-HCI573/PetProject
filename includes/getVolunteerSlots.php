@@ -35,9 +35,28 @@
 
                 $slot['address'] = buildAddress($s);
                 $slot['services'] = buildServices($s);
-                $slot['startDate'] = $s['BeginDate'];
-                $slot['petType'] = $s['PetType'];
-                $slot['email'] = $s['Email'];
+
+                $date= "";
+                if($s['BeginDate'] != null)
+                {
+                    $date =$s['BeginDate'];
+                }
+                $slot['startDate'] = $date;
+
+                $petType = "";
+                if($s['PetType'] != null)
+                {
+                    $petType = $s['PetType'];
+                }
+
+                $slot['petType'] = $petType;
+
+                $email ="";
+                if($s['Email'] != null)
+                {
+                    $email = $s['Email'];
+                }
+                $slot['email'] = $email;
             }
         }
         return $slot;
