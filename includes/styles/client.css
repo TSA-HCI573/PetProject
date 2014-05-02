@@ -25,6 +25,11 @@
     height:8em;
 }
 
+#scheduleTable tr:first-child
+{
+    height:2em;
+}
+
 #scheduleTable th
 {
     border:0.1em solid white;

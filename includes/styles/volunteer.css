@@ -27,6 +27,11 @@
     height:7em;
 }
 
+#scheduleTable tr:first-child
+{
+    height:2em;
+}
+
 #scheduleTable th
 {
     border:0.1em solid white;
@@ -34,12 +39,14 @@
     background:white;
 }
 
+
 .slot
 {
     opacity: 0.5;
     background:#BFE54B;
     color:black;
     width: 6.5em;
+    vertical-align:middle;
 }
 .cellText
 {
@@ -63,6 +70,7 @@
     color: white;
     background:#8CB217;
     opacity: 1.0;
+    vertical-align:middle;
 }
 .hiddenDay
 {
