@@ -123,7 +123,7 @@ secure_page(); ?>
 <h2>Preferences and requirements </h2>
 <form method="post" name="form" id="form">
 <table>
-<tr><td>Start Date: </td>
+<tr><td><label>Start Date</label> </td>
 <td><input type="text" id="datepicker" name="datepicker" ></td>
 </tr>
 <tr>
@@ -169,7 +169,7 @@ secure_page(); ?>
 </tr>
 </table><br/>
 <table>
-<tr>Additional Comments:</tr>
+<tr><label>Additional Comments</label></tr>
 </table>
 <tr>
 <textarea name="comments" id="comments" rows="5" style="width:73%" maxlength="300"></textarea>

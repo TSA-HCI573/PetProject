@@ -109,15 +109,15 @@ return_meta($meta_title);
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="register_form">
 
 			<table cellspacing="5" cellpadding="5" border="0">
-			<tr><td>First Name </td> 
+			<tr><td><label>First Name</label> </td> 
 			<td> <input type="text" name="firstname" value="" class="required" /></td></tr>
-			<tr><td>Last Name </td>
+			<tr><td><label>Last Name</label> </td>
 			<td><input type="text" name="lastname" value="" class="required" /></td></tr>
-			<tr><td>User Name </td> 
+			<tr><td><label>User Name</label> </td> 
 			<td><input type="text" name="username" value="" class="required" /></td></tr>
-			<tr><td>Password </td><td> <input type="password" name="password" value="" class="required" /></td></tr>
-            <tr><td>Password Again</td><td><input type="password" name="password2" class="required" /></td></tr>
-			<tr><td>Email</td><td><input type="text" name="email" value="" class="required email" /></td></tr>
+			<tr><td><label>Password</label> </td><td> <input type="password" name="password" value="" class="required" /></td></tr>
+            <tr><td><label>Password Again</label></td><td><input type="password" name="password2" class="required" /></td></tr>
+			<tr><td><label>Email</label></td><td><input type="text" name="email" value="" class="required email" /></td></tr>
 
 			<tr>
 			<td colspan="2" align="right">

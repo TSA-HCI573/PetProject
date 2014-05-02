@@ -75,6 +75,11 @@ ol li {
 
 .footnote  {
 	font-size: .7em;
+}
+
+.small {
+	font-size: .7em;
+	line-height:  .7em;
 
 }
 
@@ -338,20 +343,26 @@ a:active {
 
 form {
 	margin: 0px;
-	width: 650px;
+	width: 610px;
 	padding: 20px;
 	color: #333333;
 	border: solid 2px #8cb217;
 	background: #ffffff;
 }
 
-.formlabels {
+label {
 	font-family: Myriad, Arial, sans-serif;
-	font-size: .8em;
+	font-size: .9em;
 	color: #447772;
 	font-weight: bold;
 	margin-bottom: 0px;
 	padding-bottom: 20px;
+}
+
+.required  {
+	
+	color: #dd6b05;
+	
 }
 
 a.button,

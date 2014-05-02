@@ -153,10 +153,10 @@ return_meta("Log in to your account");
 		<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="login_form">
 		<table cellpadding="5" cellspacing="5" border="0">
 		<tr>
-		<td>Username/Email:</td>
+		<td><label>Username/Email</label></td>
 		<td><input type="text" name="user" value="" class="required" /></td>
 		</tr>
-		<td>Password:</td>
+		<td><label>Password</label></td>
 		<td><input type="password" name="pass" value="" class="required" /></td>
 		</tr>
 		<tr>
