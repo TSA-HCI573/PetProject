@@ -5,11 +5,11 @@ include_once 'includes/swift/lib/swift_required.php';
 
 $meta_title = "Register an account";
 
-$firstname = NULL;
-$lastname = NULL;
-$username = NULL;
-$password = NULL;
-$email = NULL;
+$firstname = "";
+$lastname = "";
+$username = "";
+$password = "";
+$email = "";
 
 
 $msg = NULL;
@@ -110,14 +110,20 @@ return_meta($meta_title);
 
 			<table cellspacing="5" cellpadding="5" border="0">
 			<tr><td><label>First Name</label> </td> 
-			<td> <input type="text" name="firstname" value="" class="required" /></td></tr>
+            <td> <input type="text" name="firstname" 
+                        value="<?php echo $firstname; ?>" class="required" /></td></tr>
 			<tr><td><label>Last Name</label> </td>
-			<td><input type="text" name="lastname" value="" class="required" /></td></tr>
+            <td><input type="text" name="lastname" 
+                        value="<?php echo $lastname; ?>" class="required" /></td></tr>
 			<tr><td><label>User Name</label> </td> 
-			<td><input type="text" name="username" value="" class="required" /></td></tr>
-			<tr><td><label>Password</label> </td><td> <input type="password" name="password" value="" class="required" /></td></tr>
-            <tr><td><label>Password Again</label></td><td><input type="password" name="password2" class="required" /></td></tr>
-			<tr><td><label>Email</label></td><td><input type="text" name="email" value="" class="required email" /></td></tr>
+            <td><input type="text" name="username" 
+                value="<?php echo $username; ?>" class="required" /></td></tr>
+            <tr><td><label>Password</label> </td><td> <input type="password" 
+                name="password" value="" class="required" /></td></tr>
+            <tr><td><label>Password Again</label></td><td><input type="password" 
+                name="password2" class="required" /></td></tr>
+            <tr><td><label>Email</label></td><td><input type="text" name="email" 
+                    value="<?php echo $email; ?>" class="required email" /></td></tr>
 
 			<tr>
 			<td colspan="2" align="right">
