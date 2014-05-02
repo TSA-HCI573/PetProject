@@ -24,16 +24,27 @@ if(isset($_POST['add']))
 	$password = filter($_POST['password']);
 	$email = filter($_POST['email']);
 
-echo $email;
-//echo $firstname . " " . $lastname. " " .  $username. " " .  $password. " " .  $email . " " .  $address1. " " .  $address2. " " .  $city. " " .  $state. " " .  $zipcode. " " .  $bio. " " .  $profileImagePath;
-	//define in config.inc.php
-	$err = add_user($firstname, $lastname, $username, $password, $email);
+    if($password == filter($_POST['password2']))
+    {
+         echo $email;
+        //echo $firstname . " " . $lastname. " " .  $username. " " .  $password. " " .  $email . " " .  $address1. " " .  $address2. " " .  $city. " " .  $state. " " .  $zipcode. " " .  $bio. " " .  $profileImagePath;
+        //define in config.inc.php
+        $err = add_user($firstname, $lastname, $username, $password, $email);
 
-	//if there are no errors, set $msg to "Registration Successfull" - later on, it is displayed on the page
-	if ( count($err) == 0){
-		$msg = "Registration successful!";
-		$meta_title = "Registration successful!";
-	}
+        //if there are no errors, set $msg to "Registration Successfull" - later on, it is displayed on the page
+        if ( count($err) == 0){
+            $msg = "Registration successful!";
+            $meta_title = "Registration successful!";
+        }   
+    }
+    else
+    {
+        $error= "Passwords don't match";
+    }
+
+
+
+    
 	
 	
 }
@@ -46,6 +57,8 @@ return_meta($meta_title);
 <title>Edit Your Information</title>
 <link rel="stylesheet" type="text/css" media="all" href="../includes/styles/styles.css" />
 <script>
+
+
 </script>
 </head>
 
@@ -77,6 +90,12 @@ return_meta($meta_title);
 			echo $e.'<br />';
 		}
 		echo '</div>';
+    }
+    if(!empty($error)) 
+	{
+		echo '<div class="error">';
+        echo $error;
+		echo '</div>';
 	}
 	?>
 
@@ -103,11 +122,12 @@ return_meta($meta_title);
 			<tr><td>User Name </td> 
 			<td><input type="text" name="username" value="" class="required" /></td></tr>
 			<tr><td>Password </td><td> <input type="password" name="password" value="" class="required" /></td></tr>
+            <tr><td>Password Again</td><td><input type="password" name="password2" class="required" /></td></tr>
 			<tr><td>Email</td><td><input type="text" name="email" value="" class="required email" /></td></tr>
 
 			<tr>
 			<td colspan="2" align="right">
-				<input type="submit" name="add" value="Register!" />
+				<input id="registerButton" type="submit" name="add" value="Register!" />
 			</td>
 			</tr>
 			</table>
