@@ -3,9 +3,7 @@ body {
 	padding: 0px auto;
 	font-size: 1em;
 	color: #333333;
-    background-color:#F3F3F3;
-	/*background-color: #daca85;*/
-    /*background: linear-gradient(to right, white , #BB9 , white);*/
+	background-color: #daca85;
     height:100%;
 	
 }
@@ -117,7 +115,6 @@ text-decoration:underline;
     background:white;
     min-height:100%;
     position:relative;
-    box-shadow: 1px 1px 2px 5px #DFDFDF;
 }
 
 /* HEADER and NAVIGATION */
@@ -444,9 +441,8 @@ textarea {
 .tooltip1
 {
    float: left;
-   width: 50%;
+   width: 40%;
    background:white;
-   box-sizing: border-box;
    /*border:0.1em solid #AAAAAA;*/
    display:inline;
 }
@@ -459,8 +455,7 @@ textarea {
 .tooltip2
 {
     float: left;
-    width: 50%;
-    box-sizing: border-box;
+    width: 60%;
     display:inline;
 }
 
@@ -471,11 +466,12 @@ textarea {
     padding: 0.2em;
     margin: 0.1em;
     border-radius: .2em;
+    max-width: 10em;
 }
 
 .ui-tooltip
 {
     background:white;
-    width 10em;
+    width:40em;
 }
 

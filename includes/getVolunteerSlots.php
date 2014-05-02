@@ -1,7 +1,7 @@
 <?php
 
-    include 'constant/config.inc.php';
-    include 'SlotBuilder.php';
+    require 'constant/config.inc.php';
+    require 'SlotBuilder.php';
     //error_reporting(E_ALL | E_STRICT);
     error_reporting(E_ERROR);
 
@@ -37,10 +37,12 @@
                 $slot['services'] = buildServices($s);
                 $slot['startDate'] = $s['BeginDate'];
                 $slot['petType'] = $s['PetType'];
+                $slot['email'] = $s['Email'];
             }
         }
         return $slot;
     }
+
 
     function GetVolunteerSlots($userId)
     {
@@ -48,6 +50,8 @@
         {
             return;
         }
+        global $salt;
+
         $sql = 
             "select 
                 m.Time, 

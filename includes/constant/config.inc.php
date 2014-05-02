@@ -42,7 +42,6 @@ $password_store_key = sha1("dsf4dgfd5s2");
 global $password_store_key;
 
 
-
 /* Function that adds a new user to our system */
 function add_user($firstname, $lastname, $username, $password, $email)
 {

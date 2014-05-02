@@ -20,10 +20,11 @@
 
         if(!!(day[index].firstName))
         {
-            result += "<p class=\"clientBlock\" title=\"<span class='tooltip1'> <span class='tooltipName'>"
+            result += "<p class=\"clientBlock\" title=\"<div class='tooltip1'> <span class='tooltipName'>"
                 + day[index].firstName + " " + day[index].lastName + "</span> <br />" + 
                  day[index].address + "<br /> <strong> Owns a " + day[index].petType + "</strong> <br />" +
-                "</span> <span class='tooltip2'> Needs: ";  
+                "</div> <div class='tooltip2'>" +
+                 "<span>" + day[index].email + "</span> <br /> Needs:"; 
 
             for(var i=0; i < day[index].services.length; i++)
             {
@@ -32,7 +33,7 @@
             }
 
             result += "<br /> Starting On: <br />"
-                +day[index].startDate + "</span>" 
+                +day[index].startDate + "</div>" 
                 + "\" >" + day[index].firstName +"<br /> " + day[index].lastName + "</p>";
         }
 
@@ -121,6 +122,7 @@
                     return $(this).attr('title');
                 }
             });
+            //$(".ui-tooltip").css("max-width: 400px;");
         });
     }
     $(document).ready(function()

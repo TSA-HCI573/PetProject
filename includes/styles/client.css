@@ -53,7 +53,9 @@
 .ui-tooltip
 {
     background:white;
-    width 10em;
+    max-width: 100em;
+    width: 25em;
+    
 }
 
 

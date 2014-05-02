@@ -98,7 +98,7 @@ $in = mysql_query($sql) or die("Unable to get your info!");
 while($r = mysql_fetch_array($in))
 {
 ?>
-<h1>My Profile</h1>
+    <h1>My Profile <?php echo "salt: $salt"; ?></h1>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="profile_form">
 <table cellspacing="5" cellpadding="5" border="0">
 <tr>

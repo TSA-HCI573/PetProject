@@ -23,6 +23,7 @@
 
     function GetAvailableSlots($userId)
     { 
+        global $salt;
         $sql =
             "select distinct 
                 m.Time, 
