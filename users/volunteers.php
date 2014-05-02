@@ -79,12 +79,12 @@ secure_page(); ?>
         {
             $('#datepicker').val(info.BeginDate);
             $('#petType').val(info.PetType);
-            $('#dogwalking').prop('checked',info.DogWalking !=0);
-            $('#grooming').prop('checked', info.Grooming != 0);
-            $('#administermeds').prop('checked', info.AdministerMeds != 0);
-            $('#transport').prop('checked', info.Transport != 0);
-            $('#deliverfood').prop('checked', info.DeliverFood != 0);
-            $('#fostercare').prop('checked', info.FosterCare != 0);
+            $('#dogwalking').prop('checked',info.DogWalking ==1);
+            $('#grooming').prop('checked', info.Grooming == 1);
+            $('#administermeds').prop('checked', info.AdministerMeds == 1);
+            $('#transport').prop('checked', info.Transport == 1);
+            $('#deliverfood').prop('checked', info.DeliverFood == 1);
+            $('#fostercare').prop('checked', info.FosterCare == 1);
             $('#other').val(info.Other);
             $('#comments').val(info.Comments);
         });
