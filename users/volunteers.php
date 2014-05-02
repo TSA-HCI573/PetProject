@@ -118,8 +118,7 @@ secure_page(); ?>
 <p>Click on the boxes for morning (AM) or evening (PM) for each day of the week to show the days and times you're available. Highlighted boxes show what you've volunteered for.</p>
 <table id='scheduleTable'>
 </table>
-<span class="success" style="display:none;"></span>
-<span class="error" style="display:none;"></span>
+
 <h2>Preferences and requirements </h2>
 <form method="post" name="form" id="form">
 <table>
@@ -175,10 +174,12 @@ secure_page(); ?>
 <textarea name="comments" id="comments" rows="5" style="width:73%" maxlength="300"></textarea>
 </tr>
 </table>
-<p><button type="submit" class="submit" value="insert">Volunteer</button></p>
-</form>
-<p>
+<p><button type="submit" class="submit" value="insert">Volunteer</button>
+<span class="success" style="display:none;"></span>
+<span class="error" style="display:none;"></span>
 </p>
+</form>
+
 </div>
 </div>
 <div id="footer">

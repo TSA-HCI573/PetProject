@@ -123,8 +123,7 @@ secure_page(); ?>
  </div>
 <table id='scheduleTable'>
 </table>
-<span class="success" style="display:none;"></span>
-<span class="error" style="display:none;"></span>
+
 <h2>Preferences and requirements </h2>
 <form method="post" name="form" id="form">
 <table>
@@ -180,7 +179,10 @@ secure_page(); ?>
 <textarea name="comments" id="comments" rows="5" style="width:73%" maxlength="300"></textarea>
 </tr>
 </table>
-<p><button type="submit" class="submit" value="insert">Request Pet Assistance</button></p>
+<p><button type="submit" class="submit" value="insert">Request Pet Assistance</button>
+<span class="success" style="display:none;"></span>
+<span class="error" style="display:none;"></span>
+</p>
 </form>
 <p>
 </p>
