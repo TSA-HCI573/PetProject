@@ -24,7 +24,6 @@ if(isset($_POST['add']))
 	$password = filter($_POST['password']);
 	$email = filter($_POST['email']);
 
-echo $email;
 //echo $firstname . " " . $lastname. " " .  $username. " " .  $password. " " .  $email . " " .  $address1. " " .  $address2. " " .  $city. " " .  $state. " " .  $zipcode. " " .  $bio. " " .  $profileImagePath;
 	//define in config.inc.php
 	$err = add_user($firstname, $lastname, $username, $password, $email);
