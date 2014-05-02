@@ -96,7 +96,7 @@ if(isset($_POST['login']))
 			else
 			{
 				//Passwords don't match, issue an error
-				$err[] = "Invalid User";
+				$err[] = "Invalid Password";
 			}
 		} //end if user found
 		else
