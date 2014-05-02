@@ -88,9 +88,7 @@ if(isset($errorMsg))
     echo "<div class='error'>$errorMsg</div>";
 }
 
-// echo "user_id:  " .$_SESSION['user_id'];
-
-
+//GET THE USERS PROFILE INFORMATION FROM THE DB
 $sql = "SELECT ". USERS. ".*, " . USER_ROLE . ".UserType, AES_DECRYPT(".USERS.".email, '$salt') AS decryptedEmail FROM ".USERS." left join " . USER_ROLE . " on " .
 USERS . ".id = ".USER_ROLE . ".userId  WHERE ". USERS. ".Id = ".$_SESSION['UserId'];
 
@@ -108,35 +106,29 @@ while($r = mysql_fetch_array($in))
 <tr>
 <td><label class="required">I am a *</label></td>
 <td>
-<!-- 
-<select name="usertype" id="usertype" value="<?php echo $r['userrole']; ?>"/>
-<option value=""  <?php if($r['UserType'] == "") {echo selected;} ?>></option>
-<option value="Volunteer" <?php if ($r['UserType'] == 'Volunteer') { echo selected; } ?>>Volunteer</option>
-<option value="Client" <?php if($r['UserType'] == 'Client') {echo selected;}?>>Need Pet Assistance</option>
-</select> 
- -->
+
 <input type="radio" name="usertype" value="Volunteer"  <?php if ($r['UserType'] == 'Volunteer') { echo checked; } ?>> Volunteer <br>
 <input type="radio" name="usertype" value="Client" <?php if ($r['UserType'] == 'Client') { echo checked; } ?>> Pet Owner Needing Assistance<br>
 </td>
 </tr>
 <tr>
-<td><label class="required">First Name</label> <font color="red">*</font></td>
+<td><label class="required">First Name *</label></td>
 <td><input type="text" size = "35" name="firstname" value="<?php echo $r['FirstName']; ?>" /></td>
 </tr>
    <tr>
-<td><label class="required">Last Name</label> <font color="red">*</font></td>
+<td><label class="required">Last Name *</label></td>
 <td><input type="text" size = "35" name="lastname" value="<?php echo $r['LastName']; ?>" /></td>
 </tr>
    <tr>
-<td><label class="required">Username</label> <font color="red">*</font></td>
+<td><label class="required">Username *</label> </td>
 <td><input type="text" size = "35" name="username" value="<?php echo $r['UserName']; ?>" /></td>
 </tr>
 <tr>
-<td><label class="required">Email</label> <font color="red">*</font></td>
+<td><label class="required">Email *</label> </td>
 <td><input type="text" size = "35" name="email" value="<?php echo $r['decryptedEmail']; ?>" /></td>
 </tr>
 <tr>
-<td><label class="required">Address 1</label> <font color="red">*</font></td>
+<td><label class="required">Address 1 *</label> </td>
 <td><input type="text" size = "35" name="address1" value="<?php if (isset($_POST['address1'])) {echo $_POST['address1'];} else { echo $r['Address1'];} ?>" /></td>
 </tr>
 <tr>
@@ -144,15 +136,15 @@ while($r = mysql_fetch_array($in))
 <td><input type="text" size = "35" name="address2" value="<?php if (isset($_POST['address2'])) {echo $_POST['address2'];} else { echo $r['Address1'];} ?>" /></td>
 </tr>
 <tr>
-<td><label class="required">City</label> <font color="red">*</font></td>
+<td><label class="required">City *</label></td>
 <td><input type="text" size = "35" name="city" value="<?php  if (isset($_POST['city'])) {echo $_POST['city'];} else { echo $r['City'];} ?>" /></td>
 </tr>
 <tr>
-<td><label class="required">State</label> <font color="red">*</font></td>
+<td><label class="required">State *</label> </td>
 <td><input type="text" name="state" value="<?php if (isset($_POST['state'])) {echo $_POST['state'];} else {echo $r['State'];} ?>" /></td>
 </tr>
 <tr>
-<td><label class="required">Zip</label> <font color="red">*</font></td>
+<td><label class="required">Zip *</label> </td>
 <td><input type="text" name="zip" value="<?php if (isset($_POST['zip'])) {echo $_POST['zip'];} else {echo $r['ZipCode'];} ?>" /></td>
 </tr>
 
