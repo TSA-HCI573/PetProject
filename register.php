@@ -5,12 +5,11 @@ include_once 'includes/swift/lib/swift_required.php';
 
 $meta_title = "Register an account";
 
-// $firstname = NULL;
-// $lastname = NULL;
-// $username = NULL;
-// $password = NULL;
-// $email = NULL;
-
+$firstname = "";
+$lastname = "";
+$username = "";
+$password = "";
+$email = "";
 
 $msg = NULL;
 $err = array();
@@ -109,16 +108,21 @@ return_meta($meta_title);
 			<p class="small">Text in orange with * indicates required field.</p>	
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="register_form">
 
-			<table cellspacing="5" cellpadding="5" border="0">
 			<tr><td><label class="required">First Name *</label> </td> 
-			<td> <input type="text" name="firstname" value="" class="required"/></td></tr>
+            <td> <input type="text" name="firstname" 
+                        value="<?php echo $firstname; ?>" class="required" /></td></tr>
 			<tr><td><label class="required">Last Name *</label> </td>
-			<td><input type="text" name="lastname" value="" class="required" /></td></tr>
+            <td><input type="text" name="lastname" 
+                        value="<?php echo $lastname; ?>" class="required" /></td></tr>
 			<tr><td><label class="required">User Name *</label> </td> 
-			<td><input type="text" name="username" value="" class="required" /></td></tr>
-			<tr><td><label class="required">Password *</label> </td><td> <input type="password" name="password" value="" class="required" /></td></tr>
-            <tr><td><label class="required">Password Again *</label></td><td><input type="password" name="password2" class="required" /></td></tr>
-			<tr><td><label class="required">Email *</label></td><td><input type="text" name="email" value="" class="required email" /></td></tr>
+            <td><input type="text" name="username" 
+                value="<?php echo $username; ?>" class="required" /></td></tr>
+            <tr><td><label class="required">Password *</label> </td><td> <input type="password" 
+                name="password" value="" class="required" /></td></tr>
+            <tr><td><label class="required">Password Again *</label></td><td><input type="password" 
+                name="password2" class="required" /></td></tr>
+            <tr><td><label class="required">Email *</label></td><td><input type="text" name="email" 
+                    value="<?php echo $email; ?>" class="required email" /></td></tr>
 
 			<tr>
 			<td colspan="2" align="right">
