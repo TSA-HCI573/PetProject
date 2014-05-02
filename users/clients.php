@@ -113,8 +113,14 @@ secure_page(); ?>
 <div class="main">
 
 <h1>Request Pet Assistance</h1>
-<h2>Times/days available</h2>
-<p>Click on grid to select an available volunteer.</p>
+<h2>Volunteers available by day/time</h2>
+<div class="indent"><p>The following boxes represent morning (AM) or afternoon (PM) for each day of the week.</p>
+	<ol><li>Go through each day of the week column and decide if you need a volunteer in the morning or afternoon or both.</li>
+	<li>Learn about the volunteer(s) listed by moving your mouse over their name -- the details will appear.</li>
+	<li>To select a volunteer, click on the checkbox to the left of the name.</li>
+	<li>Complete your preferences and click <strong>Request Pet Assistance</strong> to submit your request.</li>
+	</ul>
+ </div>
 <table id='scheduleTable'>
 </table>
 <span class="success" style="display:none;"></span>
