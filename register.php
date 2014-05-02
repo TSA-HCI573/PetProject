@@ -107,7 +107,7 @@ return_meta($meta_title);
 			<h1>Registration</h1>
 			<p class="small">Text in orange with * indicates required field.</p>	
 			<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="register_form">
-
+			<table>
 			<tr><td><label class="required">First Name *</label> </td> 
             <td> <input type="text" name="firstname" 
                         value="<?php echo $firstname; ?>" class="required" /></td></tr>
