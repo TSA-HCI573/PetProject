@@ -13,7 +13,11 @@ if(isset($_POST['update']))
     if($_POST['lastname'] == null ||
         $_POST['firstname'] == null ||
         $_POST['username'] == null ||
-        $_POST['email'] == null)
+        $_POST['email'] == null ||
+        $_POST['address1'] == null ||
+        $_POST['city'] == null ||
+        $_POST['state'] == null ||
+        $_POST['zip'] == null )
     {
         $errorMsg = "Please make sure your contact information is complete to continue";
     }
