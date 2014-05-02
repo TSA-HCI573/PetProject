@@ -19,7 +19,7 @@ if(isset($_POST['update']))
         $_POST['state'] == null ||
         $_POST['zip'] == null )
     {
-        $errorMsg = "Please make sure your contact information is complete to continue";
+        $errorMsg = "Please complete all items with an * to continue...";
     }
 
     else
@@ -102,56 +102,59 @@ while($r = mysql_fetch_array($in))
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="profile_form">
 <table cellspacing="5" cellpadding="5" border="0">
 <tr>
-<td colspan="2"><label>Are you a pet owner needing help or a volunteer wanting to help?</label></td></tr>
-<tr>
-<td/>
+<td><label>I am a <font color="red">*</font></label></td>
 <td>
+<!-- 
 <select name="usertype" id="usertype" value="<?php echo $r['userrole']; ?>"/>
 <option value=""  <?php if($r['UserType'] == "") {echo selected;} ?>></option>
 <option value="Volunteer" <?php if ($r['UserType'] == 'Volunteer') { echo selected; } ?>>Volunteer</option>
 <option value="Client" <?php if($r['UserType'] == 'Client') {echo selected;}?>>Need Pet Assistance</option>
-</select> </td>
+</select> 
+ -->
+<input type="radio" name="usertype" value="Volunteer"  <?php if ($r['UserType'] == 'Volunteer') { echo checked; } ?>> Volunteer <br>
+<input type="radio" name="usertype" value="Client" <?php if ($r['UserType'] == 'Client') { echo checked; } ?>> Pet Owner Needing Assistance<br>
+</td>
 </tr>
 <tr>
-<td>First Name</td>
+<td>First Name <font color="red">*</font></td>
 <td><input type="text" size = "35" name="firstname" value="<?php echo $r['FirstName']; ?>" /></td>
 </tr>
    <tr>
-<td>Last Name</td>
+<td>Last Name <font color="red">*</font></td>
 <td><input type="text" size = "35" name="lastname" value="<?php echo $r['LastName']; ?>" /></td>
 </tr>
    <tr>
-<td>Username</td>
+<td>Username <font color="red">*</font></td>
 <td><input type="text" size = "35" name="username" value="<?php echo $r['UserName']; ?>" /></td>
 </tr>
 <tr>
-<td>Email</td>
+<td>Email <font color="red">*</font></td>
 <td><input type="text" size = "35" name="email" value="<?php echo $r['decryptedEmail']; ?>" /></td>
 </tr>
 <tr>
-<td>Address 1</td>
-<td><input type="text" size = "35" name="address1" value="<?php echo $r['Address1']; ?>" /></td>
+<td>Address 1 <font color="red">*</font></td>
+<td><input type="text" size = "35" name="address1" value="<?php if (isset($_POST['address1'])) {echo $_POST['address1'];} else { echo $r['Address1'];} ?>" /></td>
 </tr>
 <tr>
 <td>Address 2</td>
-<td><input type="text" size = "35" name="address2" value="<?php echo $r['Address2']; ?>" /></td>
+<td><input type="text" size = "35" name="address2" value="<?php if (isset($_POST['address2'])) {echo $_POST['address2'];} else { echo $r['Address1'];} ?>" /></td>
 </tr>
 <tr>
-<td>City</td>
-<td><input type="text" size = "35" name="city" value="<?php echo $r['City']; ?>" /></td>
+<td>City <font color="red">*</font></td>
+<td><input type="text" size = "35" name="city" value="<?php  if (isset($_POST['city'])) {echo $_POST['city'];} else { echo $r['City'];} ?>" /></td>
 </tr>
 <tr>
-<td>State</td>
-<td><input type="text" name="state" value="<?php echo $r['State']; ?>" /></td>
+<td>State <font color="red">*</font></td>
+<td><input type="text" name="state" value="<?php if (isset($_POST['state'])) {echo $_POST['state'];} else {echo $r['State'];} ?>" /></td>
 </tr>
 <tr>
-<td>Zip</td>
-<td><input type="text" name="zip" value="<?php echo $r['ZipCode']; ?>" /></td>
+<td>Zip <font color="red">*</font></td>
+<td><input type="text" name="zip" value="<?php if (isset($_POST['zip'])) {echo $_POST['zip'];} else {echo $r['ZipCode'];} ?>" /></td>
 </tr>
 
 <tr>
 <td>About Me</td>
-<td><textarea rows="5" cols="35" name="bio"><?php echo $r['Bio']; ?></textarea></td>
+<td><textarea rows="5" cols="35" name="bio"><?php if (isset($_POST['bio'])) {echo $_POST['bio'];} else {echo $r['Bio'];} ?></textarea></td>
 <!-- <td><type="text" name="bio" rows="5" maxlength="300" value="<?php echo $r['Bio']; ?>" /></td> -->
 
 </tr>
