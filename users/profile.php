@@ -13,11 +13,7 @@ if(isset($_POST['update']))
     if($_POST['lastname'] == null ||
         $_POST['firstname'] == null ||
         $_POST['username'] == null ||
-        $_POST['email'] == null ||
-        $_POST['address1'] == null ||
-        $_POST['city'] == null ||
-        $_POST['state'] == null ||
-        $_POST['zip'] == null )
+        $_POST['email'] == null)
     {
         $errorMsg = "Please make sure your contact information is complete to continue";
     }
@@ -102,15 +98,18 @@ while($r = mysql_fetch_array($in))
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" id="profile_form">
 <table cellspacing="5" cellpadding="5" border="0">
 <tr>
-<td colspan="2"><label>Are you a pet owner needing help or a volunteer wanting to help?</label></td></tr>
-<tr>
-<td/>
+<td><label>I am a</label></td>
 <td>
+<!-- 
 <select name="usertype" id="usertype" value="<?php echo $r['userrole']; ?>"/>
 <option value=""  <?php if($r['UserType'] == "") {echo selected;} ?>></option>
 <option value="Volunteer" <?php if ($r['UserType'] == 'Volunteer') { echo selected; } ?>>Volunteer</option>
 <option value="Client" <?php if($r['UserType'] == 'Client') {echo selected;}?>>Need Pet Assistance</option>
-</select> </td>
+</select> 
+ -->
+<input type="radio" name="usertype" value="Volunteer"  <?php if ($r['UserType'] == 'Volunteer') { echo checked; } ?>> Volunteer <br>
+<input type="radio" name="usertype" value="Client" <?php if ($r['UserType'] == 'Client') { echo checked; } ?>> Pet Owner Needing Assistance<br>
+</td>
 </tr>
 <tr>
 <td>First Name</td>
