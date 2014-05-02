@@ -11,7 +11,6 @@ secure_page(); ?>
 
 <script src="<?php echo JS?>/jquery-1.10.2.js"></script>
 <script src="<?php echo JS?>/jquery-ui-1.10.4.js"></script>
-<script src="<?php echo JS?>/jquery.approach.min.js"></script>
 <script>
     //Form processing function start
     $(function()

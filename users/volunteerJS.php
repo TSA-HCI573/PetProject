@@ -85,14 +85,43 @@
                 $("#scheduleTable").append(buildRow(days,i));
             });
             
-            $(".slot").approach(
+            //$(".slot").approach(
+            //{
+            //    "opacity": 1.0,
+            //}, 200);                    
+            //$(".selectedSlot").approach(
+            //{
+            //    "opacity": 0.8 
+            //}, 200);                    
+
+            $(".slot").mouseover(function()
             {
-                "opacity": 1.0,
-            }, 200);                    
-            $(".selectedSlot").approach(
+               $(this).stop().animate(
+                {
+                    opacity: "1.0"
+                }, 200);
+            }).mouseout(function()
             {
-                "opacity": 0.8 
-            }, 200);                    
+                $(this).stop().animate(
+                {
+                    opacity: "0.5"
+                }, 200);
+            });
+
+            $(".selectedSlot").mouseover(function()
+            {
+               $(this).stop().animate(
+                {
+                    opacity: "0.8"
+                }, 200);
+            }).mouseout(function()
+            {
+                $(this).stop().animate(
+                {
+                    opacity: "1.0"
+                }, 200);
+            });
+
             $(".selectedSlot").click(function()
             {
                 var volunteerAPI = "<?php echo SITE_BASE .'/includes/UpdateVolunteerSlot.php' ?>";
@@ -122,7 +151,6 @@
                     return $(this).attr('title');
                 }
             });
-            //$(".ui-tooltip").css("max-width: 400px;");
         });
     }
     $(document).ready(function()
