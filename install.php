@@ -2,11 +2,11 @@
 
     function isTableEmpty($con, $table)
     {
-        echo "Determine if empty";
+       // echo "Determine if empty";
         $result = $con->query("select * from " . $table);
         if($result)
         {
-            echo "Num Rows =" . $result->num_rows;
+           // echo "Num Rows =" . $result->num_rows;
             if($result->num_rows > 0)
             {
                 $result->close();
@@ -69,7 +69,7 @@
 
     
 
-    echo "php started <br/>";
+    echo "Starting install....<br/>";
     
     //see if I can establish a connection to the database
     $con = new mysqli("localhost", "hci573","hci573","petproject");
@@ -77,13 +77,13 @@
 	
     if( $con->connect_errno)
     {
-    	echo "db doesn't exist, create it";
+    	echo "Creating database <br/>";
         //If Database doesn't exist try to create it
         $con = new mysqli("localhost", "hci573","hci573");
         if($con->connect_errno)
         {
             //Couldn't connect so we can't create nuthin, exit
-            echo "Failed to Connect to mysql: " . mysqli_connect_error($con);
+            echo "Failed to Connect to mysql: " . mysqli_connect_error($con) . "<br/";
             return;
         }
         else// We could connect so lets try to create
@@ -91,7 +91,7 @@
             $sql="create database petproject";
             if($con->query($sql)=== FALSE)
             { //Couldn't create databasei, exit
-                echo "<br/>Error creating sql database: " . $con->error;
+                echo "<br/>Error creating sql database: " . $con->error . "<br/";
                 return;
             }
         }
@@ -101,7 +101,7 @@
    	 	$sql="drop database petproject";
             if($con->query($sql)=== FALSE)
             { //Couldn't drop databasei, exit
-                echo "<br/>Error dropping sql database: " . $con->error;
+                echo "<br/>Error dropping sql database: " . $con->error . "<br/";
                 return;
             }
             else //dropped it now recreate it
@@ -110,7 +110,7 @@
                 if($con->connect_errno)
         		{
          		   //Couldn't connect so we can't create nuthin, exit
-         		   echo "Failed to Connect to mysql: " . mysqli_connect_error($con);
+         		   echo "Failed to Connect to mysql: " . mysqli_connect_error($con) . "<br/";
            		 return;
         		}
         		else// We could connect so lets try to create
@@ -118,7 +118,7 @@
             		$sql="create database petproject";
             		if($con->query($sql)=== FALSE)
             		{ //Couldn't create databasei, exit
-                	echo "<br/>Error creating sql database: " . $con->error;
+                	echo "<br/>Error creating sql database: " . $con->error . "<br/";
                 	return;
            			 }
         		}
@@ -129,12 +129,12 @@
     $con = new mysqli("localhost", "hci573","hci573","petproject");
         if( $con->connect_errno)
         {
-        	echo "Failed to get connection to new petproject db";
+        	echo "Failed to get connection to new petproject db <br/>";
         	return;
         }
         
     //If we are here we should be connected to a database
-    echo " database creation successful ";
+    echo " Created Pet Project database <br/> ";
     //create users table
     $sql ="create table if not exists Users (
 Id bigint(20) not null auto_increment,
@@ -261,7 +261,7 @@ primary key (Id))";
         return;
     }
     
-
+	echo "Created database tables <br/>";
 
 
     require 'includes/constant/config.inc.php';
@@ -284,6 +284,7 @@ primary key (Id))";
         add_user("Julie", "O\'Brian", "user5", "pass", "july.obrian@notreal.com");
         updateUserDetails($con, "Julie", "16532 Buena Vista Dr.", "Clive",
             "IA", "50324", "I am a second year student at DMACC." );
+        echo "Added Users<br/>";
 
     }
 
@@ -310,13 +311,13 @@ primary key (Id))";
 
     if(isTableEmpty($con, "MatchUps"))
     {
-        echo "Begin Update Matchups!!";
         updateMatchUpTable($con, 1, 2, "Monday", "AM");
         updateMatchUpTable($con, 1, 'null', "Tuesday", "PM");
         updateMatchUpTable($con, 3, 'null', "Saturday", "AM");
         updateMatchUpTable($con, 3, 4, "Thursday", "AM");
         updateMatchUpTable($con, 5, 'null', "Saturday", "AM");
         updateMatchUpTable($con, 5, 4, "Saturday", "AM");
+        echo "Created Volunteer/Pet Owner Matches<br/>";
     }
     
     $con->close();
