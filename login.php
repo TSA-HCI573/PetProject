@@ -177,8 +177,8 @@ return_meta("Log in to your account");
 	</div>
 	
 	<div id="footer">
-	<p>Here's some content for the footer. Need to use an include for this.</p>
-	</div>
+    <?php include 'includes/constant/footer.inc.php'; ?>
+    </div>
 	
 </div>
 </body>
