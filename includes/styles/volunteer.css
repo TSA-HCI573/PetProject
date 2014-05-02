@@ -24,13 +24,13 @@
 
 #scheduleTable tr
 {
-    height:7em;
-}
-
-#scheduleTable tr:first-child
-{
     height:2em;
 }
+
+/*#scheduleTable tr:first-child
+{
+    height:2em;
+}*/
 
 #scheduleTable th
 {
