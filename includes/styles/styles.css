@@ -79,29 +79,29 @@ ol li {
 }
 
 td {
-padding: 10px;
-white-space:nowrap;
+	padding: 10px;
+	white-space:nowrap;
 }
 
 /* LINKS */
 
 a:link {
-color:#447772;
-text-decoration:underline;
+	color:#447772;
+	text-decoration:underline;
 } 
      
 a:visited {
-color:#447772;
-text-decoration:underline;
+	color:#447772;
+	text-decoration:underline;
 } 
 
 a:hover {
-color:#7d9f15;
+	color:#7d9f15;
 }  
 
 a:active {
-color:#7d9f15;
-text-decoration:underline;
+	color:#7d9f15;
+	text-decoration:underline;
 }   
 
 
@@ -328,7 +328,7 @@ text-decoration:underline;
 #footer p {
 	font-size: .7em; 
 	margin:auto;
-	padding: 0px px 0px 10px;
+	padding: 0% 0% 0% 0%;
 	width: 100%;
 
 }
@@ -380,22 +380,6 @@ input[type="button"]:hover {
 	color: #ffffff;
 }
 
-/*  this is old
-button {
-	clear:both;
-	margin-left:10px;
-	width:125px;
-	height:32px;
-	background: #dd6b05;
-	line-height:31px;
-	color:#FFFFFF;
-	font-size: .9em;
-	border: 2px solid #f6a35a;
-	padding-bottom: 33px;
-
-}
-
-*/
 
 textarea {
     resize: none;
@@ -407,8 +391,8 @@ textarea {
 
 .success {
 	background: #ffffff;
-	color: #8cb217;
-	border: solid 2px #8cb217;
+	color: #7d9f15;
+	border: solid 2px #7d9f15;
 	display: block;
 	margin: 20px;
 	padding: 10px;
