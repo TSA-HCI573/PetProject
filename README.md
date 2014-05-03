@@ -2,7 +2,7 @@ PetProject
 ==========
 
 HCI 573 implementation project
-
+Access to our source control is available at https://github.com/TSA-HCI573/PetProject
 
 To run Pet Project on a Mac
 
@@ -16,6 +16,24 @@ To run Pet Project on a Mac
 
 4.  To access the site go to localhost/petproject
 
+To Run on Linux
+1. Install Apache and MariaDB
+
+2. Install the php and php-msql plugins for apache.
+
+3. Configure php.ini
+
+4. Unzip folder contents to /svr/http/petproject or /var/www/petproject
+
+   depending on how your apache is confiugred.
+
+5.  Open a browser and run the install.php file localhost/petproject/install.php.
+
+	You'll see that a database, tables, and user data are created
+
+6.  To access the site go to localhost/petproject
+
 
 THIRD PARTY TOOLS:
 - photos purchased from canstockphoto.com
+
