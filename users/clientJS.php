@@ -1,5 +1,6 @@
 <script>
 
+//javascript needed to build the client schedule grid.
 function getSlots()
 {
     var clientAPI = "<?php echo SITE_BASE .'/includes/getClientSlots.php' ?>";

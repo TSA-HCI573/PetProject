@@ -2,7 +2,7 @@
 
     function isTableEmpty($con, $table)
     {
-       // echo "Determine if empty";
+       // Determine if empty";
         $result = $con->query("select * from " . $table);
         if($result)
         {
@@ -41,7 +41,6 @@
     {
         $sql = "insert into MatchUps(ClientId, VolunteerId, Day, Time)
             values($client,$volunteer,'$day', '$time');";
-        //echo "<br />$sql <br />";
 
         if($con->query($sql) === FALSE)
         {
@@ -266,7 +265,7 @@ primary key (Id))";
 
     require 'includes/constant/config.inc.php';
 
-    
+   //Seting up some predefined values for our Usability study. 
     if(isTableEmpty($con, "Users"))
     {
         add_user("Anne", "Hatheway", "user1", "pass", "anne.hatheway@notreal.com");
@@ -289,7 +288,7 @@ primary key (Id))";
     }
 
     if(isTableEmpty($con, "UserRole"))
-    {
+    { 
         updateUserRole(1, "Volunteer");
         updateUserRole(2, "Client");
         updateUserRole(3, "Volunteer");

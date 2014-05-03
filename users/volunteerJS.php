@@ -1,6 +1,7 @@
 <script>
 
-                        
+//This file contains the js functions need to build the volunteer
+//grid                  
 
     function buildColumn(dayName, day, index)
     {

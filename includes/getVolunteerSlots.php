@@ -18,6 +18,8 @@
         foreach($mySlots as $s)
         {
             $dbTime =$s['Time'];
+            //if there is a database entry populate
+            //the time slot with the stored data
             if( $dbTime == $time && $s['Day'] == $day)
             {
                 $slot['volunteer'] = true;
@@ -121,8 +123,8 @@
 
         $days = array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday","Friday","Saturday");
         $slots = array();
-        foreach($days as $day)
-        {
+        foreach($days as $day) // Build a json entry for every possible day and time whether or not it has data
+        {                       //in the database
             
             $slot = AddSlot($mySlots, "AM",$day);
             $slots[$day][] = $slot;

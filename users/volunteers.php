@@ -102,6 +102,7 @@ secure_page(); ?>
 
 
 </script>
+<!--The schecule Grid -->
 <?php include "volunteerJS.php"?>
 
 </head>

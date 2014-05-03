@@ -4,6 +4,8 @@
 
     function AddSlot($s)
     {
+        //convert the database result to the "objects" that
+        //the javascript front end needs
         $slot = array();
         $slot['Time'] = $s['Time'];
         $slot['Day'] = $s['Day'];
@@ -15,7 +17,7 @@
         $slot['Address'] = buildAddress($s);
         $slot['Services'] = buildServices($s);
 
-         $date= "";
+        $date= "";
         if($s['BeginDate'] != null)
         {
             $date =$s['BeginDate'];

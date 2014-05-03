@@ -16,6 +16,17 @@ To run Pet Project on a Mac
 
 4.  To access the site go to localhost/petproject
 
+To Run on Windows
+1. Install WAMP
+
+2. Unzaip the PetProject folder to WAMP/www/petproject
+
+3.  Open a browser and run the install.php file localhost/petproject/install.php.
+
+	You'll see that a database, tables, and user data are created
+
+4.  To access the site go to localhost/petproject
+
 To Run on Linux
 1. Install Apache and MariaDB
 
@@ -25,7 +36,7 @@ To Run on Linux
 
 4. Unzip folder contents to /svr/http/petproject or /var/www/petproject
 
-   depending on how your apache is confiugred.
+	depending on how your apache is confiugred.
 
 5.  Open a browser and run the install.php file localhost/petproject/install.php.
 

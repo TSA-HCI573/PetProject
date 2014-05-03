@@ -16,7 +16,7 @@
         return;
     }
 
-
+//Determine if slot is allready in database and then toggle it
     $sql = 
         "select *
         from 
@@ -45,7 +45,7 @@
 
     if($timeFilled)
     {
-        echo("Allready There UnSetting");
+        //Allready There UnSetting
         $sql =  
         "update MatchUps 
         set
@@ -59,7 +59,7 @@
     }  
     else
     {
-        echo("Not There Yet, Updating");
+        //Not There Yet, Updating
         $sql =  
         "update MatchUps 
         set

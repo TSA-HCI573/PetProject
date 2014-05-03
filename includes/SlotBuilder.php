@@ -1,4 +1,5 @@
 <?php
+//build Address string from database columns
  function buildAddress($s)
     {
         $address = "";
@@ -43,6 +44,7 @@
         return $s;
     }
 
+    //Compile a array of services from database columns
     function buildServices($s)
     {
         $services = array();

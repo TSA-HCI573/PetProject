@@ -101,6 +101,7 @@ secure_page(); ?>
 
 
 </script>
+<!-- javascript for the schedule grid -->
 <?php include "clientJS.php"?>
 
 </head>
