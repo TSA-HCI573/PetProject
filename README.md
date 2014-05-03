@@ -44,6 +44,10 @@ To Run on Linux
 
 6.  To access the site go to localhost/petproject
 
+ON WINDOWS
+Unzip PetProject folder to C\wamp\www
+Run the install.php file localhost/petproject/install.php.
+Access the site go to localhost/petproject
 
 THIRD PARTY TOOLS:
 - photos purchased from canstockphoto.com
